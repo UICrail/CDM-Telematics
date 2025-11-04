@@ -1,0 +1,3422 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "AdministrativeState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Administrative state",
+      "type": "object"
+    },
+    "CarrierState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Carrier state",
+      "type": "object"
+    },
+    "Coach": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction in a fixed or variable formation capable of carrying passengers (by extension, requirements specified to apply to coaches in this TSI are deemed to apply also to restaurant cars, sleeping cars, couchettes cars, etc.) Note: was \"passenger carriage\" in earlier versions.",
+      "properties": {},
+      "type": "object"
+    },
+    "Concept": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ConceptScheme": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Facility role or function scheme"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Facility role or function scheme": "https://cdm.ovh/taf/tafp5#FacilityRoleOrFunctionScheme"
+          }
+        }
+      ],
+      "description": "Enumeration of ConceptScheme values"
+    },
+    "Container": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ITU"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "sizeAndTypeCode": {
+          "description": "4 digit alphanum code for container size and type, according to ISO 6346",
+          "title": "size and type code",
+          "type": "string"
+        }
+      },
+      "title": "Container",
+      "type": "object"
+    },
+    "ContentLocation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "asPNG": {
+              "title": "as PNG",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "The image file as a BLOB. Possibly not in the same namespace as the Image individual.",
+      "title": "Content location"
+    },
+    "CustomsStatus": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Pending",
+            "Inspected",
+            "Cleared",
+            "Pre cleared"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Cleared": "https://cdm.ovh/taf/tafp5#Cleared",
+            "Inspected": "https://cdm.ovh/taf/tafp5#Inspected",
+            "Pending": "https://cdm.ovh/taf/tafp5#Pending",
+            "Pre cleared": "https://cdm.ovh/taf/tafp5#PreCleared"
+          }
+        }
+      ],
+      "description": "Enumeration of CustomsStatus values",
+      "title": "Customs status"
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "DesignedArtifact": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "EmptyList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "title": "Empty list"
+    },
+    "Entity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "generatedAtTime": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "wasAttributedTo": {
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "Event": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ExecutedJourney": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Process"
+        },
+        {
+          "$ref": "#/definitions/Journey"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "realizesPlannedJourneyOrPath": {
+          "items": {
+            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey)",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/PlannedJourneyOrPath"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "realizesPlannedJourneyOrPath"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Executed journey",
+      "type": "object"
+    },
+    "Extremity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "coincidesWith": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Extremity"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "coincides with"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "title": "Extremity"
+    },
+    "Facility": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasFacilityFunction": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FacilityRoleOrFunction"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has facility function"
+          },
+          "type": "array"
+        },
+        "playsFacilityRole": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FacilityRoleOrFunction"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "plays facility role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Facility",
+      "type": "object"
+    },
+    "FacilityRoleOrFunction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Yard",
+            "Workshop"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Workshop": "https://cdm.ovh/taf/tafp5#Workshop",
+            "Yard": "https://cdm.ovh/taf/tafp5#Yard"
+          }
+        }
+      ],
+      "description": "Enumeration of FacilityRoleOrFunction values",
+      "title": "Facility role or function"
+    },
+    "Formation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A formation is rolling stock composed of vehicles or other formations (recursively), that are coupled mechanically or virtually. Generic term from RSM, X2Rail-4, and others. Used with qualifications (fixed rake of coaches) in TSI LOCPAS 2020. Examples of formations: A Locomotive + a rake of coaches. Two coupled TGV trainsets. One ICE trainset with one coupled rescue locomotive.",
+      "properties": {
+        "hasFixedConsist": {
+          "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
+          "type": "boolean"
+        },
+        "headRollingStock": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ListedRollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "head rolling stock"
+        },
+        "includesRollingStock": {
+          "items": {
+            "description": "rolling stock in object is part of the formation in subject, by means of mechanical coupling or (possibly, in the future) virtual coupling. This \"simple\" property does not inform about orientation and order of vehicle.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/RollingStock"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FreightCarryingRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "FreightRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "as freight"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "as freight": "https://cdm.ovh/taf/tafp5#asFreight"
+          }
+        }
+      ],
+      "description": "Enumeration of FreightRole values",
+      "title": "Freight role"
+    },
+    "ITU": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasBICCcode": {
+          "description": "BIC code according to ISO 6346 (4 letters, 6 numeric digits and 1 check digit)",
+          "title": "has BIC code",
+          "type": "string"
+        },
+        "hasILUcode": {
+          "description": "ILU code (under EN 13044 series) is the standardized identification (owner, number, check digit) for intermodal loading units in Europe. The ILU code is designed for non-ISO containers, swap bodies, semi-trailers in intra-European combined transport.",
+          "title": "has ILU code",
+          "type": "string"
+        },
+        "hasOtherCode": {
+          "items": {
+            "title": "has other code",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Intermodal Transport Unit",
+      "type": "object"
+    },
+    "Image": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/InformationObject"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasImageContent": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ContentLocation"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has image content"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Image",
+      "type": "object"
+    },
+    "InformationObject": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Instant": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "title": "time:Instant"
+    },
+    "Interval": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "W3C Time interval, possibly open-ended or degenerate (start = end)"
+    },
+    "Journey": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "hasJourneySchedule": {
+              "items": {
+                "description": "Note: it may be that the same path or planned journey has multiple schedules (variants), not further characterized here, so we did not make this property functional.",
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/JourneySchedule"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has journey schedule"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ExecutedJourney"
+            },
+            {
+              "$ref": "#/definitions/PlannedJourneyOrPath"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: ExecutedJourney, PlannedJourneyOrPath",
+      "title": "Journey"
+    },
+    "JourneySchedule": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/VersionedDescription"
+        },
+        {
+          "$ref": "#/definitions/List"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Since journey structures are meant to be shared, their instances should not be modified once used. New instances should be minted for every change.",
+      "properties": {
+        "hasArrivalTime": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has arrival time"
+          },
+          "type": "array"
+        },
+        "hasDepartureTime": {
+          "items": {
+            "description": "May have multiple values (e.g. planned, revised, forecast, actual...), hence NOT a functional property",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has departure time"
+          },
+          "type": "array"
+        },
+        "hasDestination": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has destination"
+        },
+        "hasJourneySection": {
+          "items": {
+            "description": "Inverse functional property.",
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has journey section"
+          },
+          "type": "array"
+        },
+        "hasOrigin": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has origin"
+        },
+        "startsAtOrigin": {
+          "description": "if False: means pass-through",
+          "title": "starts at origin",
+          "type": "boolean"
+        },
+        "stopsAtDestination": {
+          "description": "if False: means pass-through",
+          "title": "stops at destination",
+          "type": "boolean"
+        }
+      },
+      "title": "Journey schedule",
+      "type": "object"
+    },
+    "JourneySection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/JourneySchedule"
+        },
+        {
+          "$ref": "#/definitions/ListItem"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections are chained by properties nextSection and previousSection.",
+      "properties": {
+        "hasIM": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has IM"
+          },
+          "type": "array"
+        },
+        "hasRU": {
+          "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationsStakeholder"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has RU"
+        },
+        "nextSection": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySection"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "next section"
+        },
+        "previousSection": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySection"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "previous section"
+        }
+      },
+      "title": "Journey section",
+      "type": "object"
+    },
+    "List": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ListItem": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ListedFormation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "ListedRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "atExtremity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Extremity"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "atExtremity"
+        },
+        "hasNextRollingStock": {
+          "oneOf": [
+            {
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has next rolling stock"
+        }
+      },
+      "title": "Listed rolling stock",
+      "type": "object"
+    },
+    "ListedVehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "LoadRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "$ref": "#/definitions/Role"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FreightRole"
+            },
+            {
+              "$ref": "#/definitions/PassengerRole"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: FreightRole, PassengerRole",
+      "properties": {},
+      "title": "LoadRole",
+      "type": "object"
+    },
+    "LoadState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasTimeInterval": {
+          "description": "Array of Interval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Interval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "isClassifiedBy": {
+          "description": "Array of FreightRole or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FreightRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "isSettingFor": {
+          "description": "Array of {'unionOf': ['https://cdm.ovh/taf/tafp5#ITU', 'https://cdm.ovh/taf/tafp5#Wagon']} or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ITU"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Wagon"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Load state",
+      "type": "object"
+    },
+    "Locomotive": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle having a driving desk and can be used standalone (e.g. for shunting or ferrying movements), but is normally used for hauling other vehicles or formations.",
+      "properties": {},
+      "type": "object"
+    },
+    "LocomotiveRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "leading locomotive role",
+            "locomotive role",
+            "controlled locomotive role"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "controlled locomotive role": "https://cdm.ovh/taf/tafp5#controlledLocomotiveRole",
+            "leading locomotive role": "https://cdm.ovh/taf/tafp5#leadingLocomotiveRole",
+            "locomotive role": "https://cdm.ovh/taf/tafp5#locomotiveRole"
+          }
+        }
+      ],
+      "description": "Enumeration of LocomotiveRole values",
+      "title": "Locomotive role"
+    },
+    "Message": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Entity"
+        },
+        {
+          "$ref": "#/definitions/InformationObject"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TafMessage"
+            },
+            {
+              "$ref": "#/definitions/TransportCollaborationMessage"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: TafMessage, TransportCollaborationMessage",
+      "properties": {
+        "hasComment": {
+          "items": {
+            "title": "has comment",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hasFullText": {
+          "description": "typically, the full XML or JSON snippet (including comments, if any)",
+          "title": "has full text",
+          "type": "string"
+        },
+        "reportedAt": {
+          "description": "same semantics as prov:generatedAtTime",
+          "format": "date-time",
+          "title": "reported at",
+          "type": "string"
+        }
+      },
+      "title": "Message",
+      "type": "object"
+    },
+    "MotorCar": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle that cannot be used standalone, as can be found in trainset (EMUs or DMUs). May or may not carry passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotoredRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of rolling stock that is able by design to exert tractive effort on wheels or (rarely) cogwheels.",
+      "properties": {},
+      "type": "object"
+    },
+    "OTN": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Operational Train Number. A train may bear different numbers along its course.",
+      "title": "OTN"
+    },
+    "OWLList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "OnTrackMachine": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "a motored railway vehicle used for infrastructure maintenance",
+      "properties": {},
+      "type": "object"
+    },
+    "OperationalArtifact": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/DesignedArtifact"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Operational artifact",
+      "type": "object"
+    },
+    "OperationalEntity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "name": {
+              "title": "name",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "Abstract class for all things related to the process of operating a freight train",
+      "title": "Operational entity"
+    },
+    "OperationalInstant": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalTime"
+        },
+        {
+          "$ref": "#/definitions/Instant"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "An instant related to some operational event (planned / forecast / observed / ...).",
+      "properties": {},
+      "title": "Operational instant",
+      "type": "object"
+    },
+    "OperationalInterval": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Interval"
+        },
+        {
+          "$ref": "#/definitions/OperationalTime"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Time interval, as used in the context of operations. Can play various roles (actual, planned, forecast...). Implementer can choose to coerce it to proper intervals (beginning and end time are then distinct individuals with distinct dateTime values).",
+      "properties": {
+        "hasBeginning": {
+          "description": "Array of OperationalInstant or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasEnd": {
+          "description": "Array of OperationalInstant or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational interval",
+      "type": "object"
+    },
+    "OperationalLocation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Place"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TAF TSI ontology: identifies a Location using a LocationIdent",
+      "properties": {
+        "hasPrimaryCode": {
+          "title": "has primary code",
+          "type": "string"
+        },
+        "hasSubsidiaryCode": {
+          "title": "has subsidiary code",
+          "type": "string"
+        },
+        "isOperationalLocationOf": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainLocationState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "is operational location of"
+          },
+          "type": "array"
+        },
+        "locationName": {
+          "items": {
+            "title": "location name",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational location",
+      "type": "object"
+    },
+    "OperationalProcess": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Process"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasTimeInterval": {
+          "description": "Array of OperationalInterval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasTrain": {
+          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Train"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has train"
+        }
+      },
+      "title": "Operational process",
+      "type": "object"
+    },
+    "OperationalRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Lead carrier",
+            "Lead RU",
+            "Cargo carrier",
+            "Train operator"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Cargo carrier": "https://cdm.ovh/taf/tafp5#CargoCarrier",
+            "Lead RU": "https://cdm.ovh/taf/tafp5#LeadRU",
+            "Lead carrier": "https://cdm.ovh/taf/tafp5#LeadCarrier",
+            "Train operator": "https://cdm.ovh/taf/tafp5#TrainOperator"
+          }
+        }
+      ],
+      "description": "Enumeration of OperationalRole values",
+      "title": "Operational role"
+    },
+    "OperationalState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "$ref": "#/definitions/Situation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "An operational state is a situation (in the sense of DUL). An operational is a typical payload of any operational message.",
+      "properties": {
+        "hasOperationalInstant": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has operational instant"
+          },
+          "type": "array"
+        },
+        "hasOperationalInterval": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has operational interval"
+          },
+          "type": "array"
+        },
+        "hasParticipant": {
+          "description": "Array of OperationalEntity or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalEntity"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasSetting": {
+          "description": "Array of OperationalEntity or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalEntity"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasTemporalRole": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TemporalRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has temporal role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational state",
+      "type": "object"
+    },
+    "OperationalTime": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TimeInterval"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalInstant"
+            },
+            {
+              "$ref": "#/definitions/OperationalInterval"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: OperationalInstant, OperationalInterval",
+      "properties": {
+        "issuedAt": {
+          "description": "Timestamp when the forecast value (most common case) or any other time value was generated or last updated",
+          "format": "date-time",
+          "title": "issued at",
+          "type": "string"
+        }
+      },
+      "title": "OperationalTime",
+      "type": "object"
+    },
+    "OperationsStakeholder": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RegisteredOrganization"
+        },
+        {
+          "$ref": "#/definitions/Organization"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any registered organisation that is involved in the train run (operators, carriers, consignors and consignees, wagon owners...)",
+      "properties": {
+        "playsOperationalRole": {
+          "items": {
+            "description": "property listing the possible roles, not those actually played on a particular train run",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "plays operational role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operations stakeholder",
+      "type": "object"
+    },
+    "Organization": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "identifier": {
+              "items": {
+                "description": "range = rdfs:Literal (not an OWL class) = any number or string. Note: org:identifier is a simplistic way to identify companies; the identifier may be context-specific so they are no longer direct properties is more refined ontologies.",
+                "title": "identifier",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "PassengerCarryingRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "PassengerRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "as passenger"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "as passenger": "https://cdm.ovh/taf/tafp5#asPassenger"
+          }
+        }
+      ],
+      "description": "Enumeration of PassengerRole values",
+      "title": "Passenger role"
+    },
+    "Path": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Path",
+      "type": "object"
+    },
+    "Place": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Plan": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "PlannedJourney": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "The planned journey may share the same JourneySchedule as the path, or deviate from it (e.g. deviations related to temporary speed restrictions, added or canceled stops). It may be updated after the train departure (in which case it gives rise to a forecast schedule, of a different class).",
+      "properties": {},
+      "title": "Planned journey",
+      "type": "object"
+    },
+    "PlannedJourneyOrPath": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Plan"
+        },
+        {
+          "$ref": "#/definitions/Journey"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Planned journey or path",
+      "type": "object"
+    },
+    "Process": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "hasSubProcess": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Process"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has sub process"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "RailCar": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Wikipedia (12/3/2024): self-propelled railway vehicle designed to transport passengers. Equiv. to FR: Autorail, DE: Schienenbus (narrower meaning: two axles only). Note however the numerous variants and ambiguities.",
+      "properties": {},
+      "type": "object"
+    },
+    "Rake": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any non-powered formation. Examples: wagon rake; (fixed consist) set of TGV trailers; (fixed or variable consist) rake of coaches.",
+      "properties": {},
+      "type": "object"
+    },
+    "ReferenceOTN": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "title": "Reference OTN"
+    },
+    "RegisteredOrganization": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Organization"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadRailVehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadVehicleRake": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "From TSI WAG 2023, \"unit\", 3rd entry: separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.",
+      "properties": {},
+      "type": "object"
+    },
+    "Role": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Note: aligning with DOLCE, roles are defined as individuals such as \"freight role\" (instance of Load role), with no properties attached."
+    },
+    "RollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "extremity_1": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_1"
+            },
+            "extremity_2": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_2"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "RollingStockFeature": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ServiceType": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "customs",
+            "maintenance",
+            "brake check"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "brake check": "https://cdm.ovh/taf/tafp5#brakeCheck",
+            "customs": "https://cdm.ovh/taf/tafp5#customs",
+            "maintenance": "https://cdm.ovh/taf/tafp5#Maintenance"
+          }
+        }
+      ],
+      "description": "Enumeration of ServiceType values",
+      "title": "Service type"
+    },
+    "Situation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "SlaveLocomotive": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle without driving desk, with energy possibly fed from master locomotive ( = subclass \"slug\"). Also called \"truck\" in France, e.g. TC61000. Do not confuse with master/slave configuration of two normal locomotives (\"multiple working\" in the UK).",
+      "properties": {},
+      "type": "object"
+    },
+    "StaticSection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "atTime": {
+              "description": "Array of OperationalInterval or @id references",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/OperationalInterval"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "hasOperationalLocation": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/OperationalLocation"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "has operational location"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections \"at rest\" (but possibly implying shunting movements inside an operational location). May host maintenance or customes operations.",
+      "title": "Static section"
+    },
+    "SwapBody": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ITU"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Swap body",
+      "type": "object"
+    },
+    "TafMessage": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Message"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Message compliant with TAF TSI XSD",
+      "properties": {},
+      "title": "TAF message",
+      "type": "object"
+    },
+    "TemporalRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "contractual",
+            "Actual",
+            "Forecast",
+            "Updated",
+            "Planned",
+            "recommended"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Actual": "https://cdm.ovh/taf/tafp5#Actual",
+            "Forecast": "https://cdm.ovh/taf/tafp5#Forecast",
+            "Planned": "https://cdm.ovh/taf/tafp5#Planned",
+            "Updated": "https://cdm.ovh/taf/tafp5#Updated",
+            "contractual": "https://cdm.ovh/taf/tafp5#contractual",
+            "recommended": "https://cdm.ovh/taf/tafp5#recommended"
+          }
+        }
+      ],
+      "description": "Enumeration of TemporalRole values",
+      "title": "Temporal role"
+    },
+    "TimeInterval": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Track": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Note: atOperationalLocation is provided by superclass OperationalArtifact",
+      "properties": {
+        "hasDesignation": {
+          "items": {
+            "description": "Designation: to be discussed. Probably not unique. Can have short or long forms (e.g. \"Track 5\" in the context of some yard; \"Alnabru yard track 5\" in a larger context).",
+            "title": "has designation",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Track",
+      "type": "object"
+    },
+    "TractionProvisionRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "$ref": "#/definitions/Role"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Can be extended to include powered car or trailer roles. Case of hauled locomotive (fr: marchandise roulante) does not belong here, as no traction is provided. To be differetiated from (possible, not included) traction provider role, the agent being an organization in that case.",
+      "properties": {},
+      "title": "Traction provision role",
+      "type": "object"
+    },
+    "Trailer": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ITU"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Trailer",
+      "type": "object"
+    },
+    "Train": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "For want of a better class name: denotes the rolling stock (locos, wagons...) AND their supplies (possibly depleted) AND their (variable) loads, considered as a whole, i.e. whatever is moved somewhere between origin and destination in a Train run.",
+      "properties": {
+        "hasTrainState": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has train state"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train",
+      "type": "object"
+    },
+    "TrainCompositionState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "compositionValidationPassed": {
+          "title": "composition validation passed",
+          "type": "boolean"
+        },
+        "hasComposition": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has composition"
+        }
+      },
+      "title": "Train composition state",
+      "type": "object"
+    },
+    "TrainCustomsState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasCustomsStatus": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/CustomsStatus"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has customs status"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train customs state",
+      "type": "object"
+    },
+    "TrainGPSPosition": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Train GPS position",
+      "type": "object"
+    },
+    "TrainGPSPositionState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "asWKT": {
+          "description": "single string, using WKT serialization",
+          "title": "as wkt",
+          "type": "string"
+        }
+      },
+      "title": "Train GPS position state",
+      "type": "object"
+    },
+    "TrainJourneyState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasJourney": {
+          "items": {
+            "description": "not a functional property, as it can be expressed w.r.t. the planned journey or the executed journey (if available). User feedback welcome.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Journey"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has journey"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train journey state",
+      "type": "object"
+    },
+    "TrainLengthState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasLengthInMeters": {
+          "title": "has length in meters",
+          "type": "number"
+        }
+      },
+      "title": "Train length state",
+      "type": "object"
+    },
+    "TrainLocationState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "atOperationalLocation": {
+          "items": {
+            "description": "For time-independent locations (e.g. of Facilities)",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalLocation"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "at operational location"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train location state",
+      "type": "object"
+    },
+    "TrainMassState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Laden mass, incl. supplies",
+      "properties": {
+        "hasMassInTons": {
+          "description": "provisional. To be expanded, using SSN and QUDT.",
+          "title": "has mass in tons",
+          "type": "number"
+        }
+      },
+      "title": "Train mass state",
+      "type": "object"
+    },
+    "TrainMotionState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "isStationary": {
+          "title": "is stationary",
+          "type": "boolean"
+        }
+      },
+      "title": "Train motion state",
+      "type": "object"
+    },
+    "TrainRun": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalProcess"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Denotes a train run (operated on a particular date), equivalent to \"Train\" in TAF TSI, not a \"timetable entry\". It is a process and may have parts that are sub-processes.",
+      "properties": {
+        "hasJourney": {
+          "items": {
+            "description": "not a functional property, as it can be expressed w.r.t. the planned journey or the executed journey (if available). User feedback welcome.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Journey"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has journey"
+          },
+          "type": "array"
+        },
+        "hasOTN": {
+          "items": {
+            "description": "The same train run can have different Operational Train Numbers in its course, depending on the operator or network over which it is run.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OTN"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has OTN"
+          },
+          "type": "array"
+        },
+        "hasSubProcess": {
+          "description": "Array of TrainService or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainService"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "referenceOTN": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReferenceOTN"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has reference OTN"
+        },
+        "trainDepartureDate": {
+          "format": "date",
+          "title": "train departure date",
+          "type": "string"
+        },
+        "trainLeadRU": {
+          "description": "Points to the \"lead RU\" for the entire train",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationsStakeholder"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "train lead RU"
+        }
+      },
+      "title": "Train run",
+      "type": "object"
+    },
+    "TrainRunState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Situation (State) of a train run. Several subclasses define the train run state from several points of view.",
+      "properties": {
+        "isStateOfTrainRun": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TrainRun"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "is state of train run"
+        }
+      },
+      "required": [
+        "isStateOfTrainRun"
+      ],
+      "title": "Train run state",
+      "type": "object"
+    },
+    "TrainService": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalProcess"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "e.g. rolling stock maintenance or customs checks",
+      "properties": {
+        "hasServiceType": {
+          "description": "Array of Thing or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/_Thing"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train servicing",
+      "type": "object"
+    },
+    "TrainServicingState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Train servicing process, e.g. maintenance, brake inspection...",
+      "properties": {
+        "hasResult": {
+          "items": {
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has result"
+          },
+          "type": "array"
+        },
+        "hasSetting": {
+          "description": "Array of StaticSection or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/StaticSection"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train servicing state",
+      "type": "object"
+    },
+    "TrainSpeedState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasSpeed": {
+          "description": "current speed, in km/h",
+          "title": "has speed",
+          "type": "number"
+        }
+      },
+      "title": "Train speed state",
+      "type": "object"
+    },
+    "TrainState": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Characterizes the state of the Train (as a physical asset), e.g. speed, mass, GPS coordinates of some particular point of the train, etc.",
+      "properties": {},
+      "title": "Train state",
+      "type": "object"
+    },
+    "Trainset": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOC&PAS, 2020: a fixed formation that can operate as a train; it is by definition not intended to be reconfigured, except within a workshop environment. It is composed of only motored or of motored and non-motored vehicles.",
+      "properties": {},
+      "type": "object"
+    },
+    "TransportCollaborationMessage": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Message"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "FP5-specific messages",
+      "properties": {
+        "hasPayload": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has payload"
+          },
+          "type": "array"
+        },
+        "hasReferenceObject": {
+          "items": {
+            "description": "following the data requirements, this property qualifies the message. However this may not be optimal, since Operational States \"know\" about the objects concerned, via dul:hasSetting or dul:hasParticipant.",
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has reference object"
+          },
+          "type": "array"
+        },
+        "messageID": {
+          "title": "message ID",
+          "type": "string"
+        },
+        "messageVersion": {
+          "items": {
+            "title": "message version",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reportedBy": {
+          "description": "",
+          "title": "reported by",
+          "type": "string"
+        }
+      },
+      "title": "Transport collaboration message",
+      "type": "object"
+    },
+    "UnregulatedTrain": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Unregulated train run. \" Unregulated train\" might be the correct expression in EN-speaking areas (check). At SNCF, was called \" marche indeterminee (abbr. MI)\", which is more to the point as \" marche\" evokes journey execution rather than train.",
+      "properties": {},
+      "title": "Unregulated train run",
+      "type": "object"
+    },
+    "Van": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction capable of carrying payload other than passengers, e.g. luggage or mail, intended to be integrated into a fixed or variable formation which is intended to transport passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "Vehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.",
+      "properties": {},
+      "type": "object"
+    },
+    "VersionedDescription": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "$ref": "#/definitions/Description"
+        },
+        {
+          "$ref": "#/definitions/Entity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A description (e.g. of a schedule, or other operational specs such as orders issued to drivers) that can be revised, and is effective (= applicable) from a certain datetime. The versions are chained as a simple list (nop forks, no loops).",
+      "properties": {
+        "createdAt": {
+          "items": {
+            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).",
+            "format": "date-time",
+            "title": "created at",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveFrom": {
+          "items": {
+            "format": "date-time",
+            "title": "effective from",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveUntil": {
+          "items": {
+            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).",
+            "format": "date-time",
+            "title": "effective until",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextDescriptionVersion": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VersionedDescription"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "next description version"
+        },
+        "previousDescriptionVersion": {
+          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VersionedDescription"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "previous description version"
+        }
+      },
+      "title": "Versioned description",
+      "type": "object"
+    },
+    "Wagon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Wagon"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "uicWagonNumber": {
+          "description": "may it vary in a wagon's lifetime? if not, consider moving to rolling stock ontology.",
+          "title": "uic wagon number",
+          "type": "string"
+        }
+      },
+      "title": "Wagon",
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

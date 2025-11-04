@@ -1,0 +1,422 @@
+{
+  "$comment": "Metadata: {\"version\": \"version 0.2:\\nno complement class (non-powered rolling stock)\\nsome class renaming (shorter)\"}",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "Coach": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction in a fixed or variable formation capable of carrying passengers (by extension, requirements specified to apply to coaches in this TSI are deemed to apply also to restaurant cars, sleeping cars, couchettes cars, etc.) Note: was \"passenger carriage\" in earlier versions.",
+      "properties": {},
+      "type": "object"
+    },
+    "Formation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A formation is rolling stock composed of vehicles or other formations (recursively), that are coupled mechanically or virtually. Generic term from RSM, X2Rail-4, and others. Used with qualifications (fixed rake of coaches) in TSI LOCPAS 2020. Examples of formations: A Locomotive + a rake of coaches. Two coupled TGV trainsets. One ICE trainset with one coupled rescue locomotive.",
+      "properties": {
+        "hasFixedConsist": {
+          "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
+          "type": "boolean"
+        },
+        "includesRollingStock": {
+          "items": {
+            "description": "rolling stock in object is part of the formation in subject, by means of mechanical coupling or (possibly, in the future) virtual coupling. This \"simple\" property does not inform about orientation and order of vehicle.",
+            "oneOf": [
+              {
+                "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FreightCarryingRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "Locomotive": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle having a driving desk and can be used standalone (e.g. for shunting or ferrying movements), but is normally used for hauling other vehicles or formations.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotorCar": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle that cannot be used standalone, as can be found in trainset (EMUs or DMUs). May or may not carry passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotoredRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of rolling stock that is able by design to exert tractive effort on wheels or (rarely) cogwheels.",
+      "properties": {},
+      "type": "object"
+    },
+    "OnTrackMachine": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "a motored railway vehicle used for infrastructure maintenance",
+      "properties": {},
+      "type": "object"
+    },
+    "PassengerCarryingRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "RailCar": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Wikipedia (12/3/2024): self-propelled railway vehicle designed to transport passengers. Equiv. to FR: Autorail, DE: Schienenbus (narrower meaning: two axles only). Note however the numerous variants and ambiguities.",
+      "properties": {},
+      "type": "object"
+    },
+    "Rake": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any non-powered formation. Examples: wagon rake; (fixed consist) set of TGV trailers; (fixed or variable consist) rake of coaches.",
+      "properties": {},
+      "type": "object"
+    },
+    "RoadRailVehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadVehicleRake": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "From TSI WAG 2023, \"unit\", 3rd entry: separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.",
+      "properties": {},
+      "type": "object"
+    },
+    "RollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+            },
+            {
+              "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: Formation, Vehicle",
+      "title": "RollingStock"
+    },
+    "RollingStockFeature": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "SlaveLocomotive": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle without driving desk, with energy possibly fed from master locomotive ( = subclass \"slug\"). Also called \"truck\" in France, e.g. TC61000. Do not confuse with master/slave configuration of two normal locomotives (\"multiple working\" in the UK).",
+      "properties": {},
+      "type": "object"
+    },
+    "Trailer": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "non-traction, passenger-carrying vehicle that is part of a trainset or of a fixed-consist rake, such as TGV trailer or ICE3 trailer or Talgo trailer.",
+      "properties": {},
+      "type": "object"
+    },
+    "Trainset": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOC&PAS, 2020: a fixed formation that can operate as a train; it is by definition not intended to be reconfigured, except within a workshop environment. It is composed of only motored or of motored and non-motored vehicles.",
+      "properties": {},
+      "type": "object"
+    },
+    "Van": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction capable of carrying payload other than passengers, e.g. luggage or mail, intended to be integrated into a fixed or variable formation which is intended to transport passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "Vehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.",
+      "properties": {},
+      "type": "object"
+    },
+    "Wagon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A non-powered vehicle designed for carrying freight.",
+      "properties": {},
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

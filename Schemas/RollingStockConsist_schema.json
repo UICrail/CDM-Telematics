@@ -1,0 +1,314 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "EmptyList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "title": "Empty list"
+    },
+    "Extremity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "coincidesWith": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Extremity"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "coincides with"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "title": "Extremity"
+    },
+    "Formation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "headRollingStock": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ListedRollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "head rolling stock"
+        },
+        "includesRollingStock": {
+          "items": {
+            "description": "transitive. Also inverse functional (not formally stated, since not compatible with transitive in OWL2)",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/RollingStock"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListedFormation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "ListedRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "atExtremity": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Extremity"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "atExtremity"
+        },
+        "hasNextRollingStock": {
+          "oneOf": [
+            {
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has next rolling stock"
+        }
+      },
+      "title": "Listed rolling stock",
+      "type": "object"
+    },
+    "ListedVehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "OWLList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "RollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "extremity_1": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_1"
+            },
+            "extremity_2": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_2"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "Vehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.",
+      "properties": {},
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
