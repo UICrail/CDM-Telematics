@@ -44,11 +44,12 @@ def page_title_from_filename(p: Path) -> str:
 
 
 def extract_order_and_title(p: Path, text: str):
-    title = page_title_from_filename(p)
-    m = ORDER_RE.match(title) or ORDER_RE.match(p.stem)
-    # Strip numeric prefix from title for H1 headers
-    clean_title = strip_numeric_prefix(title)
-    return (int(m.group("num")) if m else None), clean_title
+    # Strip prefix from stem first, then convert to title
+    clean_stem = strip_numeric_prefix(p.stem)
+    title = clean_stem.replace("-", " ").replace("_", " ").strip()
+    # Extract order from original stem
+    m = ORDER_RE.match(p.stem)
+    return (int(m.group("num")) if m else None), title
 
 
 def strip_numeric_prefix(s: str) -> str:
@@ -56,6 +57,18 @@ def strip_numeric_prefix(s: str) -> str:
     if '-' in s:
         return s.split('-', 1)[1].lstrip()
     return s
+
+
+def extract_sort_key(stem: str):
+    """Extract (2-digit number, optional letter) for sorting.
+    Examples: '01-Title' -> (1, ''), '01a-Title' -> (1, 'a'), '99b-Title' -> (99, 'b')
+    """
+    m = re.match(r'^\s*(\d{2})([a-z])?\b', stem, re.IGNORECASE)
+    if m:
+        num = int(m.group(1))
+        letter = (m.group(2) or '').lower()
+        return (num, letter)
+    return (999, '')  # Default for pages without numeric prefix
 
 
 def anchor_slug(t: str) -> str:
@@ -256,8 +269,8 @@ def main():
             "stem": md.stem,
         })
 
-    # Sort by explicit order, then filename
-    pages.sort(key=lambda x: (x["order"], x["path"].name.lower()))
+    # Sort by 2-digit number, then optional letter (a, b, c...)
+    pages.sort(key=lambda x: extract_sort_key(x["path"].stem))
 
     # Build anchor map (many keys → one anchor), based on final section titles
     page_anchor_map = {}
