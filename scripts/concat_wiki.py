@@ -287,8 +287,9 @@ def main():
     output_sections = []
 
     # TOC
+    repo_name = args.repo.split('/')[-1]  # Extract repo name from "owner/repo"
     toc = []
-    toc.append("# Wiki (Concatenated)\n")
+    toc.append(f"# {repo_name} compiled wiki pages\n")
     toc.append(f"_Source: local concatenation of wiki pages_\n")
     toc.append("\n---\n## Contents\n")
     for p in pages:
