@@ -12,14 +12,11 @@ H1_RE = re.compile(r"^\s*#\s+(.*)$", re.MULTILINE)
 # Fences for skipping heading demotion
 FENCE_RE = re.compile(r"^(```|~~~)")
 
-# Wiki-style links: [[Page]] or [[Page|Label]]
-WIKI_LINK_RE = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
+# Wiki-style links: [[Page]] or [[Page|Text]]
+WIKI_LINK_RE = re.compile(r"$begin:math:display$\\[([^$end:math:display$|]+)(?:\|([^\]]+))?\]\]")
 
-# Inline Markdown images (keep optional title)
-# Markdown inline image:
-#   ![alt](url)
-#   ![alt](url "optional title")
-MD_IMG_RE = re.compile(r"!\[(?P<alt>[^\]]*)\]\((?P<url>[^)]+)\)")
+# Inline Markdown images (keeps optional title inside the () token)
+MD_IMG_RE = re.compile(r"!$begin:math:display$(?P<alt>[^$end:math:display$]*)\]$begin:math:text$(?P<url>[^)]+)$end:math:text$")
 
 # HTML <img ... src="...">
 HTML_IMG_RE = re.compile(r'(<img\b[^>]*\bsrc\s*=\s*")[^"]+(")', re.IGNORECASE)
