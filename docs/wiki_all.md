@@ -6,39 +6,39 @@ _Source: local concatenation of wiki pages_
 ---
 ## Contents
 
-- [01 ‐ Operational entities](#01-operational-entities)
-- [02 ‐ Train run](#02-train-run)
-- [03 ‐ Operational Location](#03-operational-location)
-- [04 ‐ Train](#04-train)
-- [05 ‐ Wagon](#05-wagon)
-- [06 ‐ Intermodal Transport Unit](#06-intermodal-transport-unit)
-- [07 ‐ Track](#07-track)
-- [08 ‐ Facility](#08-facility)
-- [09 ‐ Traction role](#09-traction-role)
-- [10 ‐ Load Role](#10-load-role)
-- [11 ‐ Operational roles](#11-operational-roles)
-- [12 ‐ Versioned description](#12-versioned-description)
-- [13 ‐ Operational State](#13-operational-state)
-- [14 ‐ Message](#14-message)
-- [15 ‐ Image](#15-image)
-- [20 ‐ RID codes](#20-rid-codes)
-- [90 ‐ Time](#90-time)
-- [95 ‐ Varia](#95-varia)
-- [97 ‐ Dependencies](#97-dependencies)
-- [99 ‐ References](#99-references)
-- [01a ‐ Entity details](#01a-entity-details)
-- [02a ‐ Train servicing](#02a-train-servicing)
-- [06a ‐ Cargo](#06a-cargo)
-- [12a ‐ Journey](#12a-journey)
-- [12b ‐ Journey Schedule](#12b-journey-schedule)
-- [12c ‐ Journey Schedule properties](#12c-journey-schedule-properties)
-- [13a ‐ Train run state](#13a-train-run-state)
-- [13b ‐ Train state](#13b-train-state)
-- [13c ‐ Load State](#13c-load-state)
+- [‐ Operational entities](#operational-entities)
+- [‐ Entity details](#entity-details)
+- [‐ Train run](#train-run)
+- [‐ Train servicing](#train-servicing)
+- [‐ Operational Location](#operational-location)
+- [‐ Train](#train)
+- [‐ Wagon](#wagon)
+- [‐ Intermodal Transport Unit](#intermodal-transport-unit)
+- [‐ Cargo](#cargo)
+- [‐ Track](#track)
+- [‐ Facility](#facility)
+- [‐ Traction role](#traction-role)
+- [‐ Load Role](#load-role)
+- [‐ Operational roles](#operational-roles)
+- [‐ Versioned description](#versioned-description)
+- [‐ Journey](#journey)
+- [‐ Journey Schedule](#journey-schedule)
+- [‐ Journey Schedule properties](#journey-schedule-properties)
+- [‐ Operational State](#operational-state)
+- [‐ Train run state](#train-run-state)
+- [‐ Train state](#train-state)
+- [‐ Load State](#load-state)
+- [‐ Message](#message)
+- [‐ Image](#image)
+- [‐ RID codes](#rid-codes)
+- [‐ Time](#time)
+- [‐ Varia](#varia)
+- [‐ Dependencies](#dependencies)
+- [‐ References](#references)
 
 
 ---
-# 01 ‐ Operational entities
+# ‐ Operational entities
 
 ## Purpose
 
@@ -88,7 +88,29 @@ This anonymous, disjoint union is a subclass of "Operational artifact" (did you 
 
 
 ---
-# 02 ‐ Train run
+# ‐ Entity details
+
+## Purpose
+
+Operational entities may all share time-independent properties (attributes), which are described here.
+
+## Diagram
+
+For the time being, a user-defined "name" is proposed. It is not unique (one entity may have several names; different entities can have the same name as the "name" is a vernacular, not an identifier.
+
+![Operational entity details](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_01a%20-%20Operational%20entity%20details.png)
+
+## Comments
+
+The universally unique identifier is expected to be the entity IRI. IRIs are the foundations of the Semantic Web.
+
+_Note: one reason for introducing the "name" property is that annotation properties (such as rdfs:label) that would play this role are left out of OWL to JSON transformers (CIM or PIM to PSM)._
+
+<sub>Original page: [01a-‐-Entity-details.md](https://github.com/UICrail/CDM-Telematics/wiki/01a-%E2%80%90-Entity-details)</sub>
+
+
+---
+# ‐ Train run
 
 ## Purpose
 
@@ -161,7 +183,21 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 
 ---
-# 03 ‐ Operational Location
+# ‐ Train servicing
+
+## Purpose
+
+## Diagram
+
+![Train servicing](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_02a%20-%20Train%20Servicing.png)
+
+## Comments
+
+<sub>Original page: [02a-‐-Train-servicing.md](https://github.com/UICrail/CDM-Telematics/wiki/02a-%E2%80%90-Train-servicing)</sub>
+
+
+---
+# ‐ Operational Location
 
 ## Purpose
 
@@ -187,7 +223,7 @@ The answer lies in the dul:Situation class and its subclasses (generally called 
 
 
 ---
-# 04 ‐ Train
+# ‐ Train
 
 ## Purpose
 
@@ -203,7 +239,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 05 ‐ Wagon
+# ‐ Wagon
 
 ## Purpose
 
@@ -217,7 +253,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 06 ‐ Intermodal Transport Unit
+# ‐ Intermodal Transport Unit
 
 ## Purpose
 
@@ -231,7 +267,19 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 07 ‐ Track
+# ‐ Cargo
+
+## Purpose
+
+## Diagram
+
+## Comments
+
+<sub>Original page: [06a-‐-Cargo.md](https://github.com/UICrail/CDM-Telematics/wiki/06a-%E2%80%90-Cargo)</sub>
+
+
+---
+# ‐ Track
 
 ## Purpose
 
@@ -245,7 +293,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 08 ‐ Facility
+# ‐ Facility
 
 ## Purpose
 
@@ -259,7 +307,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 09 ‐ Traction role
+# ‐ Traction role
 
 ## Purpose
 
@@ -273,7 +321,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 10 ‐ Load Role
+# ‐ Load Role
 
 ## Purpose
 
@@ -287,7 +335,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# 11 ‐ Operational roles
+# ‐ Operational roles
 
 ## Purpose
 
@@ -315,7 +363,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# 12 ‐ Versioned description
+# ‐ Versioned description
 
 ## Purpose
 
@@ -329,7 +377,79 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# 13 ‐ Operational State
+# ‐ Journey
+
+## Purpose
+
+## Diagram
+
+![Journey](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12a%20-%20Journey.png)
+
+## Comments
+
+<sub>Original page: [12a-‐-Journey.md](https://github.com/UICrail/CDM-Telematics/wiki/12a-%E2%80%90-Journey)</sub>
+
+
+---
+# ‐ Journey Schedule
+
+## Purpose
+
+Represent the train journey (planned or executed) and possibly the train path in one uniform way.
+
+The Journey may be composed of a sequence of journey sections, each having an origin and a destination (operational locations). Obviously, the destination of section N is expected to also be the origin of section N+1, and times must be increasing (except when midnight is passed).
+
+## Diagram
+
+![Journey Schedule](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12b%20-%20Journey%20Schedule.png)
+
+## Comments
+
+### Nested Lists
+
+Since any Journey section is a Journey schedule, it can be in turn broken down. This is convenient, as it allows to insert pass-through locations at a later stage when deemed convenient.
+
+### Not a speed profile
+
+Locations documented by Journey Schedule are, for the time being, only Operational Locations. The Journey Schedule is not suitable for representing a speed profile with temporary speed restrictions for instance.
+
+### Data consistency
+
+It is a user responsibility to check the order and consistency of journey sections. The ontology will preserve the sequence (using a List ontology, because OWL2 has no primitive concepts for order), but whether the sequence _makes sense_ must be checked by other means, such as SWRL rules, or queries (possibly embedded in SHACL), etc.
+
+### List ontology
+
+The List ontology used here is different from the one used in IfcOwl (the ontology version of Industry Foundation Classes). Later on, one of the two ontologies may be eliminated in favor of the other.
+
+<sub>Original page: [12b-‐-Journey-Schedule.md](https://github.com/UICrail/CDM-Telematics/wiki/12b-%E2%80%90-Journey-Schedule)</sub>
+
+
+---
+# ‐ Journey Schedule properties
+
+## Purpose
+
+Properties are made available by the List ontology that allow to "chain" and navigate the Journey Sections. Some are illustrated here.
+
+## Diagram
+
+Journey sections are chained with no branches and no loops. This is expressed by having properties (next section, previous section) that are both functional and inverse functional: the diamonds have both a double rim (functional, multiplicity 0..1) and a thick black rim (inverse functional, multiplicity 0..1).
+
+![Journey schedule properties](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12c%20-%20Journey%20Schedule%20Properties.png)
+
+On the left, you see the GRAPHOL representation of the OWL2 assertion: "in journey schedule" is the exact equivalent (double arrow!) of the inverse of "has journey section".
+
+_Note: since "in journey schedule" is the inverse of an inverse functional property, it consequently is a functional property. The diagram does not declare it (simple rim instead of double rim) but OWL2 reasoners will infer it._
+
+## Comments
+
+(about the identification of the first and last item)
+
+<sub>Original page: [12c-‐-Journey-Schedule-properties.md](https://github.com/UICrail/CDM-Telematics/wiki/12c-%E2%80%90-Journey-Schedule-properties)</sub>
+
+
+---
+# ‐ Operational State
 
 ## Purpose
 
@@ -365,7 +485,49 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# 14 ‐ Message
+# ‐ Train run state
+
+## Purpose
+
+## Diagram
+
+![Train run state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13a%20-%20Train%20run%20state.png)
+
+## Comments
+
+<sub>Original page: [13a-‐-Train-run-state.md](https://github.com/UICrail/CDM-Telematics/wiki/13a-%E2%80%90-Train-run-state)</sub>
+
+
+---
+# ‐ Train state
+
+## Purpose
+
+## Diagram
+
+![Train state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13b%20-%20Train%20state.png)
+
+## Comments
+
+<sub>Original page: [13b-‐-Train-state.md](https://github.com/UICrail/CDM-Telematics/wiki/13b-%E2%80%90-Train-state)</sub>
+
+
+---
+# ‐ Load State
+
+## Purpose
+
+## Diagram
+
+![Load state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13c%20-%20Load%20state.png)
+
+## Comments
+
+<sub>Original page: [13c-‐-Load-State.md](https://github.com/UICrail/CDM-Telematics/wiki/13c-%E2%80%90-Load-State)</sub>
+
+
+---
+# ‐ Message
 
 ## Purpose
 
@@ -379,7 +541,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# 15 ‐ Image
+# ‐ Image
 
 ## Purpose
 
@@ -403,7 +565,7 @@ Image metadata persistence (provenance...) is of course crucial and shall be dis
 
 
 ---
-# 20 ‐ RID codes
+# ‐ RID codes
 
 ## Purpose
 
@@ -425,7 +587,7 @@ Accordingly, two properties are provided, the domain of which is the union of Wa
 
 
 ---
-# 90 ‐ Time
+# ‐ Time
 
 ## Purpose
 
@@ -465,7 +627,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# 95 ‐ Varia
+# ‐ Varia
 
 ## Purpose
 
@@ -479,7 +641,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# 97 ‐ Dependencies
+# ‐ Dependencies
 
 ## General and upper ontologies
 
@@ -507,171 +669,9 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# 99 ‐ References
+# ‐ References
 
 ...
 
 <sub>Original page: [99-‐-References.md](https://github.com/UICrail/CDM-Telematics/wiki/99-%E2%80%90-References)</sub>
-
-
----
-# 01a ‐ Entity details
-
-## Purpose
-
-Operational entities may all share time-independent properties (attributes), which are described here.
-
-## Diagram
-
-For the time being, a user-defined "name" is proposed. It is not unique (one entity may have several names; different entities can have the same name as the "name" is a vernacular, not an identifier.
-
-![Operational entity details](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_01a%20-%20Operational%20entity%20details.png)
-
-## Comments
-
-The universally unique identifier is expected to be the entity IRI. IRIs are the foundations of the Semantic Web.
-
-_Note: one reason for introducing the "name" property is that annotation properties (such as rdfs:label) that would play this role are left out of OWL to JSON transformers (CIM or PIM to PSM)._
-
-<sub>Original page: [01a-‐-Entity-details.md](https://github.com/UICrail/CDM-Telematics/wiki/01a-%E2%80%90-Entity-details)</sub>
-
-
----
-# 02a ‐ Train servicing
-
-## Purpose
-
-## Diagram
-
-![Train servicing](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_02a%20-%20Train%20Servicing.png)
-
-## Comments
-
-<sub>Original page: [02a-‐-Train-servicing.md](https://github.com/UICrail/CDM-Telematics/wiki/02a-%E2%80%90-Train-servicing)</sub>
-
-
----
-# 06a ‐ Cargo
-
-## Purpose
-
-## Diagram
-
-## Comments
-
-<sub>Original page: [06a-‐-Cargo.md](https://github.com/UICrail/CDM-Telematics/wiki/06a-%E2%80%90-Cargo)</sub>
-
-
----
-# 12a ‐ Journey
-
-## Purpose
-
-## Diagram
-
-![Journey](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12a%20-%20Journey.png)
-
-## Comments
-
-<sub>Original page: [12a-‐-Journey.md](https://github.com/UICrail/CDM-Telematics/wiki/12a-%E2%80%90-Journey)</sub>
-
-
----
-# 12b ‐ Journey Schedule
-
-## Purpose
-
-Represent the train journey (planned or executed) and possibly the train path in one uniform way.
-
-The Journey may be composed of a sequence of journey sections, each having an origin and a destination (operational locations). Obviously, the destination of section N is expected to also be the origin of section N+1, and times must be increasing (except when midnight is passed).
-
-## Diagram
-
-![Journey Schedule](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12b%20-%20Journey%20Schedule.png)
-
-## Comments
-
-### Nested Lists
-
-Since any Journey section is a Journey schedule, it can be in turn broken down. This is convenient, as it allows to insert pass-through locations at a later stage when deemed convenient.
-
-### Not a speed profile
-
-Locations documented by Journey Schedule are, for the time being, only Operational Locations. The Journey Schedule is not suitable for representing a speed profile with temporary speed restrictions for instance.
-
-### Data consistency
-
-It is a user responsibility to check the order and consistency of journey sections. The ontology will preserve the sequence (using a List ontology, because OWL2 has no primitive concepts for order), but whether the sequence _makes sense_ must be checked by other means, such as SWRL rules, or queries (possibly embedded in SHACL), etc.
-
-### List ontology
-
-The List ontology used here is different from the one used in IfcOwl (the ontology version of Industry Foundation Classes). Later on, one of the two ontologies may be eliminated in favor of the other.
-
-<sub>Original page: [12b-‐-Journey-Schedule.md](https://github.com/UICrail/CDM-Telematics/wiki/12b-%E2%80%90-Journey-Schedule)</sub>
-
-
----
-# 12c ‐ Journey Schedule properties
-
-## Purpose
-
-Properties are made available by the List ontology that allow to "chain" and navigate the Journey Sections. Some are illustrated here.
-
-## Diagram
-
-Journey sections are chained with no branches and no loops. This is expressed by having properties (next section, previous section) that are both functional and inverse functional: the diamonds have both a double rim (functional, multiplicity 0..1) and a thick black rim (inverse functional, multiplicity 0..1).
-
-![Journey schedule properties](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_12c%20-%20Journey%20Schedule%20Properties.png)
-
-On the left, you see the GRAPHOL representation of the OWL2 assertion: "in journey schedule" is the exact equivalent (double arrow!) of the inverse of "has journey section".
-
-_Note: since "in journey schedule" is the inverse of an inverse functional property, it consequently is a functional property. The diagram does not declare it (simple rim instead of double rim) but OWL2 reasoners will infer it._
-
-## Comments
-
-(about the identification of the first and last item)
-
-<sub>Original page: [12c-‐-Journey-Schedule-properties.md](https://github.com/UICrail/CDM-Telematics/wiki/12c-%E2%80%90-Journey-Schedule-properties)</sub>
-
-
----
-# 13a ‐ Train run state
-
-## Purpose
-
-## Diagram
-
-![Train run state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13a%20-%20Train%20run%20state.png)
-
-## Comments
-
-<sub>Original page: [13a-‐-Train-run-state.md](https://github.com/UICrail/CDM-Telematics/wiki/13a-%E2%80%90-Train-run-state)</sub>
-
-
----
-# 13b ‐ Train state
-
-## Purpose
-
-## Diagram
-
-![Train state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13b%20-%20Train%20state.png)
-
-## Comments
-
-<sub>Original page: [13b-‐-Train-state.md](https://github.com/UICrail/CDM-Telematics/wiki/13b-%E2%80%90-Train-state)</sub>
-
-
----
-# 13c ‐ Load State
-
-## Purpose
-
-## Diagram
-
-![Load state](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13c%20-%20Load%20state.png)
-
-## Comments
-
-<sub>Original page: [13c-‐-Load-State.md](https://github.com/UICrail/CDM-Telematics/wiki/13c-%E2%80%90-Load-State)</sub>
 
