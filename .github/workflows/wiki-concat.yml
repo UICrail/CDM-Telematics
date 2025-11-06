@@ -20,6 +20,16 @@ jobs:
           repository: ${{ github.repository }}.wiki
           path: wiki
 
+      - name: Show file + branch info
+        run: |
+          echo "REF: $GITHUB_REF  REF_NAME: $GITHUB_REF_NAME  SHA: $GITHUB_SHA"
+          echo "Default branch hint (Actions uses workflow from default branch):"
+          git remote show origin | sed -n 's/^\s*HEAD branch: //p'
+          echo ">>> First 40 lines of scripts/concat_wiki.py"
+          sed -n '1,40p' scripts/concat_wiki.py || true
+          echo ">>> Grep for math sentinels in repo"
+          grep -R --line-number '\$begin:math\|\$end:math' || true
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
