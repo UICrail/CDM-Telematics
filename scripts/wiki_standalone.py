@@ -139,8 +139,25 @@ def is_absolute_or_special(url: str) -> bool:
 def download_image(url: str) -> bytes | None:
     """Download image from URL and return bytes."""
     try:
-        with urllib.request.urlopen(url, timeout=10) as response:
-            return response.read()
+        # Follow redirects and get actual content
+        request = urllib.request.Request(url)
+        request.add_header('User-Agent', 'Mozilla/5.0')
+        
+        with urllib.request.urlopen(request, timeout=10) as response:
+            content_type = response.headers.get('Content-Type', '')
+            data = response.read()
+            
+            # Verify we got actual image data, not HTML
+            if data.startswith(b'<!DOCTYPE') or data.startswith(b'<html'):
+                print(f"Warning: Got HTML instead of image for {url}")
+                return None
+            
+            # Verify content type is an image
+            if not content_type.startswith('image/'):
+                print(f"Warning: Non-image content type '{content_type}' for {url}")
+                return None
+                
+            return data
     except Exception as e:
         print(f"Warning: Failed to download {url}: {e}")
         return None
