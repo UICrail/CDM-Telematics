@@ -24,6 +24,7 @@ _Source: local concatenation of wiki pages_
 - [20 ‐ RID codes](#20-rid-codes)
 - [90 ‐ Time](#90-time)
 - [95 ‐ Varia](#95-varia)
+- [97 ‐ Dependencies](#97-dependencies)
 - [99 ‐ References](#99-references)
 - [01a ‐ Entity details](#01a-entity-details)
 - [02a ‐ Train servicing](#02a-train-servicing)
@@ -34,7 +35,6 @@ _Source: local concatenation of wiki pages_
 - [13a ‐ Train run state](#13a-train-run-state)
 - [13b ‐ Train state](#13b-train-state)
 - [13c ‐ Load State](#13c-load-state)
-- [Dependencies](#dependencies)
 
 
 ---
@@ -479,6 +479,34 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
+# 97 ‐ Dependencies
+
+## General and upper ontologies
+
+### W3C Time ontology
+
+### SOSA/SSN
+
+### QUDT
+
+### DOLCE+DnS Ultralite
+
+### REGORG, ORG
+
+## Semantic RSM ontologies
+
+### Rolling stock ontologies
+
+#### Consist
+
+#### Typology
+
+## ERA Concept Schemes
+
+<sub>Original page: [97-‐-Dependencies.md](https://github.com/UICrail/CDM-Telematics/wiki/97-%E2%80%90-Dependencies)</sub>
+
+
+---
 # 99 ‐ References
 
 ...
@@ -646,32 +674,4 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 ## Comments
 
 <sub>Original page: [13c-‐-Load-State.md](https://github.com/UICrail/CDM-Telematics/wiki/13c-%E2%80%90-Load-State)</sub>
-
-
----
-# Dependencies
-
-## General and upper ontologies
-
-### W3C Time ontology
-
-### SOSA/SSN
-
-### QUDT
-
-### DOLCE+DnS Ultralite
-
-### REGORG, ORG
-
-## Semantic RSM ontologies
-
-### Rolling stock ontologies
-
-#### Consist
-
-#### Typology
-
-## ERA Concept Schemes
-
-<sub>Original page: [Dependencies.md](https://github.com/UICrail/CDM-Telematics/wiki/Dependencies)</sub>
 
