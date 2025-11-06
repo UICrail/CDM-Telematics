@@ -1,0 +1,28 @@
+name: DEBUG print files
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Show refs & default branch
+        run: |
+          echo "REF: $GITHUB_REF  REF_NAME: $GITHUB_REF_NAME  SHA: $GITHUB_SHA"
+          echo "Default branch per remote:"
+          git remote show origin | sed -n 's/^\s*HEAD branch: //p'
+
+      - name: Show workflow list (sanity)
+        run: |
+          ls -la .github/workflows || true
+
+      - name: Show first 60 lines of concat_wiki.py
+        run: |
+          echo ">>> scripts/concat_wiki.py (head)"
+          sed -n '1,60p' scripts/concat_wiki.py || echo "scripts/concat_wiki.py not found"
+          echo ">>> grep for math sentinels"
+          grep -n "\$begin:math\|\$end:math" -R || echo "no math sentinels found"
