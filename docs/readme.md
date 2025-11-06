@@ -4,3 +4,5 @@ Several options are available:
 * Self-contained markdown file with illustrations
 * Markdown file with illustrations in a subfolder
 * Mardown file with links to illustrations published in the present repository
+
+Important: the authoritative source is the Wiki, and the transformation is one-way!
