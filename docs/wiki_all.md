@@ -6,39 +6,39 @@ _Source: local concatenation of wiki pages_
 ---
 ## Contents
 
-- [‐ Operational entities](#operational-entities)
-- [‐ Entity details](#entity-details)
-- [‐ Train run](#train-run)
-- [‐ Train servicing](#train-servicing)
-- [‐ Operational Location](#operational-location)
-- [‐ Train](#train)
-- [‐ Wagon](#wagon)
-- [‐ Intermodal Transport Unit](#intermodal-transport-unit)
-- [‐ Cargo](#cargo)
-- [‐ Track](#track)
-- [‐ Facility](#facility)
-- [‐ Traction role](#traction-role)
-- [‐ Load Role](#load-role)
-- [‐ Operational roles](#operational-roles)
-- [‐ Versioned description](#versioned-description)
-- [‐ Journey](#journey)
-- [‐ Journey Schedule](#journey-schedule)
-- [‐ Journey Schedule properties](#journey-schedule-properties)
-- [‐ Operational State](#operational-state)
-- [‐ Train run state](#train-run-state)
-- [‐ Train state](#train-state)
-- [‐ Load State](#load-state)
-- [‐ Message](#message)
-- [‐ Image](#image)
-- [‐ RID codes](#rid-codes)
-- [‐ Time](#time)
-- [‐ Varia](#varia)
-- [‐ Dependencies](#dependencies)
-- [‐ References](#references)
+- [Operational entities](#operational-entities)
+- [Entity details](#entity-details)
+- [Train run](#train-run)
+- [Train servicing](#train-servicing)
+- [Operational Location](#operational-location)
+- [Train](#train)
+- [Wagon](#wagon)
+- [Intermodal Transport Unit](#intermodal-transport-unit)
+- [Cargo](#cargo)
+- [Track](#track)
+- [Facility](#facility)
+- [Traction role](#traction-role)
+- [Load Role](#load-role)
+- [Operational roles](#operational-roles)
+- [Versioned description](#versioned-description)
+- [Journey](#journey)
+- [Journey Schedule](#journey-schedule)
+- [Journey Schedule properties](#journey-schedule-properties)
+- [Operational State](#operational-state)
+- [Train run state](#train-run-state)
+- [Train state](#train-state)
+- [Load State](#load-state)
+- [Message](#message)
+- [Image](#image)
+- [RID codes](#rid-codes)
+- [Time](#time)
+- [Varia](#varia)
+- [Dependencies](#dependencies)
+- [References](#references)
 
 
 ---
-# ‐ Operational entities
+# Operational entities
 
 ## Purpose
 
@@ -88,7 +88,7 @@ This anonymous, disjoint union is a subclass of "Operational artifact" (did you 
 
 
 ---
-# ‐ Entity details
+# Entity details
 
 ## Purpose
 
@@ -110,7 +110,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 
 
 ---
-# ‐ Train run
+# Train run
 
 ## Purpose
 
@@ -183,7 +183,7 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 
 ---
-# ‐ Train servicing
+# Train servicing
 
 ## Purpose
 
@@ -197,7 +197,7 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 
 ---
-# ‐ Operational Location
+# Operational Location
 
 ## Purpose
 
@@ -223,7 +223,7 @@ The answer lies in the dul:Situation class and its subclasses (generally called 
 
 
 ---
-# ‐ Train
+# Train
 
 ## Purpose
 
@@ -239,7 +239,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Wagon
+# Wagon
 
 ## Purpose
 
@@ -253,7 +253,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Intermodal Transport Unit
+# Intermodal Transport Unit
 
 ## Purpose
 
@@ -267,7 +267,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Cargo
+# Cargo
 
 ## Purpose
 
@@ -279,7 +279,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Track
+# Track
 
 ## Purpose
 
@@ -293,7 +293,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Facility
+# Facility
 
 ## Purpose
 
@@ -307,7 +307,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Traction role
+# Traction role
 
 ## Purpose
 
@@ -321,7 +321,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Load Role
+# Load Role
 
 ## Purpose
 
@@ -335,7 +335,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Operational roles
+# Operational roles
 
 ## Purpose
 
@@ -363,7 +363,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# ‐ Versioned description
+# Versioned description
 
 ## Purpose
 
@@ -377,7 +377,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# ‐ Journey
+# Journey
 
 ## Purpose
 
@@ -391,7 +391,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# ‐ Journey Schedule
+# Journey Schedule
 
 ## Purpose
 
@@ -425,7 +425,7 @@ The List ontology used here is different from the one used in IfcOwl (the ontolo
 
 
 ---
-# ‐ Journey Schedule properties
+# Journey Schedule properties
 
 ## Purpose
 
@@ -449,7 +449,7 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 
 
 ---
-# ‐ Operational State
+# Operational State
 
 ## Purpose
 
@@ -485,7 +485,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Train run state
+# Train run state
 
 ## Purpose
 
@@ -499,7 +499,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Train state
+# Train state
 
 ## Purpose
 
@@ -513,7 +513,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Load State
+# Load State
 
 ## Purpose
 
@@ -527,7 +527,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Message
+# Message
 
 ## Purpose
 
@@ -541,7 +541,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Image
+# Image
 
 ## Purpose
 
@@ -565,7 +565,7 @@ Image metadata persistence (provenance...) is of course crucial and shall be dis
 
 
 ---
-# ‐ RID codes
+# RID codes
 
 ## Purpose
 
@@ -587,7 +587,7 @@ Accordingly, two properties are provided, the domain of which is the union of Wa
 
 
 ---
-# ‐ Time
+# Time
 
 ## Purpose
 
@@ -627,7 +627,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ Varia
+# Varia
 
 ## Purpose
 
@@ -641,7 +641,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ Dependencies
+# Dependencies
 
 ## General and upper ontologies
 
@@ -669,7 +669,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ References
+# References
 
 ...
 
