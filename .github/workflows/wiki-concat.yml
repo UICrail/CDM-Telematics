@@ -20,48 +20,13 @@ jobs:
           repository: ${{ github.repository }}.wiki
           path: wiki
 
-      - name: Show file + branch info
+      - name: Verify script patterns
         run: |
           echo "REF: $GITHUB_REF  REF_NAME: $GITHUB_REF_NAME  SHA: $GITHUB_SHA"
           echo "Default branch hint (Actions uses workflow from default branch):"
           git remote show origin | sed -n 's/^\s*HEAD branch: //p'
-          echo ">>> First 40 lines of scripts/concat_wiki.py"
-          sed -n '1,40p' scripts/concat_wiki.py || true
-          echo ">>> Grep for math sentinels in repo"
-          grep -R --line-number '\$begin:math\|\$end:math' || true
-
-      - name: Hotfix corrupted regex lines (runtime patch)
-        run: |
-          python - << 'EOF'
-          import re, pathlib
-    
-          p = pathlib.Path("scripts/concat_wiki.py")
-          s = p.read_text(encoding="utf-8")
-    
-          # Replace corrupted wiki link regex
-          s = re.sub(
-              r'WIKI_LINK_RE\s*=\s*re\.compile\([^)]*\)',
-              r'WIKI_LINK_RE = re.compile(r"\\x5B\\x5B([^\\]|]+)(?:\\|([^\\x5D]+))?\\x5D\\x5D")',
-              s
-          )
-    
-          # Replace corrupted markdown image regex
-          s = re.sub(
-              r'MD_IMG_RE\s*=\s*re\.compile\([^)]*\)',
-              r'MD_IMG_RE = re.compile(r"!\\[(?P<alt>[^\\]]*)\\]\\((?P<url>[^)]+)\\)")',
-              s
-          )
-    
-          # Replace corrupted markdown link regex (not image)
-          s = re.sub(
-              r'MD_LINK_RE\s*=\s*re\.compile\([^)]*\)',
-              r'MD_LINK_RE = re.compile(r"(?<!\\!)\\[(?P<label>[^\\]]+)\\]\\((?P<target>[^)]+)\\)")',
-              s
-          )
-    
-          p.write_text(s, encoding="utf-8")
-          print("✅ Patched scripts/concat_wiki.py on runner")
-          EOF
+          echo ">>> Checking regex patterns in scripts/concat_wiki.py"
+          grep -n "WIKI_LINK_RE\|MD_IMG_RE\|MD_LINK_RE" scripts/concat_wiki.py || true
       
       
       - name: Set up Python
