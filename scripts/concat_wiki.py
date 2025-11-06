@@ -53,9 +53,9 @@ def extract_order_and_title(p: Path, text: str):
 
 
 def strip_numeric_prefix(s: str) -> str:
-    """Remove everything up to and including the first hyphen, then strip leading spaces."""
+    """Remove everything up to and including the first hyphen, then strip leading spaces and hyphens."""
     if '-' in s:
-        return s.split('-', 1)[1].lstrip()
+        return s.split('-', 1)[1].lstrip(' -')
     return s
 
 
