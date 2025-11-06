@@ -44,7 +44,7 @@ def page_title_from_filename(p: Path) -> str:
 
 
 def extract_order_and_title(p: Path, text: str):
-    title = find_first_h1(text) or page_title_from_filename(p)
+    title = page_title_from_filename(p)
     m = ORDER_RE.match(title) or ORDER_RE.match(p.stem)
     return (int(m.group("num")) if m else None), title
 
