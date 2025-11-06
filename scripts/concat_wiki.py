@@ -53,9 +53,12 @@ def extract_order_and_title(p: Path, text: str):
 
 
 def strip_numeric_prefix(s: str) -> str:
-    """Remove everything up to and including the first hyphen, then strip leading spaces and hyphens."""
+    """Remove everything up to and including the first hyphen, then strip leading spaces and hyphens.
+    Handles both ASCII hyphen (-) and Unicode HYPHEN (‐, U+2010)."""
     if '-' in s:
-        return s.split('-', 1)[1].lstrip(' -')
+        # Split on first ASCII hyphen, then strip spaces and both types of hyphens
+        result = s.split('-', 1)[1].lstrip(' -\u2010')
+        return result
     return s
 
 
