@@ -38,23 +38,24 @@ jobs:
             echo "Generating with embedded images (base64)..."
             python scripts/wiki_standalone.py \
               --wiki-dir wiki \
-              --out "docs/${REPO_NAME}_standalone.md" \
+              --out "docs/${REPO_NAME}.md" \
               --repo "${{ github.repository }}" \
               --embed-images
+            echo "OUTPUT_FILE=docs/${REPO_NAME}_embedded.md" >> $GITHUB_ENV
           else
             echo "Generating with images in subfolder..."
             python scripts/wiki_standalone.py \
               --wiki-dir wiki \
-              --out "docs/${REPO_NAME}_standalone.md" \
+              --out "docs/${REPO_NAME}.md" \
               --repo "${{ github.repository }}"
+            echo "OUTPUT_FILE=docs/${REPO_NAME}_with_subfolder.md" >> $GITHUB_ENV
           fi
 
       - name: Commit & push changes (if any)
         run: |
-          REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "docs/${REPO_NAME}_standalone.md" || true
+          git add "${{ env.OUTPUT_FILE }}" || true
           git add docs/images/ || true
           if ! git diff --cached --quiet; then
             if [ "${{ inputs.embed_images }}" = "true" ]; then

@@ -136,8 +136,32 @@ def is_absolute_or_special(url: str) -> bool:
     )
 
 
+def extract_image_from_html(html_content: bytes, base_url: str) -> str | None:
+    """Try to extract actual image URL from HTML page."""
+    try:
+        html_str = html_content.decode('utf-8', errors='ignore')
+        # Look for og:image meta tag (common in GitHub pages)
+        match = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', html_str)
+        if match:
+            return match.group(1)
+        # Look for img tags
+        match = re.search(r'<img[^>]+src="([^"]+)"[^>]*>', html_str)
+        if match:
+            img_url = match.group(1)
+            # Make absolute if relative
+            if img_url.startswith('/'):
+                parsed = urlparse(base_url)
+                return f"{parsed.scheme}://{parsed.netloc}{img_url}"
+            elif not img_url.startswith('http'):
+                return None
+            return img_url
+    except Exception as e:
+        print(f"Warning: Failed to extract image from HTML: {e}")
+    return None
+
+
 def download_image(url: str) -> bytes | None:
-    """Download image from URL and return bytes."""
+    """Download image from URL and return bytes. Handles HTML pages that link to images."""
     try:
         # Follow redirects and get actual content
         request = urllib.request.Request(url)
@@ -147,10 +171,17 @@ def download_image(url: str) -> bytes | None:
             content_type = response.headers.get('Content-Type', '')
             data = response.read()
             
-            # Verify we got actual image data, not HTML
-            if data.startswith(b'<!DOCTYPE') or data.startswith(b'<html'):
-                print(f"Warning: Got HTML instead of image for {url}")
-                return None
+            # If we got HTML, try to extract the actual image URL
+            if data.startswith(b'<!DOCTYPE') or data.startswith(b'<html') or 'text/html' in content_type:
+                print(f"Got HTML page for {url}, attempting to extract image URL...")
+                img_url = extract_image_from_html(data, url)
+                if img_url:
+                    print(f"Found image URL: {img_url}")
+                    # Recursively download the actual image
+                    return download_image(img_url)
+                else:
+                    print(f"Warning: Got HTML but couldn't extract image URL for {url}")
+                    return None
             
             # Verify content type is an image
             if not content_type.startswith('image/'):
@@ -318,14 +349,19 @@ def rewrite_md_links_to_local(text: str, page_anchor_map: dict) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Generate self-contained wiki markdown")
     ap.add_argument("--wiki-dir", required=True, help="Wiki directory path")
-    ap.add_argument("--out", required=True, help="Output markdown file")
+    ap.add_argument("--out", required=True, help="Output markdown file (base name)")
     ap.add_argument("--repo", required=True, help="GitHub repository (owner/repo)")
-    ap.add_argument("--embed-images", action="store_true", 
+    ap.add_argument("--embed-images", action="store_true",
                     help="Embed images as base64 (default: save to subfolder)")
     args = ap.parse_args()
     
     wiki_dir = Path(args.wiki_dir)
-    out_path = Path(args.out)
+    # Adjust output filename based on mode
+    base_out = Path(args.out)
+    if args.embed_images:
+        out_path = base_out.parent / f"{base_out.stem}_embedded{base_out.suffix}"
+    else:
+        out_path = base_out.parent / f"{base_out.stem}_with_subfolder{base_out.suffix}"
     
     # Setup images directory if not embedding
     images_dir = None
