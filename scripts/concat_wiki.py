@@ -46,7 +46,9 @@ def page_title_from_filename(p: Path) -> str:
 def extract_order_and_title(p: Path, text: str):
     title = page_title_from_filename(p)
     m = ORDER_RE.match(title) or ORDER_RE.match(p.stem)
-    return (int(m.group("num")) if m else None), title
+    # Strip numeric prefix from title for H1 headers
+    clean_title = strip_numeric_prefix(title)
+    return (int(m.group("num")) if m else None), clean_title
 
 
 def strip_numeric_prefix(s: str) -> str:
