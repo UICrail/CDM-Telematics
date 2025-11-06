@@ -6,39 +6,39 @@ _Source: local concatenation of wiki pages_
 ---
 ## Contents
 
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
+- [01 ‐ Operational entities](#01-operational-entities)
+- [02 ‐ Train run](#02-train-run)
+- [03 ‐ Operational Location](#03-operational-location)
+- [04 ‐ Train](#04-train)
+- [05 ‐ Wagon](#05-wagon)
+- [06 ‐ Intermodal Transport Unit](#06-intermodal-transport-unit)
+- [07 ‐ Track](#07-track)
+- [08 ‐ Facility](#08-facility)
+- [09 ‐ Traction role](#09-traction-role)
+- [10 ‐ Load Role](#10-load-role)
+- [11 ‐ Operational roles](#11-operational-roles)
+- [12 ‐ Versioned description](#12-versioned-description)
+- [13 ‐ Operational State](#13-operational-state)
+- [14 ‐ Message](#14-message)
+- [15 ‐ Image](#15-image)
+- [20 ‐ RID codes](#20-rid-codes)
+- [90 ‐ Time](#90-time)
+- [95 ‐ Varia](#95-varia)
 - [99 ‐ References](#99-references)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [Purpose](#purpose)
-- [General and upper ontologies](#general-and-upper-ontologies)
+- [01a ‐ Entity details](#01a-entity-details)
+- [02a ‐ Train servicing](#02a-train-servicing)
+- [06a ‐ Cargo](#06a-cargo)
+- [12a ‐ Journey](#12a-journey)
+- [12b ‐ Journey Schedule](#12b-journey-schedule)
+- [12c ‐ Journey Schedule properties](#12c-journey-schedule-properties)
+- [13a ‐ Train run state](#13a-train-run-state)
+- [13b ‐ Train state](#13b-train-state)
+- [13c ‐ Load State](#13c-load-state)
+- [Dependencies](#dependencies)
 
 
 ---
-# Purpose
+# 01 ‐ Operational entities
 
 ## Purpose
 
@@ -88,7 +88,7 @@ This anonymous, disjoint union is a subclass of "Operational artifact" (did you 
 
 
 ---
-# Purpose
+# 02 ‐ Train run
 
 ## Purpose
 
@@ -161,7 +161,7 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 
 ---
-# Purpose
+# 03 ‐ Operational Location
 
 ## Purpose
 
@@ -187,7 +187,7 @@ The answer lies in the dul:Situation class and its subclasses (generally called 
 
 
 ---
-# Purpose
+# 04 ‐ Train
 
 ## Purpose
 
@@ -203,7 +203,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 05 ‐ Wagon
 
 ## Purpose
 
@@ -217,7 +217,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 06 ‐ Intermodal Transport Unit
 
 ## Purpose
 
@@ -231,7 +231,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 07 ‐ Track
 
 ## Purpose
 
@@ -245,7 +245,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 08 ‐ Facility
 
 ## Purpose
 
@@ -259,7 +259,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 09 ‐ Traction role
 
 ## Purpose
 
@@ -273,7 +273,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 10 ‐ Load Role
 
 ## Purpose
 
@@ -287,7 +287,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# Purpose
+# 11 ‐ Operational roles
 
 ## Purpose
 
@@ -315,7 +315,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# Purpose
+# 12 ‐ Versioned description
 
 ## Purpose
 
@@ -329,7 +329,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# Purpose
+# 13 ‐ Operational State
 
 ## Purpose
 
@@ -365,7 +365,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# Purpose
+# 14 ‐ Message
 
 ## Purpose
 
@@ -379,7 +379,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# Purpose
+# 15 ‐ Image
 
 ## Purpose
 
@@ -403,7 +403,7 @@ Image metadata persistence (provenance...) is of course crucial and shall be dis
 
 
 ---
-# Purpose
+# 20 ‐ RID codes
 
 ## Purpose
 
@@ -425,7 +425,7 @@ Accordingly, two properties are provided, the domain of which is the union of Wa
 
 
 ---
-# Purpose
+# 90 ‐ Time
 
 ## Purpose
 
@@ -465,7 +465,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# Purpose
+# 95 ‐ Varia
 
 ## Purpose
 
@@ -487,7 +487,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# Purpose
+# 01a ‐ Entity details
 
 ## Purpose
 
@@ -509,7 +509,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 
 
 ---
-# Purpose
+# 02a ‐ Train servicing
 
 ## Purpose
 
@@ -523,7 +523,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 
 
 ---
-# Purpose
+# 06a ‐ Cargo
 
 ## Purpose
 
@@ -535,7 +535,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 
 
 ---
-# Purpose
+# 12a ‐ Journey
 
 ## Purpose
 
@@ -549,7 +549,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 
 
 ---
-# Purpose
+# 12b ‐ Journey Schedule
 
 ## Purpose
 
@@ -583,7 +583,7 @@ The List ontology used here is different from the one used in IfcOwl (the ontolo
 
 
 ---
-# Purpose
+# 12c ‐ Journey Schedule properties
 
 ## Purpose
 
@@ -607,7 +607,7 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 
 
 ---
-# Purpose
+# 13a ‐ Train run state
 
 ## Purpose
 
@@ -621,7 +621,7 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 
 
 ---
-# Purpose
+# 13b ‐ Train state
 
 ## Purpose
 
@@ -635,7 +635,7 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 
 
 ---
-# Purpose
+# 13c ‐ Load State
 
 ## Purpose
 
@@ -649,7 +649,7 @@ _Note: since "in journey schedule" is the inverse of an inverse functional prope
 
 
 ---
-# General and upper ontologies
+# Dependencies
 
 ## General and upper ontologies
 
