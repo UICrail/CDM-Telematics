@@ -13,16 +13,16 @@ H1_RE = re.compile(r"^\s*#\s+(.*)$", re.MULTILINE)
 FENCE_RE = re.compile(r"^(```|~~~)")
 
 # Wiki-style links: [[Page]] or [[Page|Text]]
-WIKI_LINK_RE = re.compile(r"$begin:math:display$\\[([^$end:math:display$|]+)(?:\|([^\]]+))?\]\]")
+WIKI_LINK_RE = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 
 # Inline Markdown images (keeps optional title inside the () token)
-MD_IMG_RE = re.compile(r"!$begin:math:display$(?P<alt>[^$end:math:display$]*)\]$begin:math:text$(?P<url>[^)]+)$end:math:text$")
+MD_IMG_RE = re.compile(r"!\[(?P<alt>[^\]]*)\]\((?P<url>[^)]+)\)")
 
 # HTML <img ... src="...">
 HTML_IMG_RE = re.compile(r'(<img\b[^>]*\bsrc\s*=\s*")[^"]+(")', re.IGNORECASE)
 
 # Standard Markdown links (NOT images): [text](target)
-MD_LINK_RE = re.compile(r"(?<!\!)$begin:math:display$(?P<label>[^$end:math:display$]+)\]$begin:math:text$(?P<target>[^)]+)$end:math:text$")
+MD_LINK_RE = re.compile(r"(?<!\!)\[(?P<label>[^\]]+)\]\((?P<target>[^)]+)\)")
 
 # Setext headings
 SETEXT_RE = re.compile(r"^(?P<title>.+?)\n(?P<underline>=+|-+)\s*$", re.MULTILINE)
