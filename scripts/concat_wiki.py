@@ -52,8 +52,10 @@ def extract_order_and_title(p: Path, text: str):
 
 
 def strip_numeric_prefix(s: str) -> str:
-    m = re.match(r"^\s*\d{2}[\s\-_]+(.*)$", s)
-    return m.group(1).strip() if m else s.strip()
+    """Remove everything up to and including the first hyphen, then strip leading spaces."""
+    if '-' in s:
+        return s.split('-', 1)[1].lstrip()
+    return s
 
 
 def anchor_slug(t: str) -> str:
