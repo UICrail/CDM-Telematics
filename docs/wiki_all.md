@@ -6,26 +6,26 @@ _Source: local concatenation of wiki pages_
 ---
 ## Contents
 
-- [‐ Operational entities](#operational-entities)
-- [‐ Train run](#train-run)
-- [‐ Operational Location](#operational-location)
-- [‐ Train](#train)
-- [‐ Wagon](#wagon)
-- [‐ Intermodal Transport Unit](#intermodal-transport-unit)
-- [‐ Track](#track)
-- [‐ Facility](#facility)
-- [‐ Traction role](#traction-role)
-- [‐ Load Role](#load-role)
-- [‐ Operational roles](#operational-roles)
-- [‐ Versioned description](#versioned-description)
-- [‐ Operational State](#operational-state)
-- [‐ Message](#message)
-- [‐ Image](#image)
-- [‐ RID codes](#rid-codes)
-- [‐ Time](#time)
-- [‐ Varia](#varia)
-- [‐ Dependencies](#dependencies)
-- [‐ References](#references)
+- [01 ‐ Operational entities](#01-operational-entities)
+- [02 ‐ Train run](#02-train-run)
+- [03 ‐ Operational Location](#03-operational-location)
+- [04 ‐ Train](#04-train)
+- [05 ‐ Wagon](#05-wagon)
+- [06 ‐ Intermodal Transport Unit](#06-intermodal-transport-unit)
+- [07 ‐ Track](#07-track)
+- [08 ‐ Facility](#08-facility)
+- [09 ‐ Traction role](#09-traction-role)
+- [10 ‐ Load Role](#10-load-role)
+- [11 ‐ Operational roles](#11-operational-roles)
+- [12 ‐ Versioned description](#12-versioned-description)
+- [13 ‐ Operational State](#13-operational-state)
+- [14 ‐ Message](#14-message)
+- [15 ‐ Image](#15-image)
+- [20 ‐ RID codes](#20-rid-codes)
+- [90 ‐ Time](#90-time)
+- [95 ‐ Varia](#95-varia)
+- [97 ‐ Dependencies](#97-dependencies)
+- [99 ‐ References](#99-references)
 - [01a ‐ Entity details](#01a-entity-details)
 - [02a ‐ Train servicing](#02a-train-servicing)
 - [06a ‐ Cargo](#06a-cargo)
@@ -38,7 +38,7 @@ _Source: local concatenation of wiki pages_
 
 
 ---
-# ‐ Operational entities
+# 01 ‐ Operational entities
 
 ## Purpose
 
@@ -88,7 +88,7 @@ This anonymous, disjoint union is a subclass of "Operational artifact" (did you 
 
 
 ---
-# ‐ Train run
+# 02 ‐ Train run
 
 ## Purpose
 
@@ -161,7 +161,7 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 
 ---
-# ‐ Operational Location
+# 03 ‐ Operational Location
 
 ## Purpose
 
@@ -187,7 +187,7 @@ The answer lies in the dul:Situation class and its subclasses (generally called 
 
 
 ---
-# ‐ Train
+# 04 ‐ Train
 
 ## Purpose
 
@@ -203,7 +203,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Wagon
+# 05 ‐ Wagon
 
 ## Purpose
 
@@ -217,7 +217,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Intermodal Transport Unit
+# 06 ‐ Intermodal Transport Unit
 
 ## Purpose
 
@@ -231,7 +231,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Track
+# 07 ‐ Track
 
 ## Purpose
 
@@ -245,7 +245,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Facility
+# 08 ‐ Facility
 
 ## Purpose
 
@@ -259,7 +259,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Traction role
+# 09 ‐ Traction role
 
 ## Purpose
 
@@ -273,7 +273,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Load Role
+# 10 ‐ Load Role
 
 ## Purpose
 
@@ -287,7 +287,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 
 ---
-# ‐ Operational roles
+# 11 ‐ Operational roles
 
 ## Purpose
 
@@ -315,7 +315,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# ‐ Versioned description
+# 12 ‐ Versioned description
 
 ## Purpose
 
@@ -329,7 +329,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 
 ---
-# ‐ Operational State
+# 13 ‐ Operational State
 
 ## Purpose
 
@@ -365,7 +365,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Message
+# 14 ‐ Message
 
 ## Purpose
 
@@ -379,7 +379,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 
 ---
-# ‐ Image
+# 15 ‐ Image
 
 ## Purpose
 
@@ -403,7 +403,7 @@ Image metadata persistence (provenance...) is of course crucial and shall be dis
 
 
 ---
-# ‐ RID codes
+# 20 ‐ RID codes
 
 ## Purpose
 
@@ -425,7 +425,7 @@ Accordingly, two properties are provided, the domain of which is the union of Wa
 
 
 ---
-# ‐ Time
+# 90 ‐ Time
 
 ## Purpose
 
@@ -465,7 +465,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ Varia
+# 95 ‐ Varia
 
 ## Purpose
 
@@ -479,7 +479,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ Dependencies
+# 97 ‐ Dependencies
 
 ## General and upper ontologies
 
@@ -507,7 +507,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 
 ---
-# ‐ References
+# 99 ‐ References
 
 ...
 
