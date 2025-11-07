@@ -255,6 +255,14 @@ def to_raw_wiki_url(repo: str, path_like: str) -> str:
     return f"https://raw.githubusercontent.com/{repo}.wiki/HEAD/{quote(url_part)}"
 
 
+def github_blob_to_raw(url: str) -> str:
+    """Convert GitHub blob URL to raw URL."""
+    # Convert /blob/ to /raw/ in GitHub URLs
+    if 'github.com' in url and '/blob/' in url:
+        return url.replace('/blob/', '/raw/')
+    return url
+
+
 def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, image_cache: dict) -> str:
     """Process markdown and HTML images - either embed as base64 or save to folder."""
     
@@ -265,7 +273,8 @@ def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, i
         if is_absolute_or_special(url_clean):
             if not url_clean.startswith("http"):
                 return url  # Keep data: URIs and anchors as-is
-            full_url = url_clean
+            # Convert GitHub blob URLs to raw URLs
+            full_url = github_blob_to_raw(url_clean)
         else:
             full_url = to_raw_wiki_url(repo, url)
         
