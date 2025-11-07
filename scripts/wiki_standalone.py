@@ -136,6 +136,14 @@ def is_absolute_or_special(url: str) -> bool:
     )
 
 
+def github_blob_to_raw(url: str) -> str:
+    """Convert GitHub blob URL to raw URL."""
+    # Convert /blob/ to /raw/ in GitHub URLs
+    if 'github.com' in url and '/blob/' in url:
+        return url.replace('/blob/', '/raw/')
+    return url
+
+
 def extract_image_from_html(html_content: bytes, base_url: str) -> str | None:
     """Try to extract actual image URL from HTML page."""
     try:
@@ -143,7 +151,9 @@ def extract_image_from_html(html_content: bytes, base_url: str) -> str | None:
         # Look for og:image meta tag (common in GitHub pages)
         match = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', html_str)
         if match:
-            return match.group(1)
+            img_url = match.group(1)
+            # Convert blob URLs to raw before returning
+            return github_blob_to_raw(img_url) if img_url.startswith('http') else img_url
         # Look for img tags
         match = re.search(r'<img[^>]+src="([^"]+)"[^>]*>', html_str)
         if match:
@@ -151,10 +161,11 @@ def extract_image_from_html(html_content: bytes, base_url: str) -> str | None:
             # Make absolute if relative
             if img_url.startswith('/'):
                 parsed = urlparse(base_url)
-                return f"{parsed.scheme}://{parsed.netloc}{img_url}"
+                img_url = f"{parsed.scheme}://{parsed.netloc}{img_url}"
             elif not img_url.startswith('http'):
                 return None
-            return img_url
+            # Convert blob URLs to raw before returning
+            return github_blob_to_raw(img_url)
     except Exception as e:
         print(f"Warning: Failed to extract image from HTML: {e}")
     return None
@@ -253,14 +264,6 @@ def to_raw_wiki_url(repo: str, path_like: str) -> str:
     url_part = parts[0]
     url_part = url_part.lstrip("./")
     return f"https://raw.githubusercontent.com/{repo}.wiki/HEAD/{quote(url_part)}"
-
-
-def github_blob_to_raw(url: str) -> str:
-    """Convert GitHub blob URL to raw URL."""
-    # Convert /blob/ to /raw/ in GitHub URLs
-    if 'github.com' in url and '/blob/' in url:
-        return url.replace('/blob/', '/raw/')
-    return url
 
 
 def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, image_cache: dict) -> str:
