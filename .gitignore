@@ -207,6 +207,3 @@ marimo/_lsp/
 __marimo__/
 Graphol/.DS_Store
 ontologies/.DS_Store
-
-# Generated wiki documentation
-/docs
