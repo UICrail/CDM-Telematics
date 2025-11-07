@@ -1,0 +1,773 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={CDM-Telematics Wiki Documentation},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{CDM-Telematics Wiki Documentation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\hypertarget{cdm-telematics-compiled-wiki-pages}{%
+\section{CDM-Telematics compiled wiki
+pages}\label{cdm-telematics-compiled-wiki-pages}}
+
+\emph{Self-contained version with local images}
+
+\hypertarget{version}{%
+\subsection{Version}\label{version}}
+
+This document was generated on 2025-11-07 15:21:34 UTC
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\#\# Contents
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Operational entities \\
+\#\# Purpose \\
+This diagram contains the main classes used for describing operations.
+Their scope is not necessarily restricted to the TAF TSI scope: for
+instance, containers (assets) and their ``freight load'' role (when
+loaded on a wagon) are described. \\
+\#\# Presentation \\
+The left part (colored classes) shows the DUL (DOLCE+DnS Ultralite)
+concepts underpinning the model. The rest represents the taxonomy that
+is specific to the CDM-TAF ontology (with top concepts to the right). \\
+Next to the right of the DUL classes are the classes describing our
+domain (operations). Their names should sound familiar. \\
+Then, further right, are the superclasses (grouping our domain classes).
+They will mostly be ignored by users. \\
+Details are provided in subsequent pages. \\
+\#\# About ``DOLCE + DnS Ultralite'' (DUL) \\
+\href{https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/ontologydesignpatterns.org/ont--dul--DUL--owl/2021.06.07-182648/ont--dul--DUL--owl_type=pyLodeDoc.html}{DUL}
+is an ``upper ontology'' defining very general concepts (physical
+object, role, description\ldots). It is suitable for describing domains
+mixing assets, processes, and all sorts of ``social constructions'', all
+of them possibly time-dependent. \\
+End users can safely ignore this upper ontology. It is however useful
+for those who wish to understand, maintain, or extend the CDM-TAF
+ontology, since it contributes to separation of concerns and consistent
+design patterns. \\
+\includegraphics{images/TAF_revisited_01 - OperationalEntities.png} \\
+\#\# Comments on the diagram \\
+\#\#\# GRAPHOL conventions \\
+GRAPHOL is able to represent all OWL2 elements and relationships
+graphically. The graphs may evoke E/R or UML diagrams, but there are
+significant differences resulting from the very principles of
+ontologies. \\
+\#\#\#\# Classes and subclasses \\
+Square boxes represent classes (sets of individuals). \\
+The graph A -\textgreater{} B means ``A is included in B''. When A and B
+are classes (which is the case here), this means ``A is a subclass of
+B''. \\
+Keep in mind that ontology classes are sets, rather than types (as would
+generally be the case in object-oriented programming). All set
+operations, such as intersection, union, or complement, hence apply to
+ontology classes. \\
+\#\#\#\# Disjoint unions \\
+A black, flattened hexagon means ``disjoint union of'' whatever classes
+are attached to the hexagon by dashed lines. \\
+For instance, Train, Wagon, Intermodal Transport Unit, Track, and
+Facility, are bundled into an anonymous ``disjoint union''. This implies
+that e.g.~a Train cannot at the same time be a Wagon, etc. \\
+This anonymous, disjoint union is a subclass of ``Operational artifact''
+(did you notice the direction of the arrow?). This means that
+``operational artifact'' contains (or includes) the mutually disjoint
+Train, Wagon, etc. classes, \emph{and possibly could include other
+classes not mentioned here}, because out of scope. \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/01-\%E2\%80\%90-Operational-entities}{01-‐-Operational-entities.md} \\
+\end{longtable}
+
+\hypertarget{entity-details}{%
+\section{Entity details}\label{entity-details}}
+
+\hypertarget{purpose}{%
+\subsection{Purpose}\label{purpose}}
+
+Operational entities may all share time-independent properties
+(attributes), which are described here.
+
+\hypertarget{diagram}{%
+\subsection{Diagram}\label{diagram}}
+
+For the time being, a user-defined ``name'' is proposed. It is not
+unique (one entity may have several names; different entities can have
+the same name as the ``name'' is a vernacular, not an identifier.
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_01a - Operational entity details.png}
+\caption{Operational entity details}
+\end{figure}
+
+\hypertarget{comments}{%
+\subsection{Comments}\label{comments}}
+
+The universally unique identifier is expected to be the entity IRI. IRIs
+are the foundations of the Semantic Web.
+
+\emph{Note: one reason for introducing the ``name'' property is that
+annotation properties (such as rdfs:label) that would play this role are
+left out of OWL to JSON transformers (CIM or PIM to PSM).}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/01a-\%E2\%80\%90-Entity-details}{01a-‐-Entity-details.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Train run
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Train servicing \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_02a - Train Servicing.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/02a-\%E2\%80\%90-Train-servicing}{02a-‐-Train-servicing.md} \\
+\end{longtable}
+
+\hypertarget{operational-location}{%
+\section{Operational Location}\label{operational-location}}
+
+\hypertarget{purpose-1}{%
+\subsection{Purpose}\label{purpose-1}}
+
+Defining primary and subsidiary location codes. Locating fixed assets
+(tracks, facilities) at the places designated by these codes.
+
+\hypertarget{diagram-1}{%
+\subsection{Diagram}\label{diagram-1}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_03 - OperationalLocation.png}
+\caption{operational location}
+\end{figure}
+
+\hypertarget{comments-1}{%
+\subsection{Comments}\label{comments-1}}
+
+\hypertarget{property-at-operational-location}{%
+\subsubsection{Property ``at operational
+location''}\label{property-at-operational-location}}
+
+This property only applies to (= has range) spatially fixed assets such
+as station tracks, facilities (yards, depots, stations, terminals).
+There is no time information attached to it.
+
+Please note that a yard \emph{has} a location; a yard \emph{is not} a
+location. This confusion often occurs because a yard happens to be a
+fixed thing. The confusion never occurs with moving things. In the
+present ontology, fixed and moving things are treated homogeneously, so
+fixed things are not assimilated to their location.
+
+\hypertarget{so-where-are-moving-things-located-at-time-t}{%
+\subsubsection{So where are moving things located at time t
+?}\label{so-where-are-moving-things-located-at-time-t}}
+
+The answer lies in the dul:Situation class and its subclasses (generally
+called ``\ldots{} status'' in the present ontology). dul:Situation is
+the class where time-dependent information is asserted.
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/03-\%E2\%80\%90-Operational-Location}{03-‐-Operational-Location.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Train
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Wagon \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_05 - Wagon.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/05-\%E2\%80\%90-Wagon}{05-‐-Wagon.md} \\
+\end{longtable}
+
+\hypertarget{intermodal-transport-unit}{%
+\section{Intermodal Transport Unit}\label{intermodal-transport-unit}}
+
+\hypertarget{purpose-2}{%
+\subsection{Purpose}\label{purpose-2}}
+
+\hypertarget{diagram-2}{%
+\subsection{Diagram}\label{diagram-2}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_06 - ITU.png}
+\caption{ITU}
+\end{figure}
+
+\hypertarget{comments-2}{%
+\subsection{Comments}\label{comments-2}}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/06-\%E2\%80\%90-Intermodal-Transport-Unit}{06-‐-Intermodal-Transport-Unit.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Cargo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Track \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_07 - Track.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/07-\%E2\%80\%90-Track}{07-‐-Track.md} \\
+\end{longtable}
+
+\hypertarget{facility}{%
+\section{Facility}\label{facility}}
+
+\hypertarget{purpose-3}{%
+\subsection{Purpose}\label{purpose-3}}
+
+\hypertarget{diagram-3}{%
+\subsection{Diagram}\label{diagram-3}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_08 - Facility.png}
+\caption{Facility}
+\end{figure}
+
+\hypertarget{comments-3}{%
+\subsection{Comments}\label{comments-3}}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/08-\%E2\%80\%90-Facility}{08-‐-Facility.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Traction role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Load Role \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_10 - Load Role.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/10-\%E2\%80\%90-Load-Role}{10-‐-Load-Role.md} \\
+\end{longtable}
+
+\hypertarget{operational-roles}{%
+\section{Operational roles}\label{operational-roles}}
+
+\hypertarget{purpose-4}{%
+\subsection{Purpose}\label{purpose-4}}
+
+Companies may play different operational roles at different times.
+Examples of operational roles are: Train operator, Cargo carrier, Lead
+RU, Lead carrier (the latter is encountered in the TAF TSI).
+
+\hypertarget{diagram-4}{%
+\subsection{Diagram}\label{diagram-4}}
+
+Operational roles are currently listed as members of class
+OperationalRole. In the future, these may be replaced by a SKOS concept
+scheme provided by ERA.
+
+The answer to ``who plays the role'' is outside this ontology. Such
+companies are by definition subclasses of dul:Organization and
+regorg:RegisteredOrganization.
+
+dul:Organization tells that its members are able to play a role.
+regorg:Organization provides lots of useful attributes (legal name,
+jurisdiction, registration authority, etc.). The W3C
+\href{https://www.w3.org/TR/vocab-regorg/}{REGORG ontology} is based on
+the W3C ORG ontology and is recommended for use by the EC (see
+\href{https://interoperable-europe.ec.europa.eu/collection/registered-organization-vocabulary}{this
+ontology collection item} and
+\href{https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/news/w3c-publishes-two-specificati}{this
+announcement page} from the Interoperable Europe Portal.
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_11 - Operational role.png}
+\caption{operational roles}
+\end{figure}
+
+\hypertarget{comments-4}{%
+\subsection{Comments}\label{comments-4}}
+
+\hypertarget{no-dedicated-class-for-organizations---just-a-blank-node}{%
+\subsubsection{No dedicated class for organizations - just a blank
+node}\label{no-dedicated-class-for-organizations---just-a-blank-node}}
+
+We simply use a ``blank node'' (a class without a name) that is the
+intersection (``and'') of dul:Organization and
+rerorg:RegisteredOrganization.
+
+What the diagram expresses (and what OWL2 says) is that anything that
+plays an operational role in the context of telematics is, by
+definition, both a dul:Organization (hence not a person) and a
+rerorg:Organization (with some or all of the foreseen properties
+provided by RERORG).
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/11-\%E2\%80\%90-Operational-roles}{11-‐-Operational-roles.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Versioned description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Journey \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_12a - Journey.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/12a-\%E2\%80\%90-Journey}{12a-‐-Journey.md} \\
+\end{longtable}
+
+\hypertarget{journey-schedule}{%
+\section{Journey Schedule}\label{journey-schedule}}
+
+\hypertarget{purpose-5}{%
+\subsection{Purpose}\label{purpose-5}}
+
+Represent the train journey (planned or executed) and possibly the train
+path in one uniform way.
+
+The Journey may be composed of a sequence of journey sections, each
+having an origin and a destination (operational locations). Obviously,
+the destination of section N is expected to also be the origin of
+section N+1, and times must be increasing (except when midnight is
+passed).
+
+\hypertarget{diagram-5}{%
+\subsection{Diagram}\label{diagram-5}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_12b - Journey Schedule.png}
+\caption{Journey Schedule}
+\end{figure}
+
+\hypertarget{comments-5}{%
+\subsection{Comments}\label{comments-5}}
+
+\hypertarget{nested-lists}{%
+\subsubsection{Nested Lists}\label{nested-lists}}
+
+Since any Journey section is a Journey schedule, it can be in turn
+broken down. This is convenient, as it allows to insert pass-through
+locations at a later stage when deemed convenient.
+
+\hypertarget{not-a-speed-profile}{%
+\subsubsection{Not a speed profile}\label{not-a-speed-profile}}
+
+Locations documented by Journey Schedule are, for the time being, only
+Operational Locations. The Journey Schedule is not suitable for
+representing a speed profile with temporary speed restrictions for
+instance.
+
+\hypertarget{data-consistency}{%
+\subsubsection{Data consistency}\label{data-consistency}}
+
+It is a user responsibility to check the order and consistency of
+journey sections. The ontology will preserve the sequence (using a List
+ontology, because OWL2 has no primitive concepts for order), but whether
+the sequence \emph{makes sense} must be checked by other means, such as
+SWRL rules, or queries (possibly embedded in SHACL), etc.
+
+\hypertarget{list-ontology}{%
+\subsubsection{List ontology}\label{list-ontology}}
+
+The List ontology used here is different from the one used in IfcOwl
+(the ontology version of Industry Foundation Classes). Later on, one of
+the two ontologies may be eliminated in favor of the other.
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/12b-\%E2\%80\%90-Journey-Schedule}{12b-‐-Journey-Schedule.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Journey Schedule properties
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Operational State \\
+\#\# Purpose \\
+Describe time-dependent attributes (properties) that are relevant to
+operations: train run state (``where is my train?''), train state
+(``what is the train composition?''), load state (``on which wagon is my
+container?''), etc. \\
+\#\# Diagram \\
+``Operational state'' is the topmost class, on which the time-dependency
+hinges. Time can be expressed as an instant or as an interval. \\
+Time instant suggests that the state is actually a state change, valid
+until the next, or a spot measurement (``is my train at rest?''). \\
+Time interval suggests that the state extends over the interval, or
+maybe the state change. \\
+\includegraphics{https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13\%20-\%20Operational\%20State\%20(Situation).png} \\
+\#\# Comments \\
+\#\#\# Restriction on property dul:hasTimeInterval \\
+In our context we use the predefined property dul:hasTimeInterval but
+restrict its range to time:Interval (improper time interval in the W3C
+Time ontology) when it applies to an Operational State. This is exactly
+what the OWL2 restriction does. Note that the range of
+dul:hasTimeInterval is dul:TimeInterval, a very broad concept that may
+well encompass any time:Interval. We made this explicit in the 99-Varia
+diagram. \\
+\#\#\# Ambiguity to be lifted \\
+The ambiguity state / state change should be removed at a later
+stage. \\
+\#\#\# Proper vs.~degenerate intervals \\
+All time-related classes are borrowed from the W3C Time ontology. \\
+Time intervals can be bounded, or open-ended, or degenerate (start
+instant = end instant). Again, it would be useful to clarify when to use
+an instant and when to use a degenerate interval. One may consider using
+class ProperInterval (with end \textgreater{} start) and exclude
+degenerate intervals altogether. \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/13-\%E2\%80\%90-Operational-State}{13-‐-Operational-State.md} \\
+\end{longtable}
+
+\hypertarget{train-run-state}{%
+\section{Train run state}\label{train-run-state}}
+
+\hypertarget{purpose-6}{%
+\subsection{Purpose}\label{purpose-6}}
+
+\hypertarget{diagram-6}{%
+\subsection{Diagram}\label{diagram-6}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_13a - Train run state.png}
+\caption{Train run state}
+\end{figure}
+
+\hypertarget{comments-6}{%
+\subsection{Comments}\label{comments-6}}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/13a-\%E2\%80\%90-Train-run-state}{13a-‐-Train-run-state.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Train state
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Load State \\
+\#\# Purpose \\
+\#\# Diagram \\
+\includegraphics{images/TAF_revisited_13c - Load state.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/13c-\%E2\%80\%90-Load-State}{13c-‐-Load-State.md} \\
+\end{longtable}
+
+\hypertarget{message}{%
+\section{Message}\label{message}}
+
+\hypertarget{purpose-7}{%
+\subsection{Purpose}\label{purpose-7}}
+
+\hypertarget{diagram-7}{%
+\subsection{Diagram}\label{diagram-7}}
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_14 - Message.png}
+\caption{Message}
+\end{figure}
+
+\hypertarget{comments-7}{%
+\subsection{Comments}\label{comments-7}}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/14-\%E2\%80\%90-Message}{14-‐-Message.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Image
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# RID codes \\
+\#\# Purpose \\
+Add the information about dangerous goods and the resulting hazard
+classes, as per RID. \\
+Information is defined in chapter 3.2 of the RID, Table A, columns 1 and
+3a, respectively. \\
+\#\# Diagram \\
+The information relates to the dangerous substance, but shall be affixed
+on the ITU or the wagon, as per chapter 5 of RID. \\
+Accordingly, two properties are provided, the domain of which is the
+union of Wagon and ITU. This union is a disjoint one, since classes
+Wagon and ITU were declared disjoint (no wagon is an ITU, no ITU is a
+wagon); it is represented in GRAPHOL by a flattened black hexagon, with
+no name (hence a ``blank node''). \\
+\includegraphics{images/TAF_revisited_20 - RID.png} \\
+\#\# Comments \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/20-\%E2\%80\%90-RID-codes}{20-‐-RID-codes.md} \\
+\end{longtable}
+
+\hypertarget{time}{%
+\section{Time}\label{time}}
+
+\hypertarget{purpose-8}{%
+\subsection{Purpose}\label{purpose-8}}
+
+Propose ``time entities'' to be consumed by time-dependent entities
+(such as ``train speed'' or ``custom clearance status'').
+
+The time entities are derived from the
+\href{https://www.w3.org/TR/owl-time/}{W3C time ontology} and aligned
+with the DUL TimeInterval concept.
+
+\hypertarget{diagram-8}{%
+\subsection{Diagram}\label{diagram-8}}
+
+An operational time is either an instant or an interval: these are
+disjoint classes, as the black flattened hexagon indicates in the
+diagram. The distinction between instant and interval rests on
+semantics, not on timestamp values: an interval has a beginning and an
+end (whether or not the values are known), while an instant has a
+beginning (instant) and an end (instant). These may happen to coincide,
+i.e.~have equal timestamp values.
+
+The GRAPHOL diagram expresses that each interval is expected to have
+exactly one beginning and one end, by means of OWL universal
+restrictions (``forAll''), and that the beginning or end are of type
+``Operational instant''.
+
+\emph{Note: if the data provide two beginnings for an interval, the
+logical consequence is that the beginnings B1 and B2 are the same
+individual (:B1 owl:sameAs :B2) and any OWL reasoner will infer that and
+inform the user accordingly. Then the user software may want to compare
+the respective timestamp values (OWL2 ignores them, so use SPARQL or
+code). If timestamps of B1 and B2 fail the test for equality (say,
+difference is more than one millisecond? which is context-dependent),
+then the user has detected an inconsistency and should consider
+resolving it. In a world of imperfect data, wrong data should not break
+the database. Ontologies, being robust against such data errors, are a
+suitable tool to represent them, but the onus of error detection is
+partly on the user: OWL2 has no numeric operators.}
+
+Operational times (instants or intervals) may have a ``date and time of
+issue''. This non-mandatory information is of interest in the case of
+repeated forecasting or revision exercises. The bulk of exchanged times,
+in an operational environment, is composed forecasts or revisions, so
+this ``time property of time'' is everything but ludicrous.
+
+\begin{figure}
+\centering
+\includegraphics{images/TAF_revisited_90 - Time.png}
+\caption{Time}
+\end{figure}
+
+The bottom part (Temporal role class and individuals) add meaning to
+time-dependent situations, i.e.~whether they relate to a planned,
+revised, forecast, actual, etc. situation (the DUL term) or state (our
+used term).
+
+\hypertarget{comments-8}{%
+\subsection{Comments}\label{comments-8}}
+
+\hypertarget{real-time-applications}{%
+\subsubsection{Real Time applications}\label{real-time-applications}}
+
+The time representation is conceptually compatible with the
+\href{https://www.omg.org/omgmarte/}{UML MARTE profile}, so it can serve
+as a basis for a demanding real-time application. The main missing
+concept is that of Clock: we currently assume all clocks to be
+synchronized, so we ignore them altogether (there is no need for a Clock
+class).
+
+We do not distinguish intervals from ``proper intervals'' (length
+\textgreater{} 0) in the sense of the W3C Time ontology: as no
+assumptions are made regarding the timestamps, if may well happen that
+the beginning and the end of an interval are distinct (in actual time),
+but have the same timestamp value. Calling it a ``proper interval''
+would then be a semantic error.
+
+\hypertarget{against-open-ended-intervals}{%
+\subsubsection{Against open-ended
+intervals}\label{against-open-ended-intervals}}
+
+Leaving out the beginning or end of an interval \emph{may} be
+interpreted as the interval being ``open-ended''. We would like to
+sternly warn against such convention, since it breaks the monotonicity
+of time reasoning. Example: if a fire extinguisher has a usability
+interval but the end is missing from the available data, it shall not be
+understood as ``usable forever'', as this conclusion would immediately
+be falsified by the provision, at some stage, of the missing
+information.
+
+In the context of railway applications, nothing is actually open-ended
+in time, and most data may be made available with some delay, so the
+``open ended'' interpretation of any interval with missing data would be
+a gross mistake.
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/90-\%E2\%80\%90-Time}{90-‐-Time.md}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Varia
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\# Dependencies \\
+\#\# General and upper ontologies \\
+\#\#\# W3C Time ontology \\
+\#\#\# SOSA/SSN \\
+\#\#\# QUDT \\
+\#\#\# DOLCE+DnS Ultralite \\
+\#\#\# REGORG, ORG \\
+\#\# Semantic RSM ontologies \\
+\#\#\# Rolling stock ontologies \\
+\#\#\#\# Consist \\
+\#\#\#\# Typology \\
+\#\# ERA Concept Schemes \\
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/97-\%E2\%80\%90-Dependencies}{97-‐-Dependencies.md} \\
+\end{longtable}
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\ldots{}
+
+Original page:
+\href{https://github.com/UICrail/CDM-Telematics/wiki/99-\%E2\%80\%90-References}{99-‐-References.md}
+
+\end{document}
