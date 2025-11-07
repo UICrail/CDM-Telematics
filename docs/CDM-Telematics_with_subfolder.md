@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 09:45:24 UTC
+This document was generated on 2025-11-07 10:04:07 UTC
 
 
 ---
@@ -65,7 +65,7 @@ Details are provided in subsequent pages.
 
 End users can safely ignore this upper ontology. It is however useful for those who wish to understand, maintain, or extend the CDM-TAF ontology, since it contributes to separation of concerns and consistent design patterns.
 
-![diagram](images/TAF_revisited_01%20-%20OperationalEntities_1_2_3.png)
+![diagram](images/TAF_revisited_01%20-%20OperationalEntities.png)
 
 ## Comments on the diagram
 
@@ -103,7 +103,7 @@ Operational entities may all share time-independent properties (attributes), whi
 
 For the time being, a user-defined "name" is proposed. It is not unique (one entity may have several names; different entities can have the same name as the "name" is a vernacular, not an identifier.
 
-![Operational entity details](images/TAF_revisited_01a%20-%20Operational%20entity%20details_1_2_3.png)
+![Operational entity details](images/TAF_revisited_01a%20-%20Operational%20entity%20details.png)
 
 ## Comments
 
@@ -137,7 +137,7 @@ The static properties are directly derived from the Telematics TSIs and ontology
 
 The train states are further described in another diagram.
 
-![train run diagram](images/TAF_revisited_02%20-%20Train%20run_1_2_3.png)
+![train run diagram](images/TAF_revisited_02%20-%20Train%20run.png)
 
 ### Comments
 
@@ -194,7 +194,7 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 ## Diagram
 
-![Train servicing](images/TAF_revisited_02a%20-%20Train%20Servicing_1_2_3.png)
+![Train servicing](images/TAF_revisited_02a%20-%20Train%20Servicing.png)
 
 ## Comments
 
@@ -210,7 +210,7 @@ Defining primary and subsidiary location codes. Locating fixed assets (tracks, f
 
 ## Diagram
 
-![operational location](images/TAF_revisited_03%20-%20OperationalLocation_1_2_3.png)
+![operational location](images/TAF_revisited_03%20-%20OperationalLocation.png)
 
 ## Comments
 
@@ -238,7 +238,7 @@ The "Train" class designates the physical object (here: dul:DesignedArtefact) th
 
 The composition of the Train varies between Journey Segments (where wagons can be added or removed, locomotives can be changed, etc.). We choose to consider that for each particular train run, we have a single train (i.e. a single individual of class Train) with variable composition and loads. This choice best coincides with the way people speak.
 
-![Train](images/TAF_revisited_04%20-%20Train_1_2_3.png)
+![Train](images/TAF_revisited_04%20-%20Train.png)
 
 <sub>Original page: [04-‐-Train.md](https://github.com/UICrail/CDM-Telematics/wiki/04-%E2%80%90-Train)</sub>
 
@@ -250,7 +250,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![Wagon](images/TAF_revisited_05%20-%20Wagon_1_2_3.png)
+![Wagon](images/TAF_revisited_05%20-%20Wagon.png)
 
 ## Comments
 
@@ -264,7 +264,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![ITU](images/TAF_revisited_06%20-%20ITU_1_2_3.png)
+![ITU](images/TAF_revisited_06%20-%20ITU.png)
 
 ## Comments
 
@@ -290,7 +290,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![Track](images/TAF_revisited_07%20-%20Track_1_2_3.png)
+![Track](images/TAF_revisited_07%20-%20Track.png)
 
 ## Comments
 
@@ -304,7 +304,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![Facility](images/TAF_revisited_08%20-%20Facility_1_2_3.png)
+![Facility](images/TAF_revisited_08%20-%20Facility.png)
 
 ## Comments
 
@@ -318,7 +318,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![Traction role](images/TAF_revisited_09%20-%20Traction%20role_1_2_3.png)
+![Traction role](images/TAF_revisited_09%20-%20Traction%20role.png)
 
 ## Comments
 
@@ -332,7 +332,7 @@ The composition of the Train varies between Journey Segments (where wagons can b
 
 ## Diagram
 
-![Load role](images/TAF_revisited_10%20-%20Load%20Role_1_2_3.png)
+![Load role](images/TAF_revisited_10%20-%20Load%20Role.png)
 
 ## Comments
 
@@ -354,7 +354,7 @@ The answer to "who plays the role" is outside this ontology. Such companies are 
 
 dul:Organization tells that its members are able to play a role. regorg:Organization provides lots of useful attributes (legal name, jurisdiction, registration authority, etc.). The W3C [REGORG ontology](https://www.w3.org/TR/vocab-regorg/) is based on the W3C ORG ontology and is recommended for use by the EC (see [this ontology collection item](https://interoperable-europe.ec.europa.eu/collection/registered-organization-vocabulary) and [this announcement page](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/news/w3c-publishes-two-specificati) from the Interoperable Europe Portal.
 
-![operational roles](images/TAF_revisited_11%20-%20Operational%20role_1_2_3.png)
+![operational roles](images/TAF_revisited_11%20-%20Operational%20role.png)
 
 ## Comments
 
@@ -374,7 +374,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 ## Diagram
 
-![Versioned description](images/TAF_revisited_12%20-%20Versioned%20Description_1_2_3.png)
+![Versioned description](images/TAF_revisited_12%20-%20Versioned%20Description.png)
 
 ## Comments
 
@@ -388,7 +388,7 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 ## Diagram
 
-![Journey](images/TAF_revisited_12a%20-%20Journey_1_2_3.png)
+![Journey](images/TAF_revisited_12a%20-%20Journey.png)
 
 ## Comments
 
@@ -406,7 +406,7 @@ The Journey may be composed of a sequence of journey sections, each having an or
 
 ## Diagram
 
-![Journey Schedule](images/TAF_revisited_12b%20-%20Journey%20Schedule_1_2_3.png)
+![Journey Schedule](images/TAF_revisited_12b%20-%20Journey%20Schedule.png)
 
 ## Comments
 
@@ -440,7 +440,7 @@ Properties are made available by the List ontology that allow to "chain" and nav
 
 Journey sections are chained with no branches and no loops. This is expressed by having properties (next section, previous section) that are both functional and inverse functional: the diamonds have both a double rim (functional, multiplicity 0..1) and a thick black rim (inverse functional, multiplicity 0..1).
 
-![Journey schedule properties](images/TAF_revisited_12c%20-%20Journey%20Schedule%20Properties_1_2_3.png)
+![Journey schedule properties](images/TAF_revisited_12c%20-%20Journey%20Schedule%20Properties.png)
 
 On the left, you see the GRAPHOL representation of the OWL2 assertion: "in journey schedule" is the exact equivalent (double arrow!) of the inverse of "has journey section".
 
@@ -496,7 +496,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 ## Diagram
 
-![Train run state](images/TAF_revisited_13a%20-%20Train%20run%20state_1_2_3.png)
+![Train run state](images/TAF_revisited_13a%20-%20Train%20run%20state.png)
 
 ## Comments
 
@@ -510,7 +510,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 ## Diagram
 
-![Train state](images/TAF_revisited_13b%20-%20Train%20state_1_2_3.png)
+![Train state](images/TAF_revisited_13b%20-%20Train%20state.png)
 
 ## Comments
 
@@ -524,7 +524,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 ## Diagram
 
-![Load state](images/TAF_revisited_13c%20-%20Load%20state_1_2_3.png)
+![Load state](images/TAF_revisited_13c%20-%20Load%20state.png)
 
 ## Comments
 
@@ -538,7 +538,7 @@ Time intervals can be bounded, or open-ended, or degenerate (start instant = end
 
 ## Diagram
 
-![Message](images/TAF_revisited_14%20-%20Message_1_2_3.png)
+![Message](images/TAF_revisited_14%20-%20Message.png)
 
 ## Comments
 
@@ -558,7 +558,7 @@ The image reference (URI) is separated from the contents (Content location, iden
 
 The content URI may be a URL (dereferenceable) or another type of URI if only a "unique key" in a specific database is needed.
 
-![image class](images/TAF_revisited_15%20-%20Image_1_2_3.png)
+![image class](images/TAF_revisited_15%20-%20Image.png)
 
 ## Comments
 
@@ -584,7 +584,7 @@ The information relates to the dangerous substance, but shall be affixed on the 
 
 Accordingly, two properties are provided, the domain of which is the union of Wagon and ITU. This union is a disjoint one, since classes Wagon and ITU were declared disjoint (no wagon is an ITU, no ITU is a wagon); it is represented in GRAPHOL by a flattened black hexagon, with no name (hence a "blank node").
 
-![RID](images/TAF_revisited_20%20-%20RID_1_2_3.png)
+![RID](images/TAF_revisited_20%20-%20RID.png)
 
 ## Comments
 
@@ -610,7 +610,7 @@ _Note: if the data provide two beginnings for an interval, the logical consequen
 
 Operational times (instants or intervals) may have a "date and time of issue". This non-mandatory information is of interest in the case of repeated forecasting or revision exercises. The bulk of exchanged times, in an operational environment, is composed forecasts or revisions, so this "time property of time" is everything but ludicrous.
 
-![Time](images/TAF_revisited_90%20-%20Time_1_2_3.png)
+![Time](images/TAF_revisited_90%20-%20Time.png)
 
 The bottom part (Temporal role class and individuals) add meaning to time-dependent situations, i.e. whether they relate to a planned, revised, forecast, actual, etc. situation (the DUL term) or state (our used term).
 
@@ -638,7 +638,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 
 ## Diagram
 
-![Varia](images/TAF_revisited_99%20-%20Varia_1_2_3.png)
+![Varia](images/TAF_revisited_99%20-%20Varia.png)
 
 ## Comments
 
