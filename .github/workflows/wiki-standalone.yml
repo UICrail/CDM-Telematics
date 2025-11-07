@@ -79,7 +79,7 @@ jobs:
             --toc \
             --number-sections \
             --metadata title="${REPO_NAME} Wiki Documentation" \
-            --from markdown-yaml_metadata_block \
+            --from markdown-yaml_metadata_block+pipe_tables-simple_tables-multiline_tables-grid_tables \
             --resource-path=.:images \
             --variable geometry:margin=1in \
             --variable fontsize=11pt \
@@ -97,7 +97,7 @@ jobs:
             --toc \
             --number-sections \
             --metadata title="${REPO_NAME} Wiki Documentation" \
-            --from markdown-yaml_metadata_block \
+            --from markdown-yaml_metadata_block+pipe_tables-simple_tables-multiline_tables-grid_tables \
             --resource-path=.:images \
             --variable geometry:margin=1in \
             --variable fontsize=11pt \
