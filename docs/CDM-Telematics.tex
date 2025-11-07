@@ -1,10 +1,13 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
+  11pt,
 ]{article}
 \usepackage{amsmath,amssymb}
+\usepackage{setspace}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -36,6 +39,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -71,7 +75,11 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={CDM-Telematics Wiki Documentation},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 
 \title{CDM-Telematics Wiki Documentation}
@@ -82,9 +90,11 @@
 \maketitle
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
+\setstretch{1.2}
 \hypertarget{cdm-telematics-compiled-wiki-pages}{%
 \section{CDM-Telematics compiled wiki
 pages}\label{cdm-telematics-compiled-wiki-pages}}
@@ -94,7 +104,7 @@ pages}\label{cdm-telematics-compiled-wiki-pages}}
 \hypertarget{version}{%
 \subsection{Version}\label{version}}
 
-This document was generated on 2025-11-07 15:58:50 UTC
+This document was generated on 2025-11-07 16:09:50 UTC
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.0556}}@{}}
