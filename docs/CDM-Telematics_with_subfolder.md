@@ -5,41 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 16:09:50 UTC
-
-
----
-## Contents
-
-- [Operational entities](#operational-entities)
-- [Entity details](#entity-details)
-- [Train run](#train-run)
-- [Train servicing](#train-servicing)
-- [Operational Location](#operational-location)
-- [Train](#train)
-- [Wagon](#wagon)
-- [Intermodal Transport Unit](#intermodal-transport-unit)
-- [Cargo](#cargo)
-- [Track](#track)
-- [Facility](#facility)
-- [Traction role](#traction-role)
-- [Load Role](#load-role)
-- [Operational roles](#operational-roles)
-- [Versioned description](#versioned-description)
-- [Journey](#journey)
-- [Journey Schedule](#journey-schedule)
-- [Journey Schedule properties](#journey-schedule-properties)
-- [Operational State](#operational-state)
-- [Train run state](#train-run-state)
-- [Train state](#train-state)
-- [Load State](#load-state)
-- [Message](#message)
-- [Image](#image)
-- [RID codes](#rid-codes)
-- [Time](#time)
-- [Varia](#varia)
-- [Dependencies](#dependencies)
-- [References](#references)
+This document was generated on 2025-11-07 16:16:58 UTC
 
 
 ---
