@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 15:49:39 UTC
+This document was generated on 2025-11-07 15:58:50 UTC
 
 
 ---
@@ -468,7 +468,7 @@ Time instant suggests that the state is actually a state change, valid until the
 
 Time interval suggests that the state extends over the interval, or maybe the state change.
 
-![Operational states](https://github.com/UICrail/CDM-Telematics/blob/main/Graphol/diagrams/TAF_revisited_13%20-%20Operational%20State%20(Situation).png)
+![Operational state or situation](images/TAF_revisited_13 - Operational State or Situation.png)
 
 ## Comments
 
