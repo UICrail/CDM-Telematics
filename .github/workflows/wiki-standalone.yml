@@ -2,6 +2,9 @@ name: Generate standalone wiki documentation
 
 on:
   gollum:  # Triggers on wiki page changes (create, edit, delete)
+  push:
+    paths:
+      - 'Graphol/diagrams/**'  # Trigger when images are updated
   workflow_dispatch:  # Allow manual triggering
 
 permissions:
