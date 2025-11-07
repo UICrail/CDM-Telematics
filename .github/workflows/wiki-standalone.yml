@@ -39,6 +39,10 @@ jobs:
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
           DATETIME="${{ steps.timestamp.outputs.datetime }}"
           
+          # Clear images directory to avoid duplicates
+          rm -rf docs/images
+          mkdir -p docs/images
+          
           echo "Generating version with embedded images..."
           python scripts/wiki_standalone.py \
             --wiki-dir wiki \

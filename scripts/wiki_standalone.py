@@ -300,16 +300,13 @@ def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, i
             filename = unquote(filename)
             
             img_path = images_dir / filename
-            counter = 1
-            while img_path.exists():
-                stem = img_path.stem
-                suffix = img_path.suffix
-                img_path = images_dir / f"{stem}_{counter}{suffix}"
-                counter += 1
             
-            img_path.write_bytes(img_data)
+            # Only write if file doesn't already exist (avoid duplicates)
+            if not img_path.exists():
+                img_path.write_bytes(img_data)
+            
             # URL-encode the filename for the markdown reference
-            encoded_name = quote(img_path.name)
+            encoded_name = quote(filename)
             new_url = f"images/{encoded_name}"
         
         image_cache[full_url] = new_url
