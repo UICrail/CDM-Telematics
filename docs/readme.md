@@ -2,9 +2,9 @@ The Wiki contents can be packed into a markdown by a script. The action can be t
 * When a wikipage gets created, updated, or deleted
 * When an image in /Graphol/diagrams/ gets created, updated, or deleted
 
-The output consists of two files:
-* A standalone file with embedded images
-* A standalone file with images in a subfolder
+The output consists of following files:
+* A standalone file with embedded images: please disregard, as some images are not properly "inserted" and displayed.
+* A standalone file with images in a subfolder: can be viewed in Typora, but trouble with Obsidian.
 
 The file generation may take up to one minute.
 
