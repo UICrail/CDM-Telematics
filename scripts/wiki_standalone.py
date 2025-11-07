@@ -6,7 +6,7 @@ import argparse
 import re
 import base64
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import quote, urlparse, unquote
 import urllib.request
 
 IGNORE = {"_Sidebar.md", "_Footer.md", "_Header.md", "Home.md"}
@@ -258,11 +258,14 @@ def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, i
                 image_cache[full_url] = url
                 return url
             
-            # Generate filename from URL
+            # Generate filename from URL - decode URL encoding first
             parsed = urlparse(full_url)
             filename = Path(parsed.path).name
             if not filename:
                 filename = f"image_{len(image_cache)}.png"
+            
+            # URL-decode the filename to get actual filename with spaces/special chars
+            filename = unquote(filename)
             
             img_path = images_dir / filename
             counter = 1
