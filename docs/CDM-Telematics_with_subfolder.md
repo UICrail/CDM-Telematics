@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 21:18:33 UTC
+This document was generated on 2025-11-07 21:35:46 UTC
 
 
 ---
@@ -86,6 +86,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 ## Purpose
 
 "Train run" (commonly "train", in an operational context) designated a train (characterized by a train number) running on a particular day. It is what a dispatcher has to manage, not to be confused with:
+
 * "train" as a railway timetable entry;
 * "train" as a set of railway vehicles, some of which are powered.
 
@@ -117,7 +118,7 @@ Diamonds with a double-edged rim denote "functional properties". In OWL2, a func
 
 When the property objects are data types (such as strings, integers, timestamps...), the property is called a "data property" in OWL2. It is represented by a small circle, as is the case here with "train departure date". The double rim also means functional [data] property.
 
-Note: in OWL2, object properties can be navigated in both directions, no matter if the inverse property is defined (as is the case here for "is state of train run") or not. Data properties are however one way (they have no inverses). Of course the end user can _query_ OWL2 data to find, e.g., "all train runs occurring today", but the logics underpinning OWL2 ontologies (and executed by reasoners such as Pellet or HermiT) cannot achieve that.
+_Note: in OWL2, object properties can be navigated in both directions, no matter if the inverse property is defined (as is the case here for "is state of train run") or not. Data properties are however one way (they have no inverses). Of course the end user can _query_ OWL2 data to find, e.g., "all train runs occurring today", but the logics underpinning OWL2 ontologies (and executed by reasoners such as Pellet or HermiT) cannot achieve that._
 
 #### OWL2 Subproperties
 
