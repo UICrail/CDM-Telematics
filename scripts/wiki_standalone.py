@@ -171,14 +171,30 @@ def download_image(url: str) -> bytes | None:
             content_type = response.headers.get('Content-Type', '')
             data = response.read()
             
-            # If we got HTML, try to extract the actual image URL
-            if data.startswith(b'<!DOCTYPE') or data.startswith(b'<html') or 'text/html' in content_type:
+            # Comprehensive HTML detection
+            is_html = (
+                'text/html' in content_type or
+                'application/xhtml' in content_type or
+                data.startswith(b'<!DOCTYPE') or
+                data.startswith(b'<!doctype') or
+                data.startswith(b'<html') or
+                data.startswith(b'<HTML') or
+                data.startswith(b'<?xml') or
+                b'<html' in data[:200].lower() or
+                b'<!doctype html' in data[:200].lower()
+            )
+            
+            if is_html:
                 print(f"Got HTML page for {url}, attempting to extract image URL...")
                 img_url = extract_image_from_html(data, url)
                 if img_url:
                     print(f"Found image URL: {img_url}")
-                    # Recursively download the actual image
-                    return download_image(img_url)
+                    # Recursively download the actual image (with depth limit)
+                    if '_recursion_depth' not in url:
+                        return download_image(img_url + '?_recursion_depth=1')
+                    else:
+                        print(f"Warning: Recursion depth limit reached for {url}")
+                        return None
                 else:
                     print(f"Warning: Got HTML but couldn't extract image URL for {url}")
                     return None
@@ -186,6 +202,22 @@ def download_image(url: str) -> bytes | None:
             # Verify content type is an image
             if not content_type.startswith('image/'):
                 print(f"Warning: Non-image content type '{content_type}' for {url}")
+                print(f"  Content start: {data[:100]}")
+                return None
+            
+            # Verify data looks like an image (starts with common image magic bytes)
+            image_signatures = [
+                b'\xFF\xD8\xFF',  # JPEG
+                b'\x89PNG',  # PNG
+                b'GIF87a',  # GIF
+                b'GIF89a',  # GIF
+                b'<svg',  # SVG
+                b'<?xml',  # SVG (with XML declaration)
+            ]
+            
+            if not any(data.startswith(sig) for sig in image_signatures):
+                print(f"Warning: Data doesn't start with known image signature for {url}")
+                print(f"  First bytes: {data[:20]}")
                 return None
                 
             return data
