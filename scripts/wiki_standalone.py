@@ -317,9 +317,9 @@ def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, i
             if not img_path.exists():
                 img_path.write_bytes(img_data)
             
-            # URL-encode the filename for the markdown reference
-            encoded_name = quote(filename)
-            new_url = f"images/{encoded_name}"
+            # Use actual filename (with spaces) for markdown reference
+            # This works with Pandoc/LaTeX and most markdown viewers
+            new_url = f"images/{filename}"
         
         image_cache[full_url] = new_url
         return new_url
