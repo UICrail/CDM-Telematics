@@ -79,6 +79,7 @@ jobs:
             --toc \
             --number-sections \
             --metadata title="${REPO_NAME} Wiki Documentation" \
+            --from markdown-yaml_metadata_block \
             || echo "PDF generation had warnings but may have succeeded"
           
           # Generate LaTeX
@@ -88,7 +89,8 @@ jobs:
             --standalone \
             --toc \
             --number-sections \
-            --metadata title="${REPO_NAME} Wiki Documentation"
+            --metadata title="${REPO_NAME} Wiki Documentation" \
+            --from markdown-yaml_metadata_block
           
           cd ..
           echo "Generated files:"
