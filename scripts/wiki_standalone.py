@@ -276,7 +276,9 @@ def process_images(text: str, repo: str, embed: bool, images_dir: Path | None, i
                 counter += 1
             
             img_path.write_bytes(img_data)
-            new_url = f"images/{img_path.name}"
+            # URL-encode the filename for the markdown reference
+            encoded_name = quote(img_path.name)
+            new_url = f"images/{encoded_name}"
         
         image_cache[full_url] = new_url
         return new_url
