@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 16:23:30 UTC
+This document was generated on 2025-11-07 19:42:28 UTC
 
 
 ---
@@ -158,11 +158,29 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 ## Purpose
 
+What happens when trains do not run is equally important for managing operations. Servicing at the origin, at destination, or at intermediate stops, can be described as more processes which can only take place if a train runs.
+
 ## Diagram
+
+The "train run" is therefore the main operational process, and its sub-processes are of type "train service".
+
+A train service has a "setting" (in the sense of DUL) which can be understood as a "circumstance", and this is a "static section" of the train journey.
+
+_Note: This is a slight over-simplification, since passenger trains for instance sometimes benefit from cleaning processes while running. _
+
+A "static section" of a journey is any part of the journey where the train stops and/or starts, so there is a time interval where it is supposed to be static, hence the name. Details are provided in [the Journey Schedule page](https://github.com/UICrail/CDM-Telematics/wiki/12b-%E2%80%90-Journey-Schedule).
+
+_Note: a "static section" may include shunting movements (FR: manoeuvres et évolutions)._
+
+Finally, the train service must be of at least one type, such as "maintenance" or "customs".
 
 ![Train servicing](images/TAF_revisited_02a - Train Servicing.png)
 
 ## Comments
+
+### False simplifications = True mess
+
+The user is free to define distinct services or a single combined one, but the latter option is not recommended (customs clearance may be provided while some maintenance operations may need to be delayed): what may first appear as a simplification may result in a mess.
 
 <sub>Original page: [02a-‐-Train-servicing.md](https://github.com/UICrail/CDM-Telematics/wiki/02a-%E2%80%90-Train-servicing)</sub>
 
