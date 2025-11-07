@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 21:35:46 UTC
+This document was generated on 2025-11-07 21:41:48 UTC
 
 
 ---
@@ -112,7 +112,7 @@ The train states are further described in another diagram.
 
 In GRAPHOL, object properties are represented by diamonds. Their name often starts with "has", but this is a convention, not a rule.
 
-Object properties are displayed as class A <-[white square] - <Property P> - [black square] -> class B, meaning P(A, B), i.e. individuals of A are related to individuals of B by a property named P. Example: some Train (subject) has a train operating RU (predicate) some Train operator (object).
+Object properties are displayed as class A <-[white square] - Property P - [black square] -> class B, meaning P(A, B), i.e. individuals of A are related to individuals of B by a property named P. Example: some Train (subject) has a train operating RU (predicate) some Train operator (object).
 
 Diamonds with a double-edged rim denote "functional properties". In OWL2, a functional property is such that any subject will be associated with at most one object. Inverse functional properties have a thick black rim, and properties that are both functional and inverse functional have a double-edged rim on one side and a thick black rim on the other side.
 
@@ -127,7 +127,7 @@ In OWL2, properties are first-class objects; there are subproperties as there ar
 * for classes: class A is a subclass of class B iff (= if and only if) any individual of A is also an individual of B.
 * for properties: property P is a subproperty of property Q iff for any individuals X and Y satisfying P(X,Y), Q(X,Y) also holds.
 
-The interest of defining subproperties is mainly a semantic one. Example: "empty mass" or "laden mass" are subproperties of "has mass", meaning that the expected value is a mass expressed in, say, kg, but their meaning and relevance is quite precise.
+The interest of defining subproperties is mainly a semantic one. Example: "empty mass" or "laden mass" are subproperties of "has mass", meaning that the expected value is a mass expressed in, say, kg, but their meaning and relevance are different.
 
 In the present case, the subproperty arrow links the general-purpose dul:isSettingFor property with its specialization, "is state of train run".
 
