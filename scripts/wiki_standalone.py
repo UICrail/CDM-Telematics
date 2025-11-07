@@ -353,6 +353,7 @@ def main():
     ap.add_argument("--repo", required=True, help="GitHub repository (owner/repo)")
     ap.add_argument("--embed-images", action="store_true",
                     help="Embed images as base64 (default: save to subfolder)")
+    ap.add_argument("--timestamp", help="Generation timestamp for version info")
     args = ap.parse_args()
     
     wiki_dir = Path(args.wiki_dir)
@@ -397,11 +398,17 @@ def main():
     # Second pass: transform content
     output_sections = []
     
-    # TOC
+    # TOC with version info
     repo_name = args.repo.split('/')[-1]
     toc = []
     toc.append(f"# {repo_name} compiled wiki pages\n")
     toc.append(f"_Self-contained version with {'embedded' if args.embed_images else 'local'} images_\n")
+    
+    # Add version preamble if timestamp provided
+    if args.timestamp:
+        toc.append("\n## Version\n")
+        toc.append(f"This document was generated on {args.timestamp}\n")
+    
     toc.append("\n---\n## Contents\n")
     for p in pages:
         toc.append(f"- [{p['title']}](#{anchor_slug(p['title'])})")
