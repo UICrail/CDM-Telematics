@@ -81,6 +81,12 @@ jobs:
             --metadata title="${REPO_NAME} Wiki Documentation" \
             --from markdown-yaml_metadata_block \
             --resource-path=.:images \
+            --variable geometry:margin=1in \
+            --variable fontsize=11pt \
+            --variable documentclass=article \
+            --variable linestretch=1.2 \
+            --variable linkcolor=blue \
+            --variable urlcolor=blue \
             || echo "PDF generation had warnings but may have succeeded"
           
           # Generate LaTeX
@@ -92,7 +98,13 @@ jobs:
             --number-sections \
             --metadata title="${REPO_NAME} Wiki Documentation" \
             --from markdown-yaml_metadata_block \
-            --resource-path=.:images
+            --resource-path=.:images \
+            --variable geometry:margin=1in \
+            --variable fontsize=11pt \
+            --variable documentclass=article \
+            --variable linestretch=1.2 \
+            --variable linkcolor=blue \
+            --variable urlcolor=blue
           
           cd ..
           echo "Generated files:"
