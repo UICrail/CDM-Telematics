@@ -1,0 +1,4003 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "AdministrativeState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#AdministrativeState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Administrative state",
+      "type": "object"
+    },
+    "CarrierState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#CarrierState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Carrier state",
+      "type": "object"
+    },
+    "Coach": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Coach",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction in a fixed or variable formation capable of carrying passengers (by extension, requirements specified to apply to coaches in this TSI are deemed to apply also to restaurant cars, sleeping cars, couchettes cars, etc.) Note: was \"passenger carriage\" in earlier versions.",
+      "properties": {},
+      "type": "object"
+    },
+    "Concept": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.w3.org/2004/02/skos/core#Concept",
+          "properties": {
+            "inScheme": {
+              "$comment": "OWL Property URI: http://www.w3.org/2004/02/skos/core#inScheme",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ConceptScheme"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "in scheme"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "ConceptScheme": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Facility role or function scheme",
+            "RollingStockSideScheme"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Facility role or function scheme": "https://cdm.ovh/taf/tafp5#FacilityRoleOrFunctionScheme",
+            "RollingStockSideScheme": "https://cdm.ovh/rst/cons/cons#RollingStockSideScheme"
+          }
+        }
+      ],
+      "description": "Enumeration of ConceptScheme values"
+    },
+    "Container": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Container",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ITU"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "sizeAndTypeCode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#sizeAndTypeCode",
+          "description": "4 digit alphanum code for container size and type, according to ISO 6346",
+          "title": "size and type code",
+          "type": "string"
+        }
+      },
+      "title": "Container",
+      "type": "object"
+    },
+    "ContentLocation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#ContentLocation",
+          "properties": {
+            "asPNG": {
+              "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#asPNG",
+              "title": "as PNG",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "The image file as a BLOB. Possibly not in the same namespace as the Image individual.",
+      "title": "Content location"
+    },
+    "CustomsStatus": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Pending",
+            "Pre cleared",
+            "Cleared",
+            "Inspected"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Cleared": "https://cdm.ovh/taf/tafp5#Cleared",
+            "Inspected": "https://cdm.ovh/taf/tafp5#Inspected",
+            "Pending": "https://cdm.ovh/taf/tafp5#Pending",
+            "Pre cleared": "https://cdm.ovh/taf/tafp5#PreCleared"
+          }
+        }
+      ],
+      "description": "Enumeration of CustomsStatus values",
+      "title": "Customs status"
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "DesignedArtifact": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#DesignedArtifact",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "EmptyList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://w3id.org/list#EmptyList",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Closing element of any List under the List ontology. This element does not correspond with any rolling stock.",
+      "title": "Empty list"
+    },
+    "Entity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.w3.org/ns/prov#Entity",
+          "properties": {
+            "generatedAtTime": {
+              "$comment": "OWL Property URI: http://www.w3.org/ns/prov#generatedAtTime",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "wasAttributedTo": {
+              "$comment": "OWL Property URI: http://www.w3.org/ns/prov#wasAttributedTo",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "Event": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ExecutedJourney": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#ExecutedJourney",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Journey"
+        },
+        {
+          "$ref": "#/definitions/Process"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "realizesPlannedJourneyOrPath": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#realizesPlannedJourneyOrPath",
+          "items": {
+            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey). Subproperty of realizes",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/PlannedJourneyOrPath"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "realizesPlannedJourneyOrPath"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Executed journey",
+      "type": "object"
+    },
+    "Extremity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#Extremity",
+          "properties": {
+            "coupledTo": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#coupledTo",
+              "description": "Symmetric property \"coupled to\" relates two extremities of two distinct Rolling stock items (hence the \"to\" in the label). The property is expressed irrespectively of the type of coupling (mechanical, virtual) or coupler (UIC, Scharfenberg...).. Subproperty of facesExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "coupled to"
+            },
+            "facesExtremity": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#facesExtremity",
+              "description": "object is the extremity of another Rolling stock that the subject extremity faces.",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "faces extremity"
+            },
+            "n785f07ce19264e7691155497cb6a71f5b7": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/_Thing"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "n785f07ce19264e7691155497cb6a71f5b7"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "denotes the extremity of a rolling stock. The extremity designation is either set at design and manufacturing time (e.g. extremity1, extremity 2 in the case of a wagon), or rests on other conventions (e.g. extremities of a variable-consist trainset).",
+      "title": "Extremity"
+    },
+    "Facility": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Facility",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasFacilityFunction": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasFacilityFunction",
+          "items": {
+            "description": "Subproperty of isClassifiedBy",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FacilityRoleOrFunction"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has facility function"
+          },
+          "type": "array"
+        },
+        "playsFacilityRole": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#playsFacilityRole",
+          "items": {
+            "description": "Subproperty of playsRole",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FacilityRoleOrFunction"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "plays facility role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Facility",
+      "type": "object"
+    },
+    "FacilityRoleOrFunction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Yard",
+            "Workshop"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Workshop": "https://cdm.ovh/taf/tafp5#Workshop",
+            "Yard": "https://cdm.ovh/taf/tafp5#Yard"
+          }
+        }
+      ],
+      "description": "Enumeration of FacilityRoleOrFunction values",
+      "title": "Facility role or function"
+    },
+    "Formation": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#Formation",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A sequence of vehicles (or other formations) that are coupled in some way (mechanically or virtually).",
+      "properties": {
+        "hasFixedConsist": {
+          "$comment": "OWL Property URI: http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#hasFixedConsist",
+          "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
+          "type": "boolean"
+        },
+        "hasHeadRollingStock": {
+          "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#hasHeadRollingStock",
+          "description": "Each formation has exactly one \"First\" rolling stock. This notion of \"first\" is only related to the rolling stock, not however to the direction of travel which may vary (general case of multiple units or reversible trains) or not (case of hauled freight trains). Please also not that the direction of movement is yet another notion (think of shunting).. Subproperty of includesRollingStock",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ListedRollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has head rolling stock"
+        },
+        "includesRollingStock": {
+          "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#includesRollingStock",
+          "items": {
+            "description": "This property describes the composition of a Formation. A Formation may incude any rolling stock (i.e. vehicles or formations). Irreflexive property: a formation cannot include itself; in other words, it may only have proper parts.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/RollingStock"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "includes Rolling stock"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "includesRollingStock"
+      ],
+      "title": "Formation",
+      "type": "object"
+    },
+    "FreightCarryingRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#FreightCarryingRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "FreightRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "as freight"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "as freight": "https://cdm.ovh/taf/tafp5#asFreight"
+          }
+        }
+      ],
+      "description": "Enumeration of FreightRole values",
+      "title": "Freight role"
+    },
+    "ITU": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#ITU",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasBICCcode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasBICCcode",
+          "description": "BIC code according to ISO 6346 (4 letters, 6 numeric digits and 1 check digit)",
+          "title": "has BIC code",
+          "type": "string"
+        },
+        "hasILUcode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasILUcode",
+          "description": "ILU code (under EN 13044 series) is the standardized identification (owner, number, check digit) for intermodal loading units in Europe. The ILU code is designed for non-ISO containers, swap bodies, semi-trailers in intra-European combined transport.",
+          "title": "has ILU code",
+          "type": "string"
+        },
+        "hasOtherCode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOtherCode",
+          "items": {
+            "title": "has other code",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Intermodal Transport Unit",
+      "type": "object"
+    },
+    "Image": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Image",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/InformationObject"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasImageContent": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasImageContent",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ContentLocation"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has image content"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Image",
+      "type": "object"
+    },
+    "InformationObject": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Instant": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.w3.org/2006/time#Instant",
+          "properties": {
+            "inXSDDateTimeStamp": {
+              "$comment": "OWL Property URI: http://www.w3.org/2006/time#inXSDDateTimeStamp",
+              "items": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "title": "time:Instant"
+    },
+    "Interval": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.w3.org/2006/time#Interval",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "W3C Time interval, possibly open-ended or degenerate (start = end)"
+    },
+    "Journey": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Journey",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "hasJourneySchedule": {
+              "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasJourneySchedule",
+              "items": {
+                "description": "Note: it may be that the same path or planned journey has multiple schedules (variants), not further characterized here, so we did not make this property functional.",
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/JourneySchedule"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has journey schedule"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PlannedJourneyOrPath"
+            },
+            {
+              "$ref": "#/definitions/ExecutedJourney"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: PlannedJourneyOrPath, ExecutedJourney",
+      "title": "Journey"
+    },
+    "JourneySchedule": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#JourneySchedule",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/List"
+        },
+        {
+          "$ref": "#/definitions/VersionedDescription"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Description that is common to paths, planned journeys, and executed journeys. It has an origin, departure time, destination, arrival time. It consists in JourneySections, each journey section has the same structure.",
+      "properties": {
+        "hasArrivalTime": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasArrivalTime",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has arrival time"
+          },
+          "type": "array"
+        },
+        "hasDepartureTime": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasDepartureTime",
+          "items": {
+            "description": "May have multiple values (e.g. planned, revised, forecast, actual...), hence NOT a functional property",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has departure time"
+          },
+          "type": "array"
+        },
+        "hasDestination": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasDestination",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has destination"
+        },
+        "hasIM": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasIM",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has IM"
+          },
+          "type": "array"
+        },
+        "hasOrigin": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOrigin",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has origin"
+        },
+        "hasRU": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasRU",
+          "items": {
+            "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has RU"
+          },
+          "type": "array"
+        },
+        "hasSchedulePart": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasSchedulePart",
+          "items": {
+            "description": "Inverse functional property.. Subproperty of hasItem",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SchedulePart"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has schedule part"
+          },
+          "type": "array"
+        },
+        "startsAtOrigin": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#startsAtOrigin",
+          "description": "if False: means pass-through",
+          "title": "starts at origin",
+          "type": "boolean"
+        },
+        "stopsAtDestination": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#stopsAtDestination",
+          "description": "if False: means pass-through",
+          "title": "stops at destination",
+          "type": "boolean"
+        }
+      },
+      "title": "Journey schedule",
+      "type": "object"
+    },
+    "JourneySection": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#JourneySection",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/JourneySchedule"
+        },
+        {
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections are chained by properties nextSection and previousSection.",
+      "properties": {
+        "nextSection": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#nextSection",
+          "description": "Subproperty of nextItem",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySection"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "next section"
+        },
+        "previousSection": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#previousSection",
+          "description": "Subproperty of previousItem",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySection"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "previous section"
+        }
+      },
+      "title": "Journey section",
+      "type": "object"
+    },
+    "List": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/cp/owl/list.owl#List",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ListItem": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "ListedRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#ListedRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Rolling stock that may have a predecessor or successor in a formation.",
+      "properties": {
+        "frontExtremity": {
+          "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#frontExtremity",
+          "description": "Subproperty of hasExtremity",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Extremity"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "front extremity"
+        },
+        "hasNextRollingStock": {
+          "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#hasNextRollingStock",
+          "description": "Indicates which Rolling stock comes next in a Consist.. Subproperty of hasNext",
+          "oneOf": [
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/ListedRollingStock"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/EmptyList"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          ],
+          "title": "has next rolling stock"
+        }
+      },
+      "required": [
+        "hasNextRollingStock"
+      ],
+      "title": "Listed rolling stock",
+      "type": "object"
+    },
+    "LoadRole": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#LoadRole",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Role"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/FreightRole"
+            },
+            {
+              "$ref": "#/definitions/PassengerRole"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: FreightRole, PassengerRole",
+      "properties": {},
+      "title": "LoadRole",
+      "type": "object"
+    },
+    "LoadState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#LoadState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasTimeInterval": {
+          "description": "Array of Interval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Interval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "isClassifiedBy": {
+          "description": "Array of FreightRole or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/FreightRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "isSettingFor": {
+          "description": "Array of {'unionOf': ['https://cdm.ovh/taf/tafp5#ITU', 'https://cdm.ovh/taf/tafp5#Wagon']} or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ITU"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Wagon"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Load state",
+      "type": "object"
+    },
+    "Locomotive": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Locomotive",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle having a driving desk and can be used standalone (e.g. for shunting or ferrying movements), but is normally used for hauling other vehicles or formations.",
+      "properties": {},
+      "type": "object"
+    },
+    "LocomotiveRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "leading locomotive role",
+            "controlled locomotive role",
+            "locomotive role"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "controlled locomotive role": "https://cdm.ovh/taf/tafp5#controlledLocomotiveRole",
+            "leading locomotive role": "https://cdm.ovh/taf/tafp5#leadingLocomotiveRole",
+            "locomotive role": "https://cdm.ovh/taf/tafp5#locomotiveRole"
+          }
+        }
+      ],
+      "description": "Enumeration of LocomotiveRole values",
+      "title": "Locomotive role"
+    },
+    "Message": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Message",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/InformationObject"
+        },
+        {
+          "$ref": "#/definitions/Entity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TransportCollaborationMessage"
+            },
+            {
+              "$ref": "#/definitions/TafMessage"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: TransportCollaborationMessage, TafMessage",
+      "properties": {
+        "hasComment": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasComment",
+          "items": {
+            "title": "has comment",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hasFullText": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasFullText",
+          "description": "typically, the full XML or JSON snippet (including comments, if any)",
+          "title": "has full text",
+          "type": "string"
+        },
+        "reportedAt": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#reportedAt",
+          "description": "same semantics as prov:generatedAtTime. Subproperty of generatedAtTime",
+          "format": "date-time",
+          "title": "reported at",
+          "type": "string"
+        }
+      },
+      "title": "Message",
+      "type": "object"
+    },
+    "MotorCar": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#MotorCar",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle that cannot be used standalone, as can be found in trainset (EMUs or DMUs). May or may not carry passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotoredRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#MotoredRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of rolling stock that is able by design to exert tractive effort on wheels or (rarely) cogwheels.",
+      "properties": {},
+      "type": "object"
+    },
+    "OTN": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OTN",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Operational Train Number. A train may bear different numbers along its course.",
+      "title": "OTN"
+    },
+    "OWLList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://w3id.org/list#OWLList",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Using the List ontology also used by IfcOwl."
+    },
+    "OnTrackMachine": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#OnTrackMachine",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "a motored railway vehicle used for infrastructure maintenance",
+      "properties": {},
+      "type": "object"
+    },
+    "OperationalArtifact": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalArtifact",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/DesignedArtifact"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Operational artifact",
+      "type": "object"
+    },
+    "OperationalEntity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalEntity",
+          "properties": {
+            "name": {
+              "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#name",
+              "title": "name",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "Abstract class for all things related to the process of operating a freight train",
+      "title": "Operational entity"
+    },
+    "OperationalInstant": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalInstant",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalTime"
+        },
+        {
+          "$ref": "#/definitions/Instant"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "An instant related to some operational event (planned / forecast / observed / ...).",
+      "properties": {},
+      "title": "Operational instant",
+      "type": "object"
+    },
+    "OperationalInterval": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalInterval",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Interval"
+        },
+        {
+          "$ref": "#/definitions/OperationalTime"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Time interval, as used in the context of operations. Can play various roles (actual, planned, forecast...). Implementer can choose to coerce it to proper intervals (beginning and end time are then distinct individuals with distinct dateTime values).",
+      "properties": {
+        "hasBeginning": {
+          "description": "Array of OperationalInstant or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasEnd": {
+          "description": "Array of OperationalInstant or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational interval",
+      "type": "object"
+    },
+    "OperationalLocation": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalLocation",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "$ref": "#/definitions/Place"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TAF TSI ontology: identifies a Location using a LocationIdent",
+      "properties": {
+        "hasPrimaryCode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasPrimaryCode",
+          "title": "has primary code",
+          "type": "string"
+        },
+        "hasSubsidiaryCode": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasSubsidiaryCode",
+          "title": "has subsidiary code",
+          "type": "string"
+        },
+        "isOperationalLocationOf": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#isOperationalLocationOf",
+          "items": {
+            "description": "Subproperty of isLocationOf",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainLocationState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "is operational location of"
+          },
+          "type": "array"
+        },
+        "locationName": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#locationName",
+          "items": {
+            "title": "location name",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational location",
+      "type": "object"
+    },
+    "OperationalProcess": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalProcess",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Process"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasTimeInterval": {
+          "description": "Array of OperationalInterval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasTrain": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasTrain",
+          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.. Subproperty of hasParticipant",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Train"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has train"
+        }
+      },
+      "title": "Operational process",
+      "type": "object"
+    },
+    "OperationalRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Lead RU",
+            "Lead carrier",
+            "Train operator",
+            "Cargo carrier"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Cargo carrier": "https://cdm.ovh/taf/tafp5#CargoCarrier",
+            "Lead RU": "https://cdm.ovh/taf/tafp5#LeadRU",
+            "Lead carrier": "https://cdm.ovh/taf/tafp5#LeadCarrier",
+            "Train operator": "https://cdm.ovh/taf/tafp5#TrainOperator"
+          }
+        }
+      ],
+      "description": "Enumeration of OperationalRole values",
+      "title": "Operational role"
+    },
+    "OperationalState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Situation"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "An operational state is a situation (in the sense of DUL). An operational is a typical payload of any operational message.",
+      "properties": {
+        "hasOperationalInstant": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOperationalInstant",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInstant"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has operational instant"
+          },
+          "type": "array"
+        },
+        "hasOperationalInterval": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOperationalInterval",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has operational interval"
+          },
+          "type": "array"
+        },
+        "hasParticipant": {
+          "description": "Array of OperationalEntity or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalEntity"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasSetting": {
+          "description": "Array of OperationalEntity or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalEntity"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasTemporalRole": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasTemporalRole",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TemporalRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has temporal role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operational state",
+      "type": "object"
+    },
+    "OperationalTime": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationalTime",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TimeInterval"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalInstant"
+            },
+            {
+              "$ref": "#/definitions/OperationalInterval"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: OperationalInstant, OperationalInterval",
+      "properties": {
+        "issuedAt": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#issuedAt",
+          "description": "Timestamp when the forecast value (most common case) or any other time value was generated or last updated",
+          "format": "date-time",
+          "title": "issued at",
+          "type": "string"
+        }
+      },
+      "title": "OperationalTime",
+      "type": "object"
+    },
+    "OperationsStakeholder": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#OperationsStakeholder",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Organization"
+        },
+        {
+          "$ref": "#/definitions/RegisteredOrganization"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any registered organisation that is involved in the train run (operators, carriers, consignors and consignees, wagon owners...)",
+      "properties": {
+        "playsOperationalRole": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#playsOperationalRole",
+          "items": {
+            "description": "property listing the possible roles, not those actually played on a particular train run. Subproperty of playsRole",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalRole"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "plays operational role"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Operations stakeholder",
+      "type": "object"
+    },
+    "Organization": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.w3.org/ns/org#Organization",
+          "properties": {
+            "identifier": {
+              "$comment": "OWL Property URI: http://www.w3.org/ns/org#identifier",
+              "items": {
+                "description": "range = rdfs:Literal (not an OWL class) = any number or string. Note: org:identifier is a simplistic way to identify companies; the identifier may be context-specific so they are no longer direct properties is more refined ontologies.",
+                "title": "identifier",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "PassengerCarryingRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#PassengerCarryingRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "PassengerRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "as passenger"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "as passenger": "https://cdm.ovh/taf/tafp5#asPassenger"
+          }
+        }
+      ],
+      "description": "Enumeration of PassengerRole values",
+      "title": "Passenger role"
+    },
+    "Path": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Path",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Path",
+      "type": "object"
+    },
+    "Place": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Place",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Plan": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Plan",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "PlannedJourney": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#PlannedJourney",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "The planned journey may share the same JourneySchedule as the path, or deviate from it (e.g. deviations related to temporary speed restrictions, added or canceled stops). It may be updated after the train departure (in which case it gives rise to a forecast schedule, of a different class).",
+      "properties": {},
+      "title": "Planned journey",
+      "type": "object"
+    },
+    "PlannedJourneyOrPath": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#PlannedJourneyOrPath",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Journey"
+        },
+        {
+          "$ref": "#/definitions/Plan"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Planned journey or path",
+      "type": "object"
+    },
+    "Process": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Process",
+          "properties": {
+            "hasSubProcess": {
+              "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasSubProcess",
+              "items": {
+                "description": "Subproperty of hasPart",
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Process"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has sub process"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "RailCar": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RailCar",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Wikipedia (12/3/2024): self-propelled railway vehicle designed to transport passengers. Equiv. to FR: Autorail, DE: Schienenbus (narrower meaning: two axles only). Note however the numerous variants and ambiguities.",
+      "properties": {},
+      "type": "object"
+    },
+    "Rake": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Rake",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any non-powered formation. Examples: wagon rake; (fixed consist) set of TGV trailers; (fixed or variable consist) rake of coaches.",
+      "properties": {},
+      "type": "object"
+    },
+    "ReferenceOTN": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#ReferenceOTN",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "title": "Reference OTN"
+    },
+    "RegisteredOrganization": {
+      "$comment": "OWL Class URI: http://www.w3.org/ns/regorg#RegisteredOrganization",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Organization"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadRailVehicle": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RoadRailVehicle",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadVehicleRake": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RoadVehicleRake",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "From TSI WAG 2023, \"unit\", 3rd entry: separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.",
+      "properties": {},
+      "type": "object"
+    },
+    "Role": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Note: aligning with DOLCE, roles are defined as individuals such as \"freight role\" (instance of Load role), with no properties attached."
+    },
+    "RollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#RollingStock",
+          "properties": {
+            "extremity_1": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#extremity_1",
+              "description": "\"extremity 1\" (actual designation may vary) of a Rolling stock.. Subproperty of hasExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_1"
+            },
+            "extremity_2": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#extremity_2",
+              "description": "\"extremity 2\" of a piece of Rolling stock. Designation may vary.. Subproperty of hasExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_2"
+            },
+            "hasExtremity": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#hasExtremity",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Extremity"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has extremity"
+              },
+              "type": "array"
+            },
+            "hasSide": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#hasSide",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/RollingStockSide"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has side"
+              },
+              "type": "array"
+            },
+            "partOfFormation": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#partOfFormation",
+              "description": "Inverse of \"includes Rolling Stock\". A functional property: a rolling stock can only be part of one formation. Irreflexive property: A formation cannot be part of itself.",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Formation"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "part of formation"
+            },
+            "positionInFormation": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#positionInFormation",
+              "description": "Starting with 1.",
+              "title": "position in formation",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "Base type for rolling stock. No direct instances are expected.",
+      "title": "Rolling stock"
+    },
+    "RollingStockFeature": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RollingStockFeature",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "RollingStockSide": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#RollingStockSide",
+          "properties": {
+            "isSide": {
+              "$comment": "OWL Property URI: https://cdm.ovh/rst/cons/cons#isSide",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/RollingStockSideEnum"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "is side"
+            }
+          },
+          "required": [
+            "isSide"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "The side of a particular rolling stock, as in \"the left side of locomotive BB15046\".",
+      "title": "Rolling stock side"
+    },
+    "RollingStockSideEnum": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Top",
+            "Front",
+            "Rear",
+            "Right",
+            "Bottom",
+            "Left"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Bottom": "https://cdm.ovh/rst/cons/cons#Bottom",
+            "Front": "http://www.w3.org/2004/02/skos/core#Front",
+            "Left": "https://cdm.ovh/rst/cons/cons#Left",
+            "Rear": "https://cdm.ovh/rst/cons/cons#Rear",
+            "Right": "https://cdm.ovh/rst/cons/cons#Right",
+            "Top": "https://cdm.ovh/rst/cons/cons#Top"
+          }
+        }
+      ],
+      "description": "Enumeration of RollingStockSideEnum values"
+    },
+    "SchedulePart": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#SchedulePart",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ListItem"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/StaticSection"
+            },
+            {
+              "$ref": "#/definitions/JourneySection"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: StaticSection, JourneySection",
+      "properties": {
+        "inJourneySchedule": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#inJourneySchedule",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySchedule"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "in journey schedule"
+        }
+      },
+      "title": "SchedulePart",
+      "type": "object"
+    },
+    "ServiceType": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "customs",
+            "maintenance",
+            "brake check"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "brake check": "https://cdm.ovh/taf/tafp5#brakeCheck",
+            "customs": "https://cdm.ovh/taf/tafp5#customs",
+            "maintenance": "https://cdm.ovh/taf/tafp5#Maintenance"
+          }
+        }
+      ],
+      "description": "Enumeration of ServiceType values",
+      "title": "Service type"
+    },
+    "Situation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "SlaveLocomotive": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#SlaveLocomotive",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle without driving desk, with energy possibly fed from master locomotive ( = subclass \"slug\"). Also called \"truck\" in France, e.g. TC61000. Do not confuse with master/slave configuration of two normal locomotives (\"multiple working\" in the UK).",
+      "properties": {},
+      "type": "object"
+    },
+    "StaticSection": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#StaticSection",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections \"at rest\" (but possibly implying shunting movements inside an operational location). May host maintenance or customes operations.",
+      "properties": {
+        "atTime": {
+          "description": "Array of OperationalInterval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasIM": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "hasOperationalLocation": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOperationalLocation",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has operational location"
+        }
+      },
+      "required": [
+        "hasIM"
+      ],
+      "title": "Static section",
+      "type": "object"
+    },
+    "SwapBody": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#SwapBody",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ITU"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Swap body",
+      "type": "object"
+    },
+    "TafMessage": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TafMessage",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Message"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Message compliant with TAF TSI XSD",
+      "properties": {},
+      "title": "TAF message",
+      "type": "object"
+    },
+    "TemporalRole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Updated",
+            "Contractual",
+            "Actual",
+            "Recommended",
+            "Forecast",
+            "Planned"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Actual": "https://cdm.ovh/taf/tafp5#Actual",
+            "Contractual": "https://cdm.ovh/taf/tafp5#Contractual",
+            "Forecast": "https://cdm.ovh/taf/tafp5#Forecast",
+            "Planned": "https://cdm.ovh/taf/tafp5#Planned",
+            "Recommended": "https://cdm.ovh/taf/tafp5#Recommended",
+            "Updated": "https://cdm.ovh/taf/tafp5#Updated"
+          }
+        }
+      ],
+      "description": "Enumeration of TemporalRole values",
+      "title": "Temporal role"
+    },
+    "TimeInterval": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "Track": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Track",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Track in the operational sense, i.e. a stretch of track, usually continuous, that is individuated in operating (driving, shunting) instructions.",
+      "properties": {
+        "hasDesignation": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasDesignation",
+          "items": {
+            "description": "Designation: to be discussed. Probably not unique. Can have short or long forms (e.g. \"Track 5\" in the context of some yard; \"Alnabru yard track 5\" in a larger context).",
+            "title": "has designation",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Track",
+      "type": "object"
+    },
+    "TractionProvisionRole": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TractionProvisionRole",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Role"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Can be extended to include powered car or trailer roles. Case of hauled locomotive (fr: marchandise roulante) does not belong here, as no traction is provided. To be differetiated from (possible, not included) traction provider role, the agent being an organization in that case.",
+      "properties": {},
+      "title": "Traction provision role",
+      "type": "object"
+    },
+    "Trailer": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Trailer",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "non-traction, passenger-carrying vehicle that is part of a trainset or of a fixed-consist rake, such as TGV trailer or ICE3 trailer or Talgo trailer.",
+      "properties": {},
+      "title": "Trailer",
+      "type": "object"
+    },
+    "Train": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#Train",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalArtifact"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "For want of a better class name: denotes the rolling stock (locos, wagons...) AND their supplies (possibly depleted) AND their (variable) loads, considered as a whole, i.e. whatever is moved somewhere between origin and destination in a Train run.",
+      "properties": {
+        "hasTrainState": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasTrainState",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has train state"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train",
+      "type": "object"
+    },
+    "TrainCompositionState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainCompositionState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "compositionValidationPassed": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#compositionValidationPassed",
+          "title": "composition validation passed",
+          "type": "boolean"
+        },
+        "hasComposition": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasComposition",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has composition"
+        }
+      },
+      "title": "Train composition state",
+      "type": "object"
+    },
+    "TrainCustomsState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainCustomsState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasCustomsStatus": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasCustomsStatus",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/CustomsStatus"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has customs status"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train customs state",
+      "type": "object"
+    },
+    "TrainGPSPosition": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainGPSPosition",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "title": "Train GPS position",
+      "type": "object"
+    },
+    "TrainGPSPositionState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainGPSPositionState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "asWKT": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#asWKT",
+          "description": "single string, using WKT serialization",
+          "title": "as wkt",
+          "type": "string"
+        }
+      },
+      "title": "Train GPS position state",
+      "type": "object"
+    },
+    "TrainJourneyState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainJourneyState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasJourney": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasJourney",
+          "items": {
+            "description": "not a functional property, as it can be expressed w.r.t. the planned journey or the executed journey (if available). User feedback welcome.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Journey"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has journey"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train journey state",
+      "type": "object"
+    },
+    "TrainLengthState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainLengthState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasLengthInMeters": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasLengthInMeters",
+          "title": "has length in meters",
+          "type": "number"
+        }
+      },
+      "title": "Train length state",
+      "type": "object"
+    },
+    "TrainLocationState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainLocationState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainRunState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "atOperationalLocation": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#atOperationalLocation",
+          "items": {
+            "description": "For time-independent locations (e.g. of Facilities). Subproperty of hasLocation",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalLocation"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "at operational location"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train location state",
+      "type": "object"
+    },
+    "TrainMassState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainMassState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Laden mass, incl. supplies",
+      "properties": {
+        "hasMassInTons": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasMassInTons",
+          "description": "provisional. To be expanded, using SSN and QUDT.",
+          "title": "has mass in tons",
+          "type": "number"
+        }
+      },
+      "title": "Train mass state",
+      "type": "object"
+    },
+    "TrainMotionState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainMotionState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "isStationary": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#isStationary",
+          "title": "is stationary",
+          "type": "boolean"
+        }
+      },
+      "title": "Train motion state",
+      "type": "object"
+    },
+    "TrainRun": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainRun",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalProcess"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Denotes a train run (operated on a particular date), equivalent to \"Train\" in TAF TSI, not a \"timetable entry\". It is a process and may have parts that are sub-processes.",
+      "properties": {
+        "hasJourney": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasJourney",
+          "items": {
+            "description": "not a functional property, as it can be expressed w.r.t. the planned journey or the executed journey (if available). User feedback welcome.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Journey"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has journey"
+          },
+          "type": "array"
+        },
+        "hasOTN": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasOTN",
+          "items": {
+            "description": "The same train run can have different Operational Train Numbers in its course, depending on the operator or network over which it is run.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OTN"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has OTN"
+          },
+          "type": "array"
+        },
+        "hasSubProcess": {
+          "description": "Array of TrainService or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainService"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "referenceOTN": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#referenceOTN",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReferenceOTN"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has reference OTN"
+        },
+        "trainDepartureDate": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#trainDepartureDate",
+          "format": "date",
+          "title": "train departure date",
+          "type": "string"
+        },
+        "trainLeadRU": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#trainLeadRU",
+          "description": "Points to the \"lead RU\" for the entire train. Subproperty of hasParticipant",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationsStakeholder"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "train lead RU"
+        }
+      },
+      "title": "Train run",
+      "type": "object"
+    },
+    "TrainRunState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainRunState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Situation (State) of a train run. Several subclasses define the train run state from several points of view.",
+      "properties": {
+        "isStateOfTrainRun": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#isStateOfTrainRun",
+          "description": "Subproperty of isSettingFor",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/TrainRun"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "is state of train run"
+        }
+      },
+      "required": [
+        "isStateOfTrainRun"
+      ],
+      "title": "Train run state",
+      "type": "object"
+    },
+    "TrainService": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainService",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalProcess"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "e.g. rolling stock maintenance or customs checks",
+      "properties": {
+        "hasServiceType": {
+          "description": "Array of Thing or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/_Thing"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train servicing",
+      "type": "object"
+    },
+    "TrainServicingResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Ongoing",
+            "Success",
+            "Interrupted",
+            "Planned",
+            "Failure"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Failure": "https://cdm.ovh/taf/tafp5#Failure",
+            "Interrupted": "https://cdm.ovh/taf/tafp5#Interrupted",
+            "Ongoing": "https://cdm.ovh/taf/tafp5#Ongoing",
+            "Planned": "https://cdm.ovh/taf/tafp5#Planned",
+            "Success": "https://cdm.ovh/taf/tafp5#Success"
+          }
+        }
+      ],
+      "description": "Enumeration of TrainServicingResult values",
+      "title": "Train servicing result"
+    },
+    "TrainServicingState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainServicingState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Note: other service types (customs, track assignment) rather relate to the Train run.",
+      "properties": {
+        "hasResult": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasResult",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/TrainServicingResult"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has result"
+          },
+          "type": "array"
+        },
+        "hasSetting": {
+          "description": "Array of StaticSection or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/StaticSection"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "title": "Train servicing state",
+      "type": "object"
+    },
+    "TrainSpeedState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainSpeedState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/TrainState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "hasSpeed": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasSpeed",
+          "description": "current speed, in km/h",
+          "title": "has speed",
+          "type": "number"
+        }
+      },
+      "title": "Train speed state",
+      "type": "object"
+    },
+    "TrainState": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TrainState",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/OperationalState"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Characterizes the state of the Train (as a physical asset), e.g. speed, mass, GPS coordinates of some particular point of the train, etc.",
+      "properties": {},
+      "title": "Train state",
+      "type": "object"
+    },
+    "Trainset": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Trainset",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOC&PAS, 2020: a fixed formation that can operate as a train; it is by definition not intended to be reconfigured, except within a workshop environment. It is composed of only motored or of motored and non-motored vehicles.",
+      "properties": {},
+      "type": "object"
+    },
+    "TransportCollaborationMessage": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#TransportCollaborationMessage",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Message"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "FP5-specific messages",
+      "properties": {
+        "hasPayload": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasPayload",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalState"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has payload"
+          },
+          "type": "array"
+        },
+        "hasReferenceObject": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#hasReferenceObject",
+          "items": {
+            "description": "following the data requirements, this property qualifies the message. However this may not be optimal, since Operational States \"know\" about the objects concerned, via dul:hasSetting or dul:hasParticipant.",
+            "oneOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ITU"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/TrainRun"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Wagon"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            ],
+            "title": "has reference object"
+          },
+          "type": "array"
+        },
+        "messageID": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#messageID",
+          "title": "message ID",
+          "type": "string"
+        },
+        "messageVersion": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#messageVersion",
+          "items": {
+            "title": "message version",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reportedBy": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#reportedBy",
+          "description": "",
+          "title": "reported by",
+          "type": "string"
+        }
+      },
+      "title": "Transport collaboration message",
+      "type": "object"
+    },
+    "UnregulatedTrain": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#UnregulatedTrain",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/PlannedJourneyOrPath"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Unregulated train run. \" Unregulated train\" might be the correct expression in EN-speaking areas (check). At SNCF, was called \" marche indeterminee (abbr. MI)\", which is more to the point as \" marche\" evokes journey execution rather than train.",
+      "properties": {},
+      "title": "Unregulated train run",
+      "type": "object"
+    },
+    "Van": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Van",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction capable of carrying payload other than passengers, e.g. luggage or mail, intended to be integrated into a fixed or variable formation which is intended to transport passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "Vehicle": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#Vehicle",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Considered to be the atomic part of a piece of rolling stock, although disassembly may be carried out in special circumstances. Example: a TALGO or TGV trailer does not rest on two axles resp. bogies, but has a distinct carbody and it considered a vehicle (called \"trailer\"). Further example: an articulated wagon (3-axle, e.g. carrying cars) is generally considered a single vehicle although it has two distinct chassis. So the distinction vehicle / formation is conventional; being \"atomic\" in operations is a necessary condition, but not a sufficient one to be called vehicle.",
+      "properties": {},
+      "title": "Vehicle",
+      "type": "object"
+    },
+    "VersionedDescription": {
+      "$comment": "OWL Class URI: https://cdm.ovh/taf/tafp5#VersionedDescription",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Description"
+        },
+        {
+          "$ref": "#/definitions/Entity"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A description (e.g. of a schedule, or other operational specs such as orders issued to drivers) that can be revised, and is effective (= applicable) from a certain datetime. The versions are chained as a simple list (nop forks, no loops).",
+      "properties": {
+        "createdAt": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#createdAt",
+          "items": {
+            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).. Subproperty of generatedAtTime",
+            "format": "date-time",
+            "title": "created at",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveFrom": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#effectiveFrom",
+          "items": {
+            "format": "date-time",
+            "title": "effective from",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveUntil": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#effectiveUntil",
+          "items": {
+            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).. Subproperty of invalidatedAtTime",
+            "format": "date-time",
+            "title": "effective until",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextDescriptionVersion": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#nextDescriptionVersion",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VersionedDescription"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "next description version"
+        },
+        "previousDescriptionVersion": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#previousDescriptionVersion",
+          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.. Subproperty of wasRevisionOf, revisesDescriptionVersion",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VersionedDescription"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "previous description version"
+        }
+      },
+      "title": "Versioned description",
+      "type": "object"
+    },
+    "Wagon": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Wagon",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A non-powered vehicle designed for carrying freight.",
+      "properties": {
+        "uicWagonNumber": {
+          "$comment": "OWL Property URI: https://cdm.ovh/taf/tafp5#uicWagonNumber",
+          "description": "may it vary in a wagon's lifetime? if not, consider moving to rolling stock ontology.",
+          "title": "uic wagon number",
+          "type": "string"
+        }
+      },
+      "title": "Wagon",
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

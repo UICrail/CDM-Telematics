@@ -1,0 +1,387 @@
+{
+  "$comment": "Metadata: {\"license\": \"ttps://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt\"}",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "Coach": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Coach",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction in a fixed or variable formation capable of carrying passengers (by extension, requirements specified to apply to coaches in this TSI are deemed to apply also to restaurant cars, sleeping cars, couchettes cars, etc.) Note: was \"passenger carriage\" in earlier versions.",
+      "properties": {},
+      "type": "object"
+    },
+    "Formation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#Formation",
+          "properties": {
+            "hasFixedConsist": {
+              "$comment": "OWL Property URI: http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#hasFixedConsist",
+              "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "FreightCarryingRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#FreightCarryingRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "Locomotive": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Locomotive",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle having a driving desk and can be used standalone (e.g. for shunting or ferrying movements), but is normally used for hauling other vehicles or formations.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotorCar": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#MotorCar",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle that cannot be used standalone, as can be found in trainset (EMUs or DMUs). May or may not carry passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "MotoredRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#MotoredRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of rolling stock that is able by design to exert tractive effort on wheels or (rarely) cogwheels.",
+      "properties": {},
+      "type": "object"
+    },
+    "OnTrackMachine": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#OnTrackMachine",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "a motored railway vehicle used for infrastructure maintenance",
+      "properties": {},
+      "type": "object"
+    },
+    "PassengerCarryingRollingStock": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#PassengerCarryingRollingStock",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/RollingStockFeature"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Feature of Rolling stock: ability to carry freight, by design.",
+      "properties": {},
+      "type": "object"
+    },
+    "RailCar": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RailCar",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Wikipedia (12/3/2024): self-propelled railway vehicle designed to transport passengers. Equiv. to FR: Autorail, DE: Schienenbus (narrower meaning: two axles only). Note however the numerous variants and ambiguities.",
+      "properties": {},
+      "type": "object"
+    },
+    "Rake": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Rake",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Any non-powered formation. Examples: wagon rake; (fixed consist) set of TGV trailers; (fixed or variable consist) rake of coaches.",
+      "properties": {},
+      "type": "object"
+    },
+    "RoadRailVehicle": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RoadRailVehicle",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "properties": {},
+      "type": "object"
+    },
+    "RoadVehicleRake": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RoadVehicleRake",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "From TSI WAG 2023, \"unit\", 3rd entry: separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.",
+      "properties": {},
+      "type": "object"
+    },
+    "RollingStockFeature": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#RollingStockFeature",
+          "properties": {},
+          "type": "object"
+        }
+      ]
+    },
+    "SlaveLocomotive": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#SlaveLocomotive",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Powered vehicle without driving desk, with energy possibly fed from master locomotive ( = subclass \"slug\"). Also called \"truck\" in France, e.g. TC61000. Do not confuse with master/slave configuration of two normal locomotives (\"multiple working\" in the UK).",
+      "properties": {},
+      "type": "object"
+    },
+    "Trailer": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Trailer",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "non-traction, passenger-carrying vehicle that is part of a trainset or of a fixed-consist rake, such as TGV trailer or ICE3 trailer or Talgo trailer.",
+      "properties": {},
+      "type": "object"
+    },
+    "Trainset": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Trainset",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Formation"
+        },
+        {
+          "$ref": "#/definitions/MotoredRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOC&PAS, 2020: a fixed formation that can operate as a train; it is by definition not intended to be reconfigured, except within a workshop environment. It is composed of only motored or of motored and non-motored vehicles.",
+      "properties": {},
+      "type": "object"
+    },
+    "Van": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Van",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "TSI LOCPAS 2020: a vehicle without traction capable of carrying payload other than passengers, e.g. luggage or mail, intended to be integrated into a fixed or variable formation which is intended to transport passengers.",
+      "properties": {},
+      "type": "object"
+    },
+    "Vehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$comment": "OWL Class URI: https://cdm.ovh/rst/cons/cons#Vehicle",
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines."
+    },
+    "Wagon": {
+      "$comment": "OWL Class URI: https://cdm.ovh/rst/typo/typo#Wagon",
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A non-powered vehicle designed for carrying freight.",
+      "properties": {},
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
