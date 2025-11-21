@@ -14,8 +14,8 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix tafp5: <https://cdm.ovh/taf/tafp5#> .
 @prefix regorg: <http://www.w3.org/ns/regorg#> .
-@prefix rst_typ: <http://cdm.ovh/rsm/rolling_stock/typology/typology#> .
-@prefix rst_cons: <http://cdm.ovh/rsm/rolling_stock/consist/RollingStockConsist#> .
+@prefix rst_typ: <https://cdm.ovh/rsm/rolling_stock/typology/typology#> .
+@prefix rst_cons: <https://cdm.ovh/rsm/rolling_stock/consist/RollingStockConsist#> .
 @base <http://cdm.ovh/taf/tafp5#> .
 
 <http://cdm.ovh/taf/tafp5#> rdf:type owl:Ontology ;
@@ -174,7 +174,7 @@ tafp5:hasBeginning rdf:type owl:ObjectProperty ;
 tafp5:hasComposition rdf:type owl:ObjectProperty ,
                               owl:FunctionalProperty ;
                      rdfs:domain tafp5:TrainCompositionState ;
-                     rdfs:range rst_typ:RollingStock ;
+                     rdfs:range <http://cdm.ovh/rsm/rolling_stock/typology/typology#RollingStock> ;
                      rdfs:label "has composition"@en .
 
 
@@ -218,7 +218,7 @@ tafp5:hasFacilityFunction rdf:type owl:ObjectProperty ;
 
 ###  https://cdm.ovh/taf/tafp5#hasIM
 tafp5:hasIM rdf:type owl:ObjectProperty ;
-            rdfs:domain tafp5:JourneySection ;
+            rdfs:domain tafp5:JourneySchedule ;
             rdfs:range tafp5:OperationsStakeholder ;
             rdfs:label "has IM"@en .
 
@@ -246,21 +246,6 @@ tafp5:hasJourneySchedule rdf:type owl:ObjectProperty ;
                          rdfs:range tafp5:JourneySchedule ;
                          rdfs:comment "Note: it may be that the same path or planned journey has multiple schedules (variants), not further characterized here, so we did not make this property functional."@en ;
                          rdfs:label "has journey schedule" .
-
-
-###  https://cdm.ovh/taf/tafp5#hasJourneySection
-tafp5:hasJourneySection rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf bag:hasItem ;
-                        owl:inverseOf tafp5:inJourneySchedule ;
-                        rdf:type owl:InverseFunctionalProperty ;
-                        rdfs:domain tafp5:JourneySchedule ;
-                        rdfs:range [ rdf:type owl:Class ;
-                                     owl:unionOf ( tafp5:JourneySection
-                                                   tafp5:StaticSection
-                                                 )
-                                   ] ;
-                        rdfs:comment "Inverse functional property."@en ;
-                        rdfs:label "has journey section" .
 
 
 ###  https://cdm.ovh/taf/tafp5#hasOTN
@@ -315,9 +300,8 @@ tafp5:hasPayload rdf:type owl:ObjectProperty ;
 
 
 ###  https://cdm.ovh/taf/tafp5#hasRU
-tafp5:hasRU rdf:type owl:ObjectProperty ,
-                     owl:FunctionalProperty ;
-            rdfs:domain tafp5:JourneySection ;
+tafp5:hasRU rdf:type owl:ObjectProperty ;
+            rdfs:domain tafp5:JourneySchedule ;
             rdfs:range tafp5:OperationsStakeholder ;
             rdfs:comment """RU responsible for the journey section.
 The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level."""@en ;
@@ -340,7 +324,19 @@ tafp5:hasReferenceObject rdf:type owl:ObjectProperty ;
 ###  https://cdm.ovh/taf/tafp5#hasResult
 tafp5:hasResult rdf:type owl:ObjectProperty ;
                 rdfs:domain tafp5:TrainServicingState ;
+                rdfs:range tafp5:TrainServicingResult ;
                 rdfs:label "has result"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#hasSchedulePart
+tafp5:hasSchedulePart rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf bag:hasItem ;
+                      owl:inverseOf tafp5:inJourneySchedule ;
+                      rdf:type owl:InverseFunctionalProperty ;
+                      rdfs:domain tafp5:JourneySchedule ;
+                      rdfs:range tafp5:SchedulePart ;
+                      rdfs:comment "Inverse functional property."@en ;
+                      rdfs:label "has schedule part" .
 
 
 ###  https://cdm.ovh/taf/tafp5#hasServiceType
@@ -508,10 +504,10 @@ tafp5:trainLeadRU rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
-###  http://www.w3.org/2006/time#inXSDDateTime
-time:inXSDDateTime rdf:type owl:DatatypeProperty ;
-                   rdfs:comment "not a functional property, in order to allow different time representations. Consistency between these is user responsibility."@en ;
-                   rdfs:label "in XSD date time"@en .
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
+                        rdfs:domain time:Instant ;
+                        rdfs:range xsd:dateTimeStamp .
 
 
 ###  http://www.w3.org/ns/org#identifier
@@ -837,11 +833,11 @@ tafp5:uicWagonNumber rdf:type owl:DatatypeProperty ,
 #################################################################
 
 ###  http://cdm.ovh/rsm/rolling_stock/typology/typology#RollingStock
-rst_typ:RollingStock rdf:type owl:Class .
+<http://cdm.ovh/rsm/rolling_stock/typology/typology#RollingStock> rdf:type owl:Class .
 
 
 ###  http://cdm.ovh/rsm/rolling_stock/typology/typology#Wagon
-rst_typ:Wagon rdf:type owl:Class .
+<http://cdm.ovh/rsm/rolling_stock/typology/typology#Wagon> rdf:type owl:Class .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/list.owl#List
@@ -1018,8 +1014,8 @@ It consists in JourneySections, each journey section has the same structure."""@
 
 ###  https://cdm.ovh/taf/tafp5#JourneySection
 tafp5:JourneySection rdf:type owl:Class ;
-                     rdfs:subClassOf list:ListItem ,
-                                     tafp5:JourneySchedule ;
+                     rdfs:subClassOf tafp5:JourneySchedule ,
+                                     tafp5:SchedulePart ;
                      owl:disjointWith tafp5:StaticSection ;
                      rdfs:comment "Journey sections are chained by properties nextSection and previousSection."@en ;
                      rdfs:label "Journey section"@en ;
@@ -1207,6 +1203,12 @@ tafp5:ReferenceOTN rdf:type owl:Class ;
                    rdfs:seeAlso "http://data.europa.eu/949/ReferenceOTN"^^xsd:anyURI .
 
 
+###  https://cdm.ovh/taf/tafp5#SchedulePart
+tafp5:SchedulePart rdf:type owl:Class ;
+                   rdfs:subClassOf list:ListItem ;
+                   rdfs:label "Schedule part"@en .
+
+
 ###  https://cdm.ovh/taf/tafp5#ServiceType
 tafp5:ServiceType rdf:type owl:Class ;
                   rdfs:label "Service type"@en .
@@ -1214,7 +1216,12 @@ tafp5:ServiceType rdf:type owl:Class ;
 
 ###  https://cdm.ovh/taf/tafp5#StaticSection
 tafp5:StaticSection rdf:type owl:Class ;
-                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    rdfs:subClassOf tafp5:SchedulePart ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty tafp5:hasIM ;
+                                      owl:someValuesFrom tafp5:OperationsStakeholder
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty tafp5:atTime ;
                                       owl:allValuesFrom tafp5:OperationalInterval
                                     ] ;
@@ -1364,6 +1371,12 @@ tafp5:TrainService rdf:type owl:Class ;
                    rdfs:label "Train servicing" .
 
 
+###  https://cdm.ovh/taf/tafp5#TrainServicingResult
+tafp5:TrainServicingResult rdf:type owl:Class ;
+                           rdfs:comment "Note: might be generalized for making observations on all processes"@en ;
+                           rdfs:label "Train servicing result"@en .
+
+
 ###  https://cdm.ovh/taf/tafp5#TrainServicingState
 tafp5:TrainServicingState rdf:type owl:Class ;
                           rdfs:subClassOf tafp5:TrainState ,
@@ -1414,7 +1427,7 @@ tafp5:VersionedDescription rdf:type owl:Class ;
 
 ###  https://cdm.ovh/taf/tafp5#Wagon
 tafp5:Wagon rdf:type owl:Class ;
-            rdfs:subClassOf rst_typ:Wagon ,
+            rdfs:subClassOf <http://cdm.ovh/rsm/rolling_stock/typology/typology#Wagon> ,
                             tafp5:OperationalArtifact ;
             rdfs:label "Wagon"@en .
 
@@ -1442,10 +1455,22 @@ tafp5:Cleared rdf:type owl:NamedIndividual ,
               rdfs:label "Cleared"@en .
 
 
+###  https://cdm.ovh/taf/tafp5#Contractual
+tafp5:Contractual rdf:type owl:NamedIndividual ,
+                           tafp5:TemporalRole ;
+                  rdfs:label "Contractual"@en .
+
+
 ###  https://cdm.ovh/taf/tafp5#FacilityRoleOrFunctionScheme
 tafp5:FacilityRoleOrFunctionScheme rdf:type owl:NamedIndividual ,
                                             skos:ConceptScheme ;
                                    rdfs:label "Facility role or function scheme"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#Failure
+tafp5:Failure rdf:type owl:NamedIndividual ,
+                       tafp5:TrainServicingResult ;
+              rdfs:label "Failure"@en .
 
 
 ###  https://cdm.ovh/taf/tafp5#Forecast
@@ -1458,6 +1483,12 @@ tafp5:Forecast rdf:type owl:NamedIndividual ,
 tafp5:Inspected rdf:type owl:NamedIndividual ,
                          tafp5:CustomsStatus ;
                 rdfs:label "Inspected"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#Interrupted
+tafp5:Interrupted rdf:type owl:NamedIndividual ,
+                           tafp5:TrainServicingResult ;
+                  rdfs:label "Interrupted"@en .
 
 
 ###  https://cdm.ovh/taf/tafp5#LeadCarrier
@@ -1479,6 +1510,12 @@ tafp5:Maintenance rdf:type owl:NamedIndividual ,
                   rdfs:label "maintenance" .
 
 
+###  https://cdm.ovh/taf/tafp5#Ongoing
+tafp5:Ongoing rdf:type owl:NamedIndividual ,
+                       tafp5:TrainServicingResult ;
+              rdfs:label "Ongoing"@en .
+
+
 ###  https://cdm.ovh/taf/tafp5#Pending
 tafp5:Pending rdf:type owl:NamedIndividual ,
                        tafp5:CustomsStatus ;
@@ -1487,7 +1524,8 @@ tafp5:Pending rdf:type owl:NamedIndividual ,
 
 ###  https://cdm.ovh/taf/tafp5#Planned
 tafp5:Planned rdf:type owl:NamedIndividual ,
-                       tafp5:TemporalRole ;
+                       tafp5:TemporalRole ,
+                       tafp5:TrainServicingResult ;
               rdfs:label "Planned" .
 
 
@@ -1495,6 +1533,18 @@ tafp5:Planned rdf:type owl:NamedIndividual ,
 tafp5:PreCleared rdf:type owl:NamedIndividual ,
                           tafp5:CustomsStatus ;
                  rdfs:label "Pre cleared"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#Recommended
+tafp5:Recommended rdf:type owl:NamedIndividual ,
+                           tafp5:TemporalRole ;
+                  rdfs:label "Recommended"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#Success
+tafp5:Success rdf:type owl:NamedIndividual ,
+                       tafp5:TrainServicingResult ;
+              rdfs:label "Success"@en .
 
 
 ###  https://cdm.ovh/taf/tafp5#TrainOperator
@@ -1542,12 +1592,6 @@ tafp5:brakeCheck rdf:type owl:NamedIndividual ,
                  rdfs:label "brake check"@en .
 
 
-###  https://cdm.ovh/taf/tafp5#contractual
-tafp5:contractual rdf:type owl:NamedIndividual ,
-                           tafp5:TemporalRole ;
-                  rdfs:label "contractual"@en .
-
-
 ###  https://cdm.ovh/taf/tafp5#controlledLocomotiveRole
 tafp5:controlledLocomotiveRole rdf:type owl:NamedIndividual ,
                                         tafp5:LocomotiveRole ;
@@ -1570,12 +1614,6 @@ tafp5:leadingLocomotiveRole rdf:type owl:NamedIndividual ,
 tafp5:locomotiveRole rdf:type owl:NamedIndividual ,
                               tafp5:LocomotiveRole ;
                      rdfs:label "locomotive role"@en .
-
-
-###  https://cdm.ovh/taf/tafp5#recommended
-tafp5:recommended rdf:type owl:NamedIndividual ,
-                           tafp5:TemporalRole ;
-                  rdfs:label "recommended"@en .
 
 
 #################################################################
