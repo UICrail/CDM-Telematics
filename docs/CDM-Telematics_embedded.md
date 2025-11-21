@@ -5,7 +5,7 @@ _Self-contained version with embedded images_
 
 ## Version
 
-This document was generated on 2025-11-21 09:20:45 UTC
+This document was generated on 2025-11-21 13:45:56 UTC
 
 
 ---
@@ -383,7 +383,9 @@ What the diagram expresses (and what OWL2 says) is that anything that plays an o
 
 Represent the train journey (planned or executed) and possibly the train path in one uniform way.
 
-The Journey may be composed of a sequence of journey sections, each having an origin and a destination (operational locations). Obviously, the destination of section N is expected to also be the origin of section N+1, and times must be increasing (except when midnight is passed).
+The Journey is described, inter alia, by a journey schedule that may be composed of a sequence of journey sections, each having an origin and a destination (both operational locations). Obviously, the destination of section N is expected to also be the origin of section N+1, and times must be increasing (except when midnight is passed).
+
+In addition to the representation of the Journey sections, we added "Static sections": when the train has reached some intermediate stop, many things can happen, such as shunting, adding or removing wagons, servicing, customs... reason enough to treat these stops on equal footing with journey sections.
 
 ## Diagram
 
