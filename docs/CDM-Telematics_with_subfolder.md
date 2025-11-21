@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-07 16:23:30 UTC
+This document was generated on 2025-11-07 21:41:48 UTC
 
 
 ---
@@ -86,6 +86,7 @@ _Note: one reason for introducing the "name" property is that annotation propert
 ## Purpose
 
 "Train run" (commonly "train", in an operational context) designated a train (characterized by a train number) running on a particular day. It is what a dispatcher has to manage, not to be confused with:
+
 * "train" as a railway timetable entry;
 * "train" as a set of railway vehicles, some of which are powered.
 
@@ -111,13 +112,13 @@ The train states are further described in another diagram.
 
 In GRAPHOL, object properties are represented by diamonds. Their name often starts with "has", but this is a convention, not a rule.
 
-Object properties are displayed as class A <-[white square] - <Property P> - [black square] -> class B, meaning P(A, B), i.e. individuals of A are related to individuals of B by a property named P. Example: some Train (subject) has a train operating RU (predicate) some Train operator (object).
+Object properties are displayed as class A <-[white square] - Property P - [black square] -> class B, meaning P(A, B), i.e. individuals of A are related to individuals of B by a property named P. Example: some Train (subject) has a train operating RU (predicate) some Train operator (object).
 
 Diamonds with a double-edged rim denote "functional properties". In OWL2, a functional property is such that any subject will be associated with at most one object. Inverse functional properties have a thick black rim, and properties that are both functional and inverse functional have a double-edged rim on one side and a thick black rim on the other side.
 
 When the property objects are data types (such as strings, integers, timestamps...), the property is called a "data property" in OWL2. It is represented by a small circle, as is the case here with "train departure date". The double rim also means functional [data] property.
 
-Note: in OWL2, object properties can be navigated in both directions, no matter if the inverse property is defined (as is the case here for "is state of train run") or not. Data properties are however one way (they have no inverses). Of course the end user can _query_ OWL2 data to find, e.g., "all train runs occurring today", but the logics underpinning OWL2 ontologies (and executed by reasoners such as Pellet or HermiT) cannot achieve that.
+_Note: in OWL2, object properties can be navigated in both directions, no matter if the inverse property is defined (as is the case here for "is state of train run") or not. Data properties are however one way (they have no inverses). Of course the end user can _query_ OWL2 data to find, e.g., "all train runs occurring today", but the logics underpinning OWL2 ontologies (and executed by reasoners such as Pellet or HermiT) cannot achieve that._
 
 #### OWL2 Subproperties
 
@@ -126,7 +127,7 @@ In OWL2, properties are first-class objects; there are subproperties as there ar
 * for classes: class A is a subclass of class B iff (= if and only if) any individual of A is also an individual of B.
 * for properties: property P is a subproperty of property Q iff for any individuals X and Y satisfying P(X,Y), Q(X,Y) also holds.
 
-The interest of defining subproperties is mainly a semantic one. Example: "empty mass" or "laden mass" are subproperties of "has mass", meaning that the expected value is a mass expressed in, say, kg, but their meaning and relevance is quite precise.
+The interest of defining subproperties is mainly a semantic one. Example: "empty mass" or "laden mass" are subproperties of "has mass", meaning that the expected value is a mass expressed in, say, kg, but their meaning and relevance are different.
 
 In the present case, the subproperty arrow links the general-purpose dul:isSettingFor property with its specialization, "is state of train run".
 
@@ -158,7 +159,21 @@ Explicit cardinalities (min=1, max=1) would look nicer, but are avoided here for
 
 ## Purpose
 
+What happens when trains do not run is equally important for managing operations. Servicing at the origin, at destination, or at intermediate stops, can be described as more processes which can only take place if a train runs.
+
 ## Diagram
+
+The "train run" is therefore the main operational process, and its sub-processes are of type "train service". A sub-process is of a single type.
+
+A train service has one or more "settings" (in the sense of DUL) which can be understood as a "circumstances", and the important setting here is a "static section" of the train journey.
+
+_Note: This is a slight over-simplification, since passenger trains for instance sometimes benefit from interior cleaning processes while running. _
+
+A "static section" of a journey is any part of the journey where the train stops and/or starts, so there is a time interval where it is supposed to be static, hence the name. Details are provided in [the Journey Schedule page](https://github.com/UICrail/CDM-Telematics/wiki/12b-%E2%80%90-Journey-Schedule).
+
+_Note: a "static section" may include shunting movements (FR: manoeuvres et évolutions) or other staff-responsible driving episodes such as running through a washing machine._
+
+Finally, the train service must be of at least one type, such as "maintenance" or "customs".
 
 ![Train servicing](images/TAF_revisited_02a - Train Servicing.png)
 

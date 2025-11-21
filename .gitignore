@@ -205,5 +205,26 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# LaTeX build artifacts
+*.aux
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+
+# Obsidian vault
+.obsidian/
+
+# Archive files
+*.zip
+
+# Ontology catalog files
+catalog-v001.xml
+
+# macOS system files
+.DS_Store
 Graphol/.DS_Store
 ontologies/.DS_Store
+docs/.DS_Store
