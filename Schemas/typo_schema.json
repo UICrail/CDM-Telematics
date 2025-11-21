@@ -1,5 +1,5 @@
 {
-  "$comment": "Metadata: {\"version\": \"version 0.2:\\nno complement class (non-powered rolling stock)\\nsome class renaming (shorter)\"}",
+  "$comment": "Metadata: {\"license\": \"ttps://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt\"}",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
@@ -9,10 +9,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/PassengerCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
         },
         {
           "properties": {},
@@ -29,45 +29,15 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
-        },
-        {
-          "properties": {},
+          "properties": {
+            "hasFixedConsist": {
+              "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
+              "type": "boolean"
+            }
+          },
           "type": "object"
         }
-      ],
-      "description": "A formation is rolling stock composed of vehicles or other formations (recursively), that are coupled mechanically or virtually. Generic term from RSM, X2Rail-4, and others. Used with qualifications (fixed rake of coaches) in TSI LOCPAS 2020. Examples of formations: A Locomotive + a rake of coaches. Two coupled TGV trainsets. One ICE trainset with one coupled rescue locomotive.",
-      "properties": {
-        "hasFixedConsist": {
-          "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
-          "type": "boolean"
-        },
-        "includesRollingStock": {
-          "items": {
-            "description": "rolling stock in object is part of the formation in subject, by means of mechanical coupling or (possibly, in the future) virtual coupling. This \"simple\" property does not inform about orientation and order of vehicle.",
-            "oneOf": [
-              {
-                "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "@id": {
-                    "format": "uri",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "@id"
-                ],
-                "type": "object"
-              }
-            ]
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
+      ]
     },
     "FreightCarryingRollingStock": {
       "allOf": [
@@ -92,10 +62,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "properties": {},
@@ -112,10 +82,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "properties": {},
@@ -149,10 +119,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "properties": {},
@@ -186,13 +156,13 @@
           "$ref": "#/definitions/_Thing"
         },
         {
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
           "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "$ref": "#/definitions/PassengerCarryingRollingStock"
-        },
-        {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
         },
         {
           "properties": {},
@@ -209,7 +179,7 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+          "$ref": "#/definitions/Formation"
         },
         {
           "properties": {},
@@ -226,7 +196,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/Vehicle"
+        },
+        {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
         },
         {
           "properties": {},
@@ -242,7 +215,7 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+          "$ref": "#/definitions/Formation"
         },
         {
           "properties": {},
@@ -252,29 +225,6 @@
       "description": "From TSI WAG 2023, \"unit\", 3rd entry: separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.",
       "properties": {},
       "type": "object"
-    },
-    "RollingStock": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/_Thing"
-        },
-        {
-          "properties": {},
-          "type": "object"
-        },
-        {
-          "oneOf": [
-            {
-              "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
-            },
-            {
-              "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
-            }
-          ]
-        }
-      ],
-      "description": "Disjoint union of: Formation, Vehicle",
-      "title": "RollingStock"
     },
     "RollingStockFeature": {
       "allOf": [
@@ -293,10 +243,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "properties": {},
@@ -313,10 +263,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/PassengerCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
         },
         {
           "properties": {},
@@ -333,7 +283,7 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Formation"
+          "$ref": "#/definitions/Formation"
         },
         {
           "$ref": "#/definitions/MotoredRollingStock"
@@ -353,10 +303,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/FreightCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/FreightCarryingRollingStock"
         },
         {
           "properties": {},
@@ -373,16 +323,11 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
-        },
-        {
           "properties": {},
           "type": "object"
         }
       ],
-      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.",
-      "properties": {},
-      "type": "object"
+      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines."
     },
     "Wagon": {
       "allOf": [
@@ -390,10 +335,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/FreightCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "RollingStockConsist_schema.json#/definitions/Vehicle"
+          "$ref": "#/definitions/FreightCarryingRollingStock"
         },
         {
           "properties": {},

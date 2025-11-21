@@ -42,10 +42,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/PassengerCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "#/definitions/Vehicle"
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
         },
         {
           "properties": {},
@@ -62,7 +62,32 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "properties": {},
+          "properties": {
+            "inScheme": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ConceptScheme"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "in scheme"
+              },
+              "type": "array"
+            }
+          },
           "type": "object"
         }
       ]
@@ -74,11 +99,13 @@
         },
         {
           "enum": [
-            "Facility role or function scheme"
+            "Facility role or function scheme",
+            "RollingStockSideScheme"
           ],
           "type": "string",
           "x-enum-uris": {
-            "Facility role or function scheme": "https://cdm.ovh/taf/tafp5#FacilityRoleOrFunctionScheme"
+            "Facility role or function scheme": "https://cdm.ovh/taf/tafp5#FacilityRoleOrFunctionScheme",
+            "RollingStockSideScheme": "https://cdm.ovh/rst/cons/cons#RollingStockSideScheme"
           }
         }
       ],
@@ -133,9 +160,9 @@
         {
           "enum": [
             "Pending",
-            "Inspected",
+            "Pre cleared",
             "Cleared",
-            "Pre cleared"
+            "Inspected"
           ],
           "type": "string",
           "x-enum-uris": {
@@ -181,6 +208,7 @@
           "type": "object"
         }
       ],
+      "description": "Closing element of any List under the List ontology. This element does not correspond with any rolling stock.",
       "title": "Empty list"
     },
     "Entity": {
@@ -241,10 +269,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Process"
+          "$ref": "#/definitions/Journey"
         },
         {
-          "$ref": "#/definitions/Journey"
+          "$ref": "#/definitions/Process"
         },
         {
           "properties": {},
@@ -254,7 +282,7 @@
       "properties": {
         "realizesPlannedJourneyOrPath": {
           "items": {
-            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey)",
+            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey). Subproperty of realizes",
             "oneOf": [
               {
                 "$ref": "#/definitions/PlannedJourneyOrPath"
@@ -288,11 +316,55 @@
         },
         {
           "properties": {
-            "coincidesWith": {
+            "coupledTo": {
+              "description": "Symmetric property \"coupled to\" relates two extremities of two distinct Rolling stock items (hence the \"to\" in the label). The property is expressed irrespectively of the type of coupling (mechanical, virtual) or coupler (UIC, Scharfenberg...).. Subproperty of facesExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "coupled to"
+            },
+            "facesExtremity": {
+              "description": "object is the extremity of another Rolling stock that the subject extremity faces.",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "faces extremity"
+            },
+            "n1a4e302a1f44417893ddfced377d6de9b7": {
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "#/definitions/Extremity"
+                    "$ref": "#/definitions/_Thing"
                   },
                   {
                     "additionalProperties": false,
@@ -307,15 +379,19 @@
                     ],
                     "type": "object"
                   }
-                ],
-                "title": "coincides with"
+                ]
               },
+              "minItems": 1,
               "type": "array"
             }
           },
+          "required": [
+            "n1a4e302a1f44417893ddfced377d6de9b7"
+          ],
           "type": "object"
         }
       ],
+      "description": "denotes the extremity of a rolling stock. The extremity designation is either set at design and manufacturing time (e.g. extremity1, extremity 2 in the case of a wagon), or rests on other conventions (e.g. extremities of a variable-consist trainset).",
       "title": "Extremity"
     },
     "Facility": {
@@ -334,6 +410,7 @@
       "properties": {
         "hasFacilityFunction": {
           "items": {
+            "description": "Subproperty of isClassifiedBy",
             "oneOf": [
               {
                 "$ref": "#/definitions/FacilityRoleOrFunction"
@@ -358,6 +435,7 @@
         },
         "playsFacilityRole": {
           "items": {
+            "description": "Subproperty of playsRole",
             "oneOf": [
               {
                 "$ref": "#/definitions/FacilityRoleOrFunction"
@@ -417,13 +495,14 @@
           "type": "object"
         }
       ],
-      "description": "A formation is rolling stock composed of vehicles or other formations (recursively), that are coupled mechanically or virtually. Generic term from RSM, X2Rail-4, and others. Used with qualifications (fixed rake of coaches) in TSI LOCPAS 2020. Examples of formations: A Locomotive + a rake of coaches. Two coupled TGV trainsets. One ICE trainset with one coupled rescue locomotive.",
+      "description": "A sequence of vehicles (or other formations) that are coupled in some way (mechanically or virtually).",
       "properties": {
         "hasFixedConsist": {
           "description": "Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.",
           "type": "boolean"
         },
-        "headRollingStock": {
+        "hasHeadRollingStock": {
+          "description": "Each formation has exactly one \"First\" rolling stock. This notion of \"first\" is only related to the rolling stock, not however to the direction of travel which may vary (general case of multiple units or reversible trains) or not (case of hauled freight trains). Please also not that the direction of movement is yet another notion (think of shunting).. Subproperty of includesRollingStock",
           "oneOf": [
             {
               "$ref": "#/definitions/ListedRollingStock"
@@ -442,11 +521,11 @@
               "type": "object"
             }
           ],
-          "title": "head rolling stock"
+          "title": "has head rolling stock"
         },
         "includesRollingStock": {
           "items": {
-            "description": "rolling stock in object is part of the formation in subject, by means of mechanical coupling or (possibly, in the future) virtual coupling. This \"simple\" property does not inform about orientation and order of vehicle.",
+            "description": "This property describes the composition of a Formation. A Formation may incude any rolling stock (i.e. vehicles or formations). Irreflexive property: a formation cannot include itself; in other words, it may only have proper parts.",
             "oneOf": [
               {
                 "$ref": "#/definitions/RollingStock"
@@ -464,11 +543,16 @@
                 ],
                 "type": "object"
               }
-            ]
+            ],
+            "title": "includes Rolling stock"
           },
           "type": "array"
         }
       },
+      "required": [
+        "includesRollingStock"
+      ],
+      "title": "Formation",
       "type": "object"
     },
     "FreightCarryingRollingStock": {
@@ -600,7 +684,15 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "properties": {},
+          "properties": {
+            "inXSDDateTimeStamp": {
+              "items": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
           "type": "object"
         }
       ],
@@ -656,15 +748,15 @@
         {
           "oneOf": [
             {
-              "$ref": "#/definitions/ExecutedJourney"
+              "$ref": "#/definitions/PlannedJourneyOrPath"
             },
             {
-              "$ref": "#/definitions/PlannedJourneyOrPath"
+              "$ref": "#/definitions/ExecutedJourney"
             }
           ]
         }
       ],
-      "description": "Disjoint union of: ExecutedJourney, PlannedJourneyOrPath",
+      "description": "Disjoint union of: PlannedJourneyOrPath, ExecutedJourney",
       "title": "Journey"
     },
     "JourneySchedule": {
@@ -673,17 +765,17 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/VersionedDescription"
+          "$ref": "#/definitions/List"
         },
         {
-          "$ref": "#/definitions/List"
+          "$ref": "#/definitions/VersionedDescription"
         },
         {
           "properties": {},
           "type": "object"
         }
       ],
-      "description": "Since journey structures are meant to be shared, their instances should not be modified once used. New instances should be minted for every change.",
+      "description": "Description that is common to paths, planned journeys, and executed journeys. It has an origin, departure time, destination, arrival time. It consists in JourneySections, each journey section has the same structure.",
       "properties": {
         "hasArrivalTime": {
           "items": {
@@ -755,84 +847,6 @@
           ],
           "title": "has destination"
         },
-        "hasJourneySection": {
-          "items": {
-            "description": "Inverse functional property.",
-            "oneOf": [
-              {
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "@id": {
-                    "format": "uri",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "@id"
-                ],
-                "type": "object"
-              }
-            ],
-            "title": "has journey section"
-          },
-          "type": "array"
-        },
-        "hasOrigin": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OperationalLocation"
-            },
-            {
-              "additionalProperties": false,
-              "properties": {
-                "@id": {
-                  "format": "uri",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "@id"
-              ],
-              "type": "object"
-            }
-          ],
-          "title": "has origin"
-        },
-        "startsAtOrigin": {
-          "description": "if False: means pass-through",
-          "title": "starts at origin",
-          "type": "boolean"
-        },
-        "stopsAtDestination": {
-          "description": "if False: means pass-through",
-          "title": "stops at destination",
-          "type": "boolean"
-        }
-      },
-      "title": "Journey schedule",
-      "type": "object"
-    },
-    "JourneySection": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/_Thing"
-        },
-        {
-          "$ref": "#/definitions/JourneySchedule"
-        },
-        {
-          "$ref": "#/definitions/ListItem"
-        },
-        {
-          "properties": {},
-          "type": "object"
-        }
-      ],
-      "description": "Journey sections are chained by properties nextSection and previousSection.",
-      "properties": {
         "hasIM": {
           "items": {
             "oneOf": [
@@ -857,11 +871,10 @@
           },
           "type": "array"
         },
-        "hasRU": {
-          "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+        "hasOrigin": {
           "oneOf": [
             {
-              "$ref": "#/definitions/OperationsStakeholder"
+              "$ref": "#/definitions/OperationalLocation"
             },
             {
               "additionalProperties": false,
@@ -877,9 +890,92 @@
               "type": "object"
             }
           ],
-          "title": "has RU"
+          "title": "has origin"
         },
+        "hasRU": {
+          "items": {
+            "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has RU"
+          },
+          "type": "array"
+        },
+        "hasSchedulePart": {
+          "items": {
+            "description": "Inverse functional property.. Subproperty of hasItem",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SchedulePart"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has schedule part"
+          },
+          "type": "array"
+        },
+        "startsAtOrigin": {
+          "description": "if False: means pass-through",
+          "title": "starts at origin",
+          "type": "boolean"
+        },
+        "stopsAtDestination": {
+          "description": "if False: means pass-through",
+          "title": "stops at destination",
+          "type": "boolean"
+        }
+      },
+      "title": "Journey schedule",
+      "type": "object"
+    },
+    "JourneySection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/JourneySchedule"
+        },
+        {
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections are chained by properties nextSection and previousSection.",
+      "properties": {
         "nextSection": {
+          "description": "Subproperty of nextItem",
           "oneOf": [
             {
               "$ref": "#/definitions/JourneySection"
@@ -901,6 +997,7 @@
           "title": "next section"
         },
         "previousSection": {
+          "description": "Subproperty of previousItem",
           "oneOf": [
             {
               "$ref": "#/definitions/JourneySection"
@@ -947,25 +1044,6 @@
         }
       ]
     },
-    "ListedFormation": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/_Thing"
-        },
-        {
-          "$ref": "#/definitions/OWLList"
-        },
-        {
-          "$ref": "#/definitions/Formation"
-        },
-        {
-          "properties": {},
-          "type": "object"
-        }
-      ],
-      "properties": {},
-      "type": "object"
-    },
     "ListedRollingStock": {
       "allOf": [
         {
@@ -982,8 +1060,10 @@
           "type": "object"
         }
       ],
+      "description": "Rolling stock that may have a predecessor or successor in a formation.",
       "properties": {
-        "atExtremity": {
+        "frontExtremity": {
+          "description": "Subproperty of hasExtremity",
           "oneOf": [
             {
               "$ref": "#/definitions/Extremity"
@@ -1002,50 +1082,59 @@
               "type": "object"
             }
           ],
-          "title": "atExtremity"
+          "title": "front extremity"
         },
         "hasNextRollingStock": {
+          "description": "Indicates which Rolling stock comes next in a Consist.. Subproperty of hasNext",
           "oneOf": [
             {
-              "type": "object"
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/ListedRollingStock"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ]
             },
             {
-              "additionalProperties": false,
-              "properties": {
-                "@id": {
-                  "format": "uri",
-                  "type": "string"
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/EmptyList"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
                 }
-              },
-              "required": [
-                "@id"
-              ],
-              "type": "object"
+              ]
             }
           ],
           "title": "has next rolling stock"
         }
       },
-      "title": "Listed rolling stock",
-      "type": "object"
-    },
-    "ListedVehicle": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/_Thing"
-        },
-        {
-          "$ref": "#/definitions/Vehicle"
-        },
-        {
-          "$ref": "#/definitions/OWLList"
-        },
-        {
-          "properties": {},
-          "type": "object"
-        }
+      "required": [
+        "hasNextRollingStock"
       ],
-      "properties": {},
+      "title": "Listed rolling stock",
       "type": "object"
     },
     "LoadRole": {
@@ -1054,10 +1143,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/OperationalEntity"
+          "$ref": "#/definitions/Role"
         },
         {
-          "$ref": "#/definitions/Role"
+          "$ref": "#/definitions/OperationalEntity"
         },
         {
           "properties": {},
@@ -1221,8 +1310,8 @@
         {
           "enum": [
             "leading locomotive role",
-            "locomotive role",
-            "controlled locomotive role"
+            "controlled locomotive role",
+            "locomotive role"
           ],
           "type": "string",
           "x-enum-uris": {
@@ -1241,10 +1330,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Entity"
+          "$ref": "#/definitions/InformationObject"
         },
         {
-          "$ref": "#/definitions/InformationObject"
+          "$ref": "#/definitions/Entity"
         },
         {
           "properties": {},
@@ -1253,15 +1342,15 @@
         {
           "oneOf": [
             {
-              "$ref": "#/definitions/TafMessage"
+              "$ref": "#/definitions/TransportCollaborationMessage"
             },
             {
-              "$ref": "#/definitions/TransportCollaborationMessage"
+              "$ref": "#/definitions/TafMessage"
             }
           ]
         }
       ],
-      "description": "Disjoint union of: TafMessage, TransportCollaborationMessage",
+      "description": "Disjoint union of: TransportCollaborationMessage, TafMessage",
       "properties": {
         "hasComment": {
           "items": {
@@ -1276,7 +1365,7 @@
           "type": "string"
         },
         "reportedAt": {
-          "description": "same semantics as prov:generatedAtTime",
+          "description": "same semantics as prov:generatedAtTime. Subproperty of generatedAtTime",
           "format": "date-time",
           "title": "reported at",
           "type": "string"
@@ -1291,10 +1380,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Vehicle"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
           "properties": {},
@@ -1344,7 +1433,8 @@
           "properties": {},
           "type": "object"
         }
-      ]
+      ],
+      "description": "Using the List ontology also used by IfcOwl."
     },
     "OnTrackMachine": {
       "allOf": [
@@ -1501,10 +1591,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Place"
+          "$ref": "#/definitions/OperationalEntity"
         },
         {
-          "$ref": "#/definitions/OperationalEntity"
+          "$ref": "#/definitions/Place"
         },
         {
           "properties": {},
@@ -1523,6 +1613,7 @@
         },
         "isOperationalLocationOf": {
           "items": {
+            "description": "Subproperty of isLocationOf",
             "oneOf": [
               {
                 "$ref": "#/definitions/TrainLocationState"
@@ -1598,7 +1689,7 @@
           "type": "array"
         },
         "hasTrain": {
-          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.",
+          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.. Subproperty of hasParticipant",
           "oneOf": [
             {
               "$ref": "#/definitions/Train"
@@ -1630,10 +1721,10 @@
         },
         {
           "enum": [
-            "Lead carrier",
             "Lead RU",
-            "Cargo carrier",
-            "Train operator"
+            "Lead carrier",
+            "Train operator",
+            "Cargo carrier"
           ],
           "type": "string",
           "x-enum-uris": {
@@ -1653,10 +1744,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/OperationalEntity"
+          "$ref": "#/definitions/Situation"
         },
         {
-          "$ref": "#/definitions/Situation"
+          "$ref": "#/definitions/OperationalEntity"
         },
         {
           "properties": {},
@@ -1830,10 +1921,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/RegisteredOrganization"
+          "$ref": "#/definitions/Organization"
         },
         {
-          "$ref": "#/definitions/Organization"
+          "$ref": "#/definitions/RegisteredOrganization"
         },
         {
           "properties": {},
@@ -1844,7 +1935,7 @@
       "properties": {
         "playsOperationalRole": {
           "items": {
-            "description": "property listing the possible roles, not those actually played on a particular train run",
+            "description": "property listing the possible roles, not those actually played on a particular train run. Subproperty of playsRole",
             "oneOf": [
               {
                 "$ref": "#/definitions/OperationalRole"
@@ -1989,10 +2080,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Plan"
+          "$ref": "#/definitions/Journey"
         },
         {
-          "$ref": "#/definitions/Journey"
+          "$ref": "#/definitions/Plan"
         },
         {
           "properties": {},
@@ -2012,6 +2103,7 @@
           "properties": {
             "hasSubProcess": {
               "items": {
+                "description": "Subproperty of hasPart",
                 "oneOf": [
                   {
                     "$ref": "#/definitions/Process"
@@ -2045,10 +2137,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/PassengerCarryingRollingStock"
+          "$ref": "#/definitions/Vehicle"
         },
         {
-          "$ref": "#/definitions/Vehicle"
+          "$ref": "#/definitions/PassengerCarryingRollingStock"
         },
         {
           "$ref": "#/definitions/MotoredRollingStock"
@@ -2116,6 +2208,9 @@
           "$ref": "#/definitions/Vehicle"
         },
         {
+          "$ref": "#/definitions/FreightCarryingRollingStock"
+        },
+        {
           "properties": {},
           "type": "object"
         }
@@ -2160,6 +2255,7 @@
         {
           "properties": {
             "extremity_1": {
+              "description": "\"extremity 1\" (actual designation may vary) of a Rolling stock.. Subproperty of hasExtremity",
               "oneOf": [
                 {
                   "$ref": "#/definitions/Extremity"
@@ -2181,6 +2277,7 @@
               "title": "extremity_1"
             },
             "extremity_2": {
+              "description": "\"extremity 2\" of a piece of Rolling stock. Designation may vary.. Subproperty of hasExtremity",
               "oneOf": [
                 {
                   "$ref": "#/definitions/Extremity"
@@ -2200,11 +2297,88 @@
                 }
               ],
               "title": "extremity_2"
+            },
+            "hasExtremity": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Extremity"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has extremity"
+              },
+              "type": "array"
+            },
+            "hasSide": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/RollingStockSide"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has side"
+              },
+              "type": "array"
+            },
+            "partOfFormation": {
+              "description": "Inverse of \"includes Rolling Stock\". A functional property: a rolling stock can only be part of one formation. Irreflexive property: A formation cannot be part of itself.",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Formation"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "part of formation"
+            },
+            "positionInFormation": {
+              "description": "Starting with 1.",
+              "title": "position in formation",
+              "type": "integer"
             }
           },
           "type": "object"
         }
-      ]
+      ],
+      "description": "Base type for rolling stock. No direct instances are expected.",
+      "title": "Rolling stock"
     },
     "RollingStockFeature": {
       "allOf": [
@@ -2216,6 +2390,121 @@
           "type": "object"
         }
       ]
+    },
+    "RollingStockSide": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "isSide": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/RollingStockSideEnum"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "is side"
+            }
+          },
+          "required": [
+            "isSide"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "The side of a particular rolling stock, as in \"the left side of locomotive BB15046\".",
+      "title": "Rolling stock side"
+    },
+    "RollingStockSideEnum": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Top",
+            "Front",
+            "Rear",
+            "Right",
+            "Bottom",
+            "Left"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Bottom": "https://cdm.ovh/rst/cons/cons#Bottom",
+            "Front": "http://www.w3.org/2004/02/skos/core#Front",
+            "Left": "https://cdm.ovh/rst/cons/cons#Left",
+            "Rear": "https://cdm.ovh/rst/cons/cons#Rear",
+            "Right": "https://cdm.ovh/rst/cons/cons#Right",
+            "Top": "https://cdm.ovh/rst/cons/cons#Top"
+          }
+        }
+      ],
+      "description": "Enumeration of RollingStockSideEnum values"
+    },
+    "SchedulePart": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ListItem"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/StaticSection"
+            },
+            {
+              "$ref": "#/definitions/JourneySection"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: StaticSection, JourneySection",
+      "properties": {
+        "inJourneySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySchedule"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "in journey schedule"
+        }
+      },
+      "title": "SchedulePart",
+      "type": "object"
     },
     "ServiceType": {
       "allOf": [
@@ -2276,58 +2565,90 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "properties": {
-            "atTime": {
-              "description": "Array of OperationalInterval or @id references",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "#/definitions/OperationalInterval"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "@id": {
-                        "format": "uri",
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "@id"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "hasOperationalLocation": {
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/OperationalLocation"
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "@id": {
-                      "format": "uri",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "@id"
-                  ],
-                  "type": "object"
-                }
-              ],
-              "title": "has operational location"
-            }
-          },
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
           "type": "object"
         }
       ],
       "description": "Journey sections \"at rest\" (but possibly implying shunting movements inside an operational location). May host maintenance or customes operations.",
-      "title": "Static section"
+      "properties": {
+        "atTime": {
+          "description": "Array of OperationalInterval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasIM": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "hasOperationalLocation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has operational location"
+        }
+      },
+      "required": [
+        "hasIM"
+      ],
+      "title": "Static section",
+      "type": "object"
     },
     "SwapBody": {
       "allOf": [
@@ -2371,21 +2692,21 @@
         },
         {
           "enum": [
-            "contractual",
-            "Actual",
-            "Forecast",
             "Updated",
-            "Planned",
-            "recommended"
+            "Contractual",
+            "Actual",
+            "Recommended",
+            "Forecast",
+            "Planned"
           ],
           "type": "string",
           "x-enum-uris": {
             "Actual": "https://cdm.ovh/taf/tafp5#Actual",
+            "Contractual": "https://cdm.ovh/taf/tafp5#Contractual",
             "Forecast": "https://cdm.ovh/taf/tafp5#Forecast",
             "Planned": "https://cdm.ovh/taf/tafp5#Planned",
-            "Updated": "https://cdm.ovh/taf/tafp5#Updated",
-            "contractual": "https://cdm.ovh/taf/tafp5#contractual",
-            "recommended": "https://cdm.ovh/taf/tafp5#recommended"
+            "Recommended": "https://cdm.ovh/taf/tafp5#Recommended",
+            "Updated": "https://cdm.ovh/taf/tafp5#Updated"
           }
         }
       ],
@@ -2416,7 +2737,7 @@
           "type": "object"
         }
       ],
-      "description": "Note: atOperationalLocation is provided by superclass OperationalArtifact",
+      "description": "Track in the operational sense, i.e. a stretch of track, usually continuous, that is individuated in operating (driving, shunting) instructions.",
       "properties": {
         "hasDesignation": {
           "items": {
@@ -2436,10 +2757,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/OperationalEntity"
+          "$ref": "#/definitions/Role"
         },
         {
-          "$ref": "#/definitions/Role"
+          "$ref": "#/definitions/OperationalEntity"
         },
         {
           "properties": {},
@@ -2717,7 +3038,7 @@
       "properties": {
         "atOperationalLocation": {
           "items": {
-            "description": "For time-independent locations (e.g. of Facilities)",
+            "description": "For time-independent locations (e.g. of Facilities). Subproperty of hasLocation",
             "oneOf": [
               {
                 "$ref": "#/definitions/OperationalLocation"
@@ -2906,7 +3227,7 @@
           "type": "string"
         },
         "trainLeadRU": {
-          "description": "Points to the \"lead RU\" for the entire train",
+          "description": "Points to the \"lead RU\" for the entire train. Subproperty of hasParticipant",
           "oneOf": [
             {
               "$ref": "#/definitions/OperationsStakeholder"
@@ -2947,6 +3268,7 @@
       "description": "Situation (State) of a train run. Several subclasses define the train run state from several points of view.",
       "properties": {
         "isStateOfTrainRun": {
+          "description": "Subproperty of isSettingFor",
           "oneOf": [
             {
               "$ref": "#/definitions/TrainRun"
@@ -3017,6 +3339,32 @@
       "title": "Train servicing",
       "type": "object"
     },
+    "TrainServicingResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Ongoing",
+            "Success",
+            "Interrupted",
+            "Planned",
+            "Failure"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Failure": "https://cdm.ovh/taf/tafp5#Failure",
+            "Interrupted": "https://cdm.ovh/taf/tafp5#Interrupted",
+            "Ongoing": "https://cdm.ovh/taf/tafp5#Ongoing",
+            "Planned": "https://cdm.ovh/taf/tafp5#Planned",
+            "Success": "https://cdm.ovh/taf/tafp5#Success"
+          }
+        }
+      ],
+      "description": "Enumeration of TrainServicingResult values",
+      "title": "Train servicing result"
+    },
     "TrainServicingState": {
       "allOf": [
         {
@@ -3030,13 +3378,13 @@
           "type": "object"
         }
       ],
-      "description": "Train servicing process, e.g. maintenance, brake inspection...",
+      "description": "Note: other service types (customs, track assignment) rather relate to the Train run.",
       "properties": {
         "hasResult": {
           "items": {
             "oneOf": [
               {
-                "type": "object"
+                "$ref": "#/definitions/TrainServicingResult"
               },
               {
                 "additionalProperties": false,
@@ -3131,10 +3479,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/MotoredRollingStock"
+          "$ref": "#/definitions/Formation"
         },
         {
-          "$ref": "#/definitions/Formation"
+          "$ref": "#/definitions/MotoredRollingStock"
         },
         {
           "properties": {},
@@ -3189,20 +3537,64 @@
             "description": "following the data requirements, this property qualifies the message. However this may not be optimal, since Operational States \"know\" about the objects concerned, via dul:hasSetting or dul:hasParticipant.",
             "oneOf": [
               {
-                "type": "object"
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ITU"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
               },
               {
-                "additionalProperties": false,
-                "properties": {
-                  "@id": {
-                    "format": "uri",
-                    "type": "string"
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/TrainRun"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
                   }
-                },
-                "required": [
-                  "@id"
-                ],
-                "type": "object"
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Wagon"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
               }
             ],
             "title": "has reference object"
@@ -3280,8 +3672,9 @@
           "type": "object"
         }
       ],
-      "description": "Common definition in Directives 2016/797, 2016/798: a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.",
+      "description": "Considered to be the atomic part of a piece of rolling stock, although disassembly may be carried out in special circumstances. Example: a TALGO or TGV trailer does not rest on two axles resp. bogies, but has a distinct carbody and it considered a vehicle (called \"trailer\"). Further example: an articulated wagon (3-axle, e.g. carrying cars) is generally considered a single vehicle although it has two distinct chassis. So the distinction vehicle / formation is conventional; being \"atomic\" in operations is a necessary condition, but not a sufficient one to be called vehicle.",
       "properties": {},
+      "title": "Vehicle",
       "type": "object"
     },
     "VersionedDescription": {
@@ -3290,13 +3683,13 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/OperationalEntity"
-        },
-        {
           "$ref": "#/definitions/Description"
         },
         {
           "$ref": "#/definitions/Entity"
+        },
+        {
+          "$ref": "#/definitions/OperationalEntity"
         },
         {
           "properties": {},
@@ -3307,7 +3700,7 @@
       "properties": {
         "createdAt": {
           "items": {
-            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).",
+            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).. Subproperty of generatedAtTime",
             "format": "date-time",
             "title": "created at",
             "type": "string"
@@ -3324,7 +3717,7 @@
         },
         "effectiveUntil": {
           "items": {
-            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).",
+            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).. Subproperty of invalidatedAtTime",
             "format": "date-time",
             "title": "effective until",
             "type": "string"
@@ -3353,7 +3746,7 @@
           "title": "next description version"
         },
         "previousDescriptionVersion": {
-          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.",
+          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.. Subproperty of wasRevisionOf, revisesDescriptionVersion",
           "oneOf": [
             {
               "$ref": "#/definitions/VersionedDescription"
@@ -3384,10 +3777,10 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "#/definitions/Wagon"
+          "$ref": "#/definitions/OperationalArtifact"
         },
         {
-          "$ref": "#/definitions/OperationalArtifact"
+          "$ref": "#/definitions/Wagon"
         },
         {
           "properties": {},

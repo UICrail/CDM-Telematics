@@ -222,7 +222,7 @@
       "properties": {
         "realizesPlannedJourneyOrPath": {
           "items": {
-            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey)",
+            "description": "Planned journey (the object) may be a path, a planned journey (in the strict sense) or a forecast journey (an updated planned journey). Subproperty of realizes",
             "oneOf": [
               {
                 "$ref": "#/definitions/PlannedJourneyOrPath"
@@ -265,6 +265,7 @@
       "properties": {
         "hasFacilityFunction": {
           "items": {
+            "description": "Subproperty of isClassifiedBy",
             "oneOf": [
               {
                 "$ref": "#/definitions/FacilityRoleOrFunction"
@@ -289,6 +290,7 @@
         },
         "playsFacilityRole": {
           "items": {
+            "description": "Subproperty of playsRole",
             "oneOf": [
               {
                 "$ref": "#/definitions/FacilityRoleOrFunction"
@@ -447,7 +449,15 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "properties": {},
+          "properties": {
+            "inXSDDateTimeStamp": {
+              "items": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
           "type": "object"
         }
       ],
@@ -602,84 +612,6 @@
           ],
           "title": "has destination"
         },
-        "hasJourneySection": {
-          "items": {
-            "description": "Inverse functional property.",
-            "oneOf": [
-              {
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "@id": {
-                    "format": "uri",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "@id"
-                ],
-                "type": "object"
-              }
-            ],
-            "title": "has journey section"
-          },
-          "type": "array"
-        },
-        "hasOrigin": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/OperationalLocation"
-            },
-            {
-              "additionalProperties": false,
-              "properties": {
-                "@id": {
-                  "format": "uri",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "@id"
-              ],
-              "type": "object"
-            }
-          ],
-          "title": "has origin"
-        },
-        "startsAtOrigin": {
-          "description": "if False: means pass-through",
-          "title": "starts at origin",
-          "type": "boolean"
-        },
-        "stopsAtDestination": {
-          "description": "if False: means pass-through",
-          "title": "stops at destination",
-          "type": "boolean"
-        }
-      },
-      "title": "Journey schedule",
-      "type": "object"
-    },
-    "JourneySection": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/_Thing"
-        },
-        {
-          "$ref": "#/definitions/ListItem"
-        },
-        {
-          "$ref": "#/definitions/JourneySchedule"
-        },
-        {
-          "properties": {},
-          "type": "object"
-        }
-      ],
-      "description": "Journey sections are chained by properties nextSection and previousSection.",
-      "properties": {
         "hasIM": {
           "items": {
             "oneOf": [
@@ -704,11 +636,10 @@
           },
           "type": "array"
         },
-        "hasRU": {
-          "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+        "hasOrigin": {
           "oneOf": [
             {
-              "$ref": "#/definitions/OperationsStakeholder"
+              "$ref": "#/definitions/OperationalLocation"
             },
             {
               "additionalProperties": false,
@@ -724,9 +655,92 @@
               "type": "object"
             }
           ],
-          "title": "has RU"
+          "title": "has origin"
         },
+        "hasRU": {
+          "items": {
+            "description": "RU responsible for the journey section. The Lead RU (responsible for the train run also for the commercial aspects) is defined at train run level.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has RU"
+          },
+          "type": "array"
+        },
+        "hasSchedulePart": {
+          "items": {
+            "description": "Inverse functional property.. Subproperty of hasItem",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/SchedulePart"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "has schedule part"
+          },
+          "type": "array"
+        },
+        "startsAtOrigin": {
+          "description": "if False: means pass-through",
+          "title": "starts at origin",
+          "type": "boolean"
+        },
+        "stopsAtDestination": {
+          "description": "if False: means pass-through",
+          "title": "stops at destination",
+          "type": "boolean"
+        }
+      },
+      "title": "Journey schedule",
+      "type": "object"
+    },
+    "JourneySection": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/JourneySchedule"
+        },
+        {
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Journey sections are chained by properties nextSection and previousSection.",
+      "properties": {
         "nextSection": {
+          "description": "Subproperty of nextItem",
           "oneOf": [
             {
               "$ref": "#/definitions/JourneySection"
@@ -748,6 +762,7 @@
           "title": "next section"
         },
         "previousSection": {
+          "description": "Subproperty of previousItem",
           "oneOf": [
             {
               "$ref": "#/definitions/JourneySection"
@@ -914,7 +929,7 @@
               {
                 "oneOf": [
                   {
-                    "$ref": "typology_schema.json#/definitions/Wagon"
+                    "$ref": "#/definitions/Wagon"
                   },
                   {
                     "additionalProperties": false,
@@ -1002,7 +1017,7 @@
           "type": "string"
         },
         "reportedAt": {
-          "description": "same semantics as prov:generatedAtTime",
+          "description": "same semantics as prov:generatedAtTime. Subproperty of generatedAtTime",
           "format": "date-time",
           "title": "reported at",
           "type": "string"
@@ -1181,6 +1196,7 @@
         },
         "isOperationalLocationOf": {
           "items": {
+            "description": "Subproperty of isLocationOf",
             "oneOf": [
               {
                 "$ref": "#/definitions/TrainLocationState"
@@ -1256,7 +1272,7 @@
           "type": "array"
         },
         "hasTrain": {
-          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.",
+          "description": "refers to the train (rolling stock, supplies, loads) that participates in the operational process.. Subproperty of hasParticipant",
           "oneOf": [
             {
               "$ref": "#/definitions/Train"
@@ -1502,7 +1518,7 @@
       "properties": {
         "playsOperationalRole": {
           "items": {
-            "description": "property listing the possible roles, not those actually played on a particular train run",
+            "description": "property listing the possible roles, not those actually played on a particular train run. Subproperty of playsRole",
             "oneOf": [
               {
                 "$ref": "#/definitions/OperationalRole"
@@ -1653,6 +1669,7 @@
           "properties": {
             "hasSubProcess": {
               "items": {
+                "description": "Subproperty of hasPart",
                 "oneOf": [
                   {
                     "$ref": "#/definitions/Process"
@@ -1731,6 +1748,56 @@
         }
       ]
     },
+    "SchedulePart": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "#/definitions/ListItem"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySection"
+            },
+            {
+              "$ref": "#/definitions/StaticSection"
+            }
+          ]
+        }
+      ],
+      "description": "Disjoint union of: JourneySection, StaticSection",
+      "properties": {
+        "inJourneySchedule": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/JourneySchedule"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "in journey schedule"
+        }
+      },
+      "title": "SchedulePart",
+      "type": "object"
+    },
     "ServiceType": {
       "allOf": [
         {
@@ -1770,58 +1837,90 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "properties": {
-            "atTime": {
-              "description": "Array of OperationalInterval or @id references",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "#/definitions/OperationalInterval"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "@id": {
-                        "format": "uri",
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "@id"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "hasOperationalLocation": {
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/OperationalLocation"
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "@id": {
-                      "format": "uri",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "@id"
-                  ],
-                  "type": "object"
-                }
-              ],
-              "title": "has operational location"
-            }
-          },
+          "$ref": "#/definitions/SchedulePart"
+        },
+        {
+          "properties": {},
           "type": "object"
         }
       ],
       "description": "Journey sections \"at rest\" (but possibly implying shunting movements inside an operational location). May host maintenance or customes operations.",
-      "title": "Static section"
+      "properties": {
+        "atTime": {
+          "description": "Array of OperationalInterval or @id references",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationalInterval"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hasIM": {
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/OperationsStakeholder"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "hasOperationalLocation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OperationalLocation"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has operational location"
+        }
+      },
+      "required": [
+        "hasIM"
+      ],
+      "title": "Static section",
+      "type": "object"
     },
     "SwapBody": {
       "allOf": [
@@ -1866,20 +1965,20 @@
         {
           "enum": [
             "Actual",
+            "Contractual",
             "Forecast",
             "Planned",
-            "Updated",
-            "contractual",
-            "recommended"
+            "Recommended",
+            "Updated"
           ],
           "type": "string",
           "x-enum-uris": {
             "Actual": "https://cdm.ovh/taf/tafp5#Actual",
+            "Contractual": "https://cdm.ovh/taf/tafp5#Contractual",
             "Forecast": "https://cdm.ovh/taf/tafp5#Forecast",
             "Planned": "https://cdm.ovh/taf/tafp5#Planned",
-            "Updated": "https://cdm.ovh/taf/tafp5#Updated",
-            "contractual": "https://cdm.ovh/taf/tafp5#contractual",
-            "recommended": "https://cdm.ovh/taf/tafp5#recommended"
+            "Recommended": "https://cdm.ovh/taf/tafp5#Recommended",
+            "Updated": "https://cdm.ovh/taf/tafp5#Updated"
           }
         }
       ],
@@ -2026,7 +2125,7 @@
         "hasComposition": {
           "oneOf": [
             {
-              "$ref": "RollingStockConsist_schema.json#/definitions/RollingStock"
+              "$ref": "#/definitions/RollingStock"
             },
             {
               "additionalProperties": false,
@@ -2211,7 +2310,7 @@
       "properties": {
         "atOperationalLocation": {
           "items": {
-            "description": "For time-independent locations (e.g. of Facilities)",
+            "description": "For time-independent locations (e.g. of Facilities). Subproperty of hasLocation",
             "oneOf": [
               {
                 "$ref": "#/definitions/OperationalLocation"
@@ -2400,7 +2499,7 @@
           "type": "string"
         },
         "trainLeadRU": {
-          "description": "Points to the \"lead RU\" for the entire train",
+          "description": "Points to the \"lead RU\" for the entire train. Subproperty of hasParticipant",
           "oneOf": [
             {
               "$ref": "#/definitions/OperationsStakeholder"
@@ -2441,6 +2540,7 @@
       "description": "Situation (State) of a train run. Several subclasses define the train run state from several points of view.",
       "properties": {
         "isStateOfTrainRun": {
+          "description": "Subproperty of isSettingFor",
           "oneOf": [
             {
               "$ref": "#/definitions/TrainRun"
@@ -2511,6 +2611,32 @@
       "title": "Train servicing",
       "type": "object"
     },
+    "TrainServicingResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Failure",
+            "Interrupted",
+            "Ongoing",
+            "Planned",
+            "Success"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Failure": "https://cdm.ovh/taf/tafp5#Failure",
+            "Interrupted": "https://cdm.ovh/taf/tafp5#Interrupted",
+            "Ongoing": "https://cdm.ovh/taf/tafp5#Ongoing",
+            "Planned": "https://cdm.ovh/taf/tafp5#Planned",
+            "Success": "https://cdm.ovh/taf/tafp5#Success"
+          }
+        }
+      ],
+      "description": "Enumeration of TrainServicingResult values",
+      "title": "Train servicing result"
+    },
     "TrainServicingState": {
       "allOf": [
         {
@@ -2530,7 +2656,7 @@
           "items": {
             "oneOf": [
               {
-                "type": "object"
+                "$ref": "#/definitions/TrainServicingResult"
               },
               {
                 "additionalProperties": false,
@@ -2663,20 +2789,64 @@
             "description": "following the data requirements, this property qualifies the message. However this may not be optimal, since Operational States \"know\" about the objects concerned, via dul:hasSetting or dul:hasParticipant.",
             "oneOf": [
               {
-                "type": "object"
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/ITU"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
               },
               {
-                "additionalProperties": false,
-                "properties": {
-                  "@id": {
-                    "format": "uri",
-                    "type": "string"
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/TrainRun"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
                   }
-                },
-                "required": [
-                  "@id"
-                ],
-                "type": "object"
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Wagon"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
               }
             ],
             "title": "has reference object"
@@ -2744,7 +2914,7 @@
       "properties": {
         "createdAt": {
           "items": {
-            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).",
+            "description": "like other time properties, it is not made functional, to allow multiple time representations (time zones).. Subproperty of generatedAtTime",
             "format": "date-time",
             "title": "created at",
             "type": "string"
@@ -2761,7 +2931,7 @@
         },
         "effectiveUntil": {
           "items": {
-            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).",
+            "description": "Value can be computed by looking up updates and their \"effective from\" datetimes, supposing the newer versions invalidate earlier ones at the time they become effective. The ontology does not go that far (it would be a matter of SWRL rules).. Subproperty of invalidatedAtTime",
             "format": "date-time",
             "title": "effective until",
             "type": "string"
@@ -2790,7 +2960,7 @@
           "title": "next description version"
         },
         "previousDescriptionVersion": {
-          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.",
+          "description": "A transitive property linking a new description to the (sole) previous one it revises. \"Supersedes\" would be a ternary relation, the value of which could be deducted from the \"effective from\" datetimes, and the datetime of the query: not conceptualized in this ontology.. Subproperty of wasRevisionOf, revisesDescriptionVersion",
           "oneOf": [
             {
               "$ref": "#/definitions/VersionedDescription"
@@ -2821,7 +2991,7 @@
           "$ref": "#/definitions/_Thing"
         },
         {
-          "$ref": "typology_schema.json#/definitions/Wagon"
+          "$ref": "#/definitions/Wagon"
         },
         {
           "$ref": "#/definitions/OperationalArtifact"

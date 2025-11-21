@@ -1,0 +1,562 @@
+{
+  "$comment": "Metadata: {\"license\": \"https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt\"}",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "Concept": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "inScheme": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "tafp5_schema.json#/definitions/ConceptScheme"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "in scheme"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "ConceptScheme": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "RollingStockSideScheme"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "RollingStockSideScheme": "https://cdm.ovh/rst/cons/cons#RollingStockSideScheme"
+          }
+        }
+      ],
+      "description": "Enumeration of ConceptScheme values"
+    },
+    "EmptyList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Closing element of any List under the List ontology. This element does not correspond with any rolling stock.",
+      "title": "Empty list"
+    },
+    "Extremity": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "coupledTo": {
+              "description": "Symmetric property \"coupled to\" relates two extremities of two distinct Rolling stock items (hence the \"to\" in the label). The property is expressed irrespectively of the type of coupling (mechanical, virtual) or coupler (UIC, Scharfenberg...).. Subproperty of facesExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "coupled to"
+            },
+            "facesExtremity": {
+              "description": "object is the extremity of another Rolling stock that the subject extremity faces.",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "faces extremity"
+            },
+            "n2e93df6f070e424db106a0c65191a11eb7": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/_Thing"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "n2e93df6f070e424db106a0c65191a11eb7"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "denotes the extremity of a rolling stock. The extremity designation is either set at design and manufacturing time (e.g. extremity1, extremity 2 in the case of a wagon), or rests on other conventions (e.g. extremities of a variable-consist trainset).",
+      "title": "Extremity"
+    },
+    "Formation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "tafp5_schema.json#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "A sequence of vehicles (or other formations) that are coupled in some way (mechanically or virtually).",
+      "properties": {
+        "hasHeadRollingStock": {
+          "description": "Each formation has exactly one \"First\" rolling stock. This notion of \"first\" is only related to the rolling stock, not however to the direction of travel which may vary (general case of multiple units or reversible trains) or not (case of hauled freight trains). Please also not that the direction of movement is yet another notion (think of shunting).. Subproperty of includesRollingStock",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ListedRollingStock"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "has head rolling stock"
+        },
+        "includesRollingStock": {
+          "items": {
+            "description": "This property describes the composition of a Formation. A Formation may incude any rolling stock (i.e. vehicles or formations). Irreflexive property: a formation cannot include itself; in other words, it may only have proper parts.",
+            "oneOf": [
+              {
+                "$ref": "tafp5_schema.json#/definitions/RollingStock"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "@id": {
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@id"
+                ],
+                "type": "object"
+              }
+            ],
+            "title": "includes Rolling stock"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "includesRollingStock"
+      ],
+      "title": "Formation",
+      "type": "object"
+    },
+    "ListedRollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "tafp5_schema.json#/definitions/RollingStock"
+        },
+        {
+          "$ref": "#/definitions/OWLList"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Rolling stock that may have a predecessor or successor in a formation.",
+      "properties": {
+        "frontExtremity": {
+          "description": "Subproperty of hasExtremity",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Extremity"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "@id": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ],
+              "type": "object"
+            }
+          ],
+          "title": "front extremity"
+        },
+        "hasNextRollingStock": {
+          "description": "Indicates which Rolling stock comes next in a Consist.. Subproperty of hasNext",
+          "oneOf": [
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/ListedRollingStock"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/EmptyList"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          ],
+          "title": "has next rolling stock"
+        }
+      },
+      "required": [
+        "hasNextRollingStock"
+      ],
+      "title": "Listed rolling stock",
+      "type": "object"
+    },
+    "OWLList": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Using the List ontology also used by IfcOwl."
+    },
+    "RollingStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "extremity_1": {
+              "description": "\"extremity 1\" (actual designation may vary) of a Rolling stock.. Subproperty of hasExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_1"
+            },
+            "extremity_2": {
+              "description": "\"extremity 2\" of a piece of Rolling stock. Designation may vary.. Subproperty of hasExtremity",
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/Extremity"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "extremity_2"
+            },
+            "hasExtremity": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/Extremity"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has extremity"
+              },
+              "type": "array"
+            },
+            "hasSide": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/RollingStockSide"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "@id": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "@id"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "title": "has side"
+              },
+              "type": "array"
+            },
+            "partOfFormation": {
+              "description": "Inverse of \"includes Rolling Stock\". A functional property: a rolling stock can only be part of one formation. Irreflexive property: A formation cannot be part of itself.",
+              "oneOf": [
+                {
+                  "$ref": "typo_schema.json#/definitions/Formation"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "part of formation"
+            },
+            "positionInFormation": {
+              "description": "Starting with 1.",
+              "title": "position in formation",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "description": "Base type for rolling stock. No direct instances are expected.",
+      "title": "Rolling stock"
+    },
+    "RollingStockSide": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "properties": {
+            "isSide": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/RollingStockSideEnum"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "@id": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@id"
+                  ],
+                  "type": "object"
+                }
+              ],
+              "title": "is side"
+            }
+          },
+          "required": [
+            "isSide"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "The side of a particular rolling stock, as in \"the left side of locomotive BB15046\".",
+      "title": "Rolling stock side"
+    },
+    "RollingStockSideEnum": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "enum": [
+            "Front",
+            "Bottom",
+            "Left",
+            "Rear",
+            "Right",
+            "Top"
+          ],
+          "type": "string",
+          "x-enum-uris": {
+            "Bottom": "https://cdm.ovh/rst/cons/cons#Bottom",
+            "Front": "http://www.w3.org/2004/02/skos/core#Front",
+            "Left": "https://cdm.ovh/rst/cons/cons#Left",
+            "Rear": "https://cdm.ovh/rst/cons/cons#Rear",
+            "Right": "https://cdm.ovh/rst/cons/cons#Right",
+            "Top": "https://cdm.ovh/rst/cons/cons#Top"
+          }
+        }
+      ],
+      "description": "Enumeration of RollingStockSideEnum values"
+    },
+    "Vehicle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_Thing"
+        },
+        {
+          "$ref": "tafp5_schema.json#/definitions/RollingStock"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ],
+      "description": "Considered to be the atomic part of a piece of rolling stock, although disassembly may be carried out in special circumstances. Example: a TALGO or TGV trailer does not rest on two axles resp. bogies, but has a distinct carbody and it considered a vehicle (called \"trailer\"). Further example: an articulated wagon (3-axle, e.g. carrying cars) is generally considered a single vehicle although it has two distinct chassis. So the distinction vehicle / formation is conventional; being \"atomic\" in operations is a necessary condition, but not a sufficient one to be called vehicle.",
+      "properties": {},
+      "title": "Vehicle",
+      "type": "object"
+    },
+    "_Thing": {
+      "description": "Base object that all classes inherit from",
+      "properties": {
+        "uri": {
+          "description": "The URI identifier for this instance",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "_Thing",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
