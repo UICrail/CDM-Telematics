@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-21 14:44:50 UTC
+This document was generated on 2025-11-21 15:01:33 UTC
 
 
 ---
@@ -163,9 +163,9 @@ What happens when trains do not run is equally important for managing operations
 
 ## Diagram
 
-The "train run" is therefore the main operational process, and its sub-processes are of type "train service". A sub-process is of a single type.
+The "train run" is therefore the main operational process, and its sub-processes are of type "train service".
 
-A train service has one or more "settings" (in the sense of DUL) which can be understood as a "circumstances", and the important setting here is a "static section" of the train journey.
+A train service has one or more "settings" (in the sense of DUL) which can be understood as a "circumstances". The most common setting here is a "static section" of the train journey.
 
 _Note: This is a slight over-simplification, since passenger trains for instance sometimes benefit from interior cleaning processes while running. _
 
