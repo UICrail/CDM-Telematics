@@ -1413,11 +1413,11 @@ tafp5:TransportCollaborationMessage rdf:type owl:Class ;
                                     rdfs:label "Transport collaboration message"@en .
 
 
-###  https://cdm.ovh/taf/tafp5#UnregulatedTrain
-tafp5:UnregulatedTrain rdf:type owl:Class ;
-                       rdfs:subClassOf tafp5:PlannedJourneyOrPath ;
-                       rdfs:comment "Unregulated train run. \" Unregulated train\"  might be the correct expression in EN-speaking areas (check). At SNCF, was called \" marche indeterminee (abbr. MI)\", which is more to the point as \" marche\" evokes journey execution rather than train." ;
-                       rdfs:label "Unregulated train run"@en .
+###  https://cdm.ovh/taf/tafp5#UndeterminedJourney
+tafp5:UndeterminedJourney rdf:type owl:Class ;
+                          rdfs:subClassOf tafp5:PlannedJourneyOrPath ;
+                          rdfs:comment "Undetermined journey might be the correct expression in EN-speaking areas (unregulated train seems to exist but seems to be related to dispatcher roles, hence avoided here). At SNCF, was called \" marche indeterminee (abbr. MI)\"." ;
+                          rdfs:label "Undetermined journey"@en .
 
 
 ###  https://cdm.ovh/taf/tafp5#VersionedDescription
@@ -1687,7 +1687,7 @@ tafp5:locomotiveRole rdf:type owl:NamedIndividual ,
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( tafp5:Path
                 tafp5:PlannedJourney
-                tafp5:UnregulatedTrain
+                tafp5:UndeterminedJourney
               )
 ] .
 

@@ -2992,22 +2992,22 @@ It is a process and may have parts that are sub-processes.</lexicalForm>
           </annotations>
         </iri>
         <iri>
-          <value>https://cdm.ovh/taf/tafp5#UnregulatedTrain</value>
+          <value>https://cdm.ovh/taf/tafp5#UndeterminedJourney</value>
           <annotations>
             <annotation>
-              <subject>https://cdm.ovh/taf/tafp5#UnregulatedTrain</subject>
+              <subject>https://cdm.ovh/taf/tafp5#UndeterminedJourney</subject>
               <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
               <object>
-                <lexicalForm>Unregulated train run. " Unregulated train"  might be the correct expression in EN-speaking areas (check). At SNCF, was called " marche indeterminee (abbr. MI)", which is more to the point as " marche" evokes journey execution rather than train.</lexicalForm>
+                <lexicalForm>Undetermined journey might be the correct expression in EN-speaking areas (unregulated train seems to exist but seems to be related to dispatcher roles, hence avoided here). At SNCF, was called " marche indeterminee (abbr. MI)".</lexicalForm>
                 <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
                 <language/>
               </object>
             </annotation>
             <annotation>
-              <subject>https://cdm.ovh/taf/tafp5#UnregulatedTrain</subject>
+              <subject>https://cdm.ovh/taf/tafp5#UndeterminedJourney</subject>
               <property>http://www.w3.org/2000/01/rdf-schema#label</property>
               <object>
-                <lexicalForm>Unregulated train run</lexicalForm>
+                <lexicalForm>Undetermined journey</lexicalForm>
                 <datatype/>
                 <language>en</language>
               </object>
@@ -6655,9 +6655,9 @@ The Lead RU (responsible for the train run also for the commercial aspects) is d
           <label width="39" y="298" height="23" customSize="0" size="12" x="80">exists</label>
         </node>
         <node color="#fcfcfc" id="n39" type="concept">
-          <geometry width="147" y="450" height="50" x="420"/>
-          <iri>https://cdm.ovh/taf/tafp5#UnregulatedTrain</iri>
-          <label width="147" y="442" height="23" customSize="0" size="12" x="412"/>
+          <geometry width="143" y="450" height="50" x="418"/>
+          <iri>https://cdm.ovh/taf/tafp5#UndeterminedJourney</iri>
+          <label width="143" y="442" height="23" customSize="0" size="12" x="410"/>
         </node>
         <node color="#c2b078" id="n4" type="concept">
           <geometry width="110" y="210" height="50" x="250"/>
@@ -6741,7 +6741,7 @@ The Lead RU (responsible for the train run also for the commercial aspects) is d
           <point y="320" x="80"/>
         </edge>
         <edge source="n39" id="e55" target="n24" type="input">
-          <point y="450" x="420"/>
+          <point y="450" x="418"/>
           <point y="380" x="250"/>
         </edge>
         <edge source="n36" id="e56" target="n40" type="inclusion">
