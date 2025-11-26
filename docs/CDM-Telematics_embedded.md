@@ -5,7 +5,7 @@ _Self-contained version with embedded images_
 
 ## Version
 
-This document was generated on 2025-11-21 13:45:56 UTC
+This document was generated on 2025-11-26 15:16:18 UTC
 
 
 ---
@@ -163,11 +163,11 @@ What happens when trains do not run is equally important for managing operations
 
 ## Diagram
 
-The "train run" is therefore the main operational process, and its sub-processes are of type "train service". A sub-process is of a single type.
+The "train run" is therefore the main operational process, and its sub-processes are of type "train service".
 
-A train service has one or more "settings" (in the sense of DUL) which can be understood as a "circumstances", and the important setting here is a "static section" of the train journey.
+A train service has one or more "settings" (in the sense of DUL) which can be understood as a "circumstances". The most common setting here is a "static section" of the train journey.
 
-_Note: This is a slight over-simplification, since passenger trains for instance sometimes benefit from interior cleaning processes while running. _
+_Note: This is a slight over-simplification, since passenger trains for instance sometimes benefit from interior cleaning processes while running._
 
 A "static section" of a journey is any part of the journey where the train stops and/or starts, so there is a time interval where it is supposed to be static, hence the name. Details are provided in [the Journey Schedule page](https://github.com/UICrail/CDM-Telematics/wiki/12b-%E2%80%90-Journey-Schedule).
 
@@ -659,7 +659,7 @@ In the context of railway applications, nothing is actually open-ended in time, 
 ---
 # References
 
-...
+DOLCE: [ISO/IEC 21838-3:2023](https://www.boutique.afnor.org/en-gb/standard/iso-iec-2183832023/information-technology-toplevel-ontologies-tlo-part-3-descriptive-ontology-/xs140760/351330)
 
 <sub>Original page: [99-‐-References.md](https://github.com/UICrail/CDM-Telematics/wiki/99-%E2%80%90-References)</sub>
 
