@@ -24,9 +24,9 @@
                              rdfs:comment "In the context of operations in general, and the TAF TSI in particular, \"weight\"  is often used instead of \"mass\" while the latter is correct (and units are always mass units such as kg). In the present ontology, we only use \"mass\"  in identifiers and labels."@en .
 
 #################################################################
-#    Datatypes
+#    Datatypes
 #################################################################
-
+
 ###  http://www.w3.org/2000/01/rdf-schema#Literal
 rdfs:Literal rdf:type rdfs:Datatype .
 
@@ -57,9 +57,9 @@ xsd:string rdf:type rdfs:Datatype .
 
 
 #################################################################
-#    Object Properties
+#    Object Properties
 #################################################################
-
+
 ###  http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem
 bag:hasItem rdf:type owl:ObjectProperty .
 
@@ -233,8 +233,7 @@ tafp5:hasImageContent rdf:type owl:ObjectProperty ,
 
 ###  https://cdm.ovh/taf/tafp5#hasJourney
 tafp5:hasJourney rdf:type owl:ObjectProperty ;
-                 rdfs:domain tafp5:TrainJourneyState ,
-                             tafp5:TrainRun ;
+                 rdfs:domain tafp5:TrainJourneyState ;
                  rdfs:range tafp5:Journey ;
                  rdfs:comment "not a functional property, as it can be expressed w.r.t. the planned journey or the executed journey (if available). User feedback welcome."@en ;
                  rdfs:label "has journey" .
@@ -297,6 +296,14 @@ tafp5:hasPayload rdf:type owl:ObjectProperty ;
                  rdfs:domain tafp5:TransportCollaborationMessage ;
                  rdfs:range tafp5:OperationalState ;
                  rdfs:label "has payload"@en .
+
+
+###  https://cdm.ovh/taf/tafp5#hasPlannedJourney
+tafp5:hasPlannedJourney rdf:type owl:ObjectProperty ,
+                                 owl:FunctionalProperty ;
+                        rdfs:domain tafp5:TrainRun ;
+                        rdfs:range tafp5:PlannedJourneyOrPath ;
+                        rdfs:label "has planned journey"@en .
 
 
 ###  https://cdm.ovh/taf/tafp5#hasRU
@@ -371,8 +378,9 @@ tafp5:hasTrain rdf:type owl:ObjectProperty ;
 
 
 ###  https://cdm.ovh/taf/tafp5#hasTrainRunState
-tafp5:hasTrainRunState rdf:type owl:ObjectProperty ,
-                                owl:InverseFunctionalProperty ;
+tafp5:hasTrainRunState rdf:type owl:ObjectProperty ;
+                       owl:inverseOf tafp5:isStateOfTrainRun ;
+                       rdf:type owl:InverseFunctionalProperty ;
                        rdfs:label "has train run state" .
 
 
@@ -402,10 +410,6 @@ tafp5:isStateOfTrainRun rdf:type owl:ObjectProperty ;
                         rdfs:domain tafp5:TrainRunState ;
                         rdfs:range tafp5:TrainRun ;
                         rdfs:label "is state of train run" .
-
-[ owl:inverseOf tafp5:isStateOfTrainRun ;
-   rdfs:subPropertyOf tafp5:hasTrainRunState
- ] .
 
 
 ###  https://cdm.ovh/taf/tafp5#nextDescriptionVersion
@@ -501,9 +505,9 @@ tafp5:trainLeadRU rdf:type owl:ObjectProperty ;
 
 
 #################################################################
-#    Data properties
+#    Data properties
 #################################################################
-
+
 ###  http://www.w3.org/2006/time#inXSDDateTimeStamp
 time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
                         rdfs:domain time:Instant ;
@@ -829,9 +833,9 @@ tafp5:uicWagonNumber rdf:type owl:DatatypeProperty ,
 
 
 #################################################################
-#    Classes
+#    Classes
 #################################################################
-
+
 ###  http://cdm.ovh/rsm/rolling_stock/typology/typology#RollingStock
 <http://cdm.ovh/rsm/rolling_stock/typology/typology#RollingStock> rdf:type owl:Class .
 
@@ -1433,9 +1437,9 @@ tafp5:Wagon rdf:type owl:Class ;
 
 
 #################################################################
-#    Individuals
+#    Individuals
 #################################################################
-
+
 ###  https://cdm.ovh/taf/tafp5#Actual
 tafp5:Actual rdf:type owl:NamedIndividual ,
                       tafp5:TemporalRole ;
@@ -1617,9 +1621,9 @@ tafp5:locomotiveRole rdf:type owl:NamedIndividual ,
 
 
 #################################################################
-#    General axioms
+#    General axioms
 #################################################################
-
+
 [ rdf:type owl:Restriction ;
   owl:onProperty dul:hasParticipant ;
   owl:someValuesFrom tafp5:Train ;
