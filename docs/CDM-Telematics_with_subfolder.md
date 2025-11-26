@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-26 16:00:20 UTC
+This document was generated on 2025-11-26 16:08:45 UTC
 
 
 ---
@@ -145,7 +145,9 @@ Enforcing such cardinality "exactly one object" is possible and is done elsewher
 
 #### Where are the train origin and destination?
 
-The train destination may change in the course of the train run (think of a re-routed train). This is why the train journey (planned, foreseen, actual...) are time-dependent, and documented using 
+The train destination may change in the course of the train run (think of a re-routed train). Only the planned journey is meant to define the train; whatever change may happen characterizes the train's state.
+
+Note: there is a special journey individual which is "undetermined journey" (FR equivalent would be "marche indéterminée"). This is another case where the absence of data (no available panned journey property) is differentiated from the fact "the train journey has no plan", which is expressed positively. See "Train run state" diagram for more information.
 
 #### About OWL2 profiles
 
