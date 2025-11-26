@@ -94,7 +94,7 @@ pages}\label{cdm-telematics-compiled-wiki-pages}}
 \hypertarget{version}{%
 \subsection{Version}\label{version}}
 
-This document was generated on 2025-11-26 15:16:18 UTC
+This document was generated on 2025-11-26 16:08:45 UTC
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -366,8 +366,15 @@ and destination. See the Train-related wiki page.
 destination?}\label{where-are-the-train-origin-and-destination}}
 
 The train destination may change in the course of the train run (think
-of a re-routed train). This is why the train journey (planned, foreseen,
-actual\ldots) are time-dependent, and documented using
+of a re-routed train). Only the planned journey is meant to define the
+train; whatever change may happen characterizes the train's state.
+
+Note: there is a special journey individual which is ``undetermined
+journey'' (FR equivalent would be ``marche indéterminée''). This is
+another case where the absence of data (no available panned journey
+property) is differentiated from the fact ``the train journey has no
+plan'', which is expressed positively. See ``Train run state'' diagram
+for more information.
 
 \hypertarget{about-owl2-profiles}{%
 \paragraph{About OWL2 profiles}\label{about-owl2-profiles}}
