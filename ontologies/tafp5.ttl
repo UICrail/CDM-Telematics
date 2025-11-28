@@ -818,6 +818,8 @@ prov:invalidatedAtTime rdf:type owl:DatatypeProperty .
                                                         owl:FunctionalProperty ;
                                                rdfs:domain <https://cdm.ovh/taf/tafp5#TrainRun> ;
                                                rdfs:range xsd:date ;
+                                               rdfs:comment "Target datatype, xsd:date, is not part of OWL2 and may be incompatible with some reasoners. Pellet is fine, while HermiT (which adheres more strictly to OWL2 conventions) may complain."@en ,
+                                                            "The planned departure date that defines the train run. Remains unchanged even if the revised or actual departure is past midnight, hence on the next day."@en ;
                                                rdfs:label "train departure date"@en ;
                                                rdfs:seeAlso taf:TrainDepartureDate .
 
