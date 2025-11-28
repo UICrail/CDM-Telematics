@@ -4691,6 +4691,24 @@ The Lead RU (responsible for the train run also for the commercial aspects) is d
                 <iri>http://data.europa.eu/949/TrainDepartureDate</iri>
               </object>
             </annotation>
+            <annotation>
+              <subject>https://cdm.ovh/taf/tafp5#trainDepartureDate</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Target datatype, xsd:date, is not part of OWL2 and may be incompatible with some reasoners. Pellet is fine, while HermiT (which adheres more strictly to OWL2 conventions) may complain.</lexicalForm>
+                <datatype/>
+                <language>en</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://cdm.ovh/taf/tafp5#trainDepartureDate</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>The planned departure date that defines the train run. Remains unchanged even if the revised or actual departure is past midnight, hence on the next day.</lexicalForm>
+                <datatype/>
+                <language>en</language>
+              </object>
+            </annotation>
           </annotations>
         </iri>
         <iri>
