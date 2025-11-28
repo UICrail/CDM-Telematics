@@ -5,7 +5,7 @@ _Self-contained version with local images_
 
 ## Version
 
-This document was generated on 2025-11-26 16:16:06 UTC
+This document was generated on 2025-11-28 16:33:42 UTC
 
 
 ---
@@ -141,7 +141,7 @@ Enforcing such cardinality "exactly one object" is possible and is done elsewher
 
 #### A train run involves one train
 
-... although its composition and loads may change between origin and destination. See the Train-related wiki page.
+... although its composition and loads may change between origin and destination. See the Train-relate page.
 
 #### Where are the train origin and destination?
 
